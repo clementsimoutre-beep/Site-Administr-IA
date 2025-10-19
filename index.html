@@ -1,139 +1,350 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Administr-IA | Solutions de gains de temps</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(135deg, #00bcd4, #7b2ff7);
-      font-family: 'Inter', sans-serif;
-      color: #fff;
-      overflow-x: hidden;
-      position: relative;
-    }
-    .bubble {
-      position: absolute;
-      bottom: -150px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 50%;
-      animation: rise 20s infinite ease-in;
-    }
-    @keyframes rise {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
-    }
-    .slogan {
-      animation: fade 9s infinite;
-    }
-    @keyframes fade {
-      0%, 33% { opacity: 1; }
-      33.1%, 66% { opacity: 0; }
-      66.1%, 100% { opacity: 1; }
-    }
-    .section {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      padding: 2rem;
-      margin-top: 2rem;
-      backdrop-filter: blur(6px);
-    }
-  </style>
-</head>
-<body class="text-center">
-
-  <!-- Bulles dynamiques -->
-  <div id="bubbles"></div>
-
-  <header class="py-10 relative z-10">
-    <img src="logo.png" alt="Logo Administr-IA" class="mx-auto w-1/3">
-    <h1 class="text-4xl font-bold mt-6">ADMINISTR-IA</h1>
-    <div class="relative h-10 mt-4">
-      <p class="slogan absolute w-full transition-opacity duration-1000">Moins d’administratif, plus d’humain.</p>
-      <p class="slogan absolute w-full transition-opacity duration-1000" style="animation-delay: 3s;">Des solutions au service de votre temps et de votre réussite.</p>
-      <p class="slogan absolute w-full transition-opacity duration-1000" style="animation-delay: 6s;">Gagnez du temps, simplifiez votre quotidien grâce à l’IA.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administr-IA – Moins d'administratif, plus d'humain</title>
+    <meta name="description" content="Administr-IA : IA au service du temps et de la réussite – automatisations, assistants, intégrations, solutions pour mairies et TPE." />
+    <link rel="icon" href="assets/logo.png" />
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+            boxShadow: {
+              neon: '0 0 15px rgba(108,99,255,0.6), 0 0 30px rgba(0,191,165,0.35)',
+            },
+            keyframes: {
+              'float': { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-8px)' } },
+              'gradient-x': {
+                '0%,100%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' }
+              },
+              'marquee': {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-50%)' }
+              },
+              'bubble-rise': {
+                '0%': { transform: 'translateY(100vh) scale(0)', opacity: '0' },
+                '10%': { opacity: '0.6' },
+                '90%': { opacity: '0.6' },
+                '100%': { transform: 'translateY(-100vh) scale(1)', opacity: '0' }
+              }
+            },
+            animation: {
+              float: 'float 6s ease-in-out infinite',
+              'gradient-x': 'gradient-x 12s ease infinite',
+              marquee: 'marquee 25s linear infinite',
+              'bubble-1': 'bubble-rise 20s ease-in infinite',
+              'bubble-2': 'bubble-rise 25s ease-in infinite 3s',
+              'bubble-3': 'bubble-rise 22s ease-in infinite 6s',
+              'bubble-4': 'bubble-rise 28s ease-in infinite 2s',
+              'bubble-5': 'bubble-rise 24s ease-in infinite 8s',
+              'bubble-6': 'bubble-rise 26s ease-in infinite 4s',
+            },
+          }
+        }
+      }
+    </script>
+    <!-- React & ReactDOM UMD -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Framer Motion UMD -->
+    <script crossorigin src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
+    <style>
+      html, body { height: 100%; }
+      body {
+        background: radial-gradient(1200px 800px at 80% -10%, rgba(108,99,255,0.25), transparent 60%),
+                    radial-gradient(900px 700px at -10% 20%, rgba(0,191,165,0.25), transparent 60%),
+                    #0b0b12;
+        color: white;
+        position: relative;
+        overflow-x: hidden;
+      }
+      .no-white-space * { background-clip: padding-box; }
+      .glass { background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)); backdrop-filter: blur(10px); }
+      .gradient-ring { position: relative; }
+      .gradient-ring::before {
+        content: "";
+        position: absolute; inset: -2px;
+        background: linear-gradient(135deg, #6C63FF, #00BFA5);
+        filter: blur(8px); z-index: -1; border-radius: 28px; opacity: .6;
+      }
+      
+      /* Animation des bulles */
+      .bubble-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(0, 191, 165, 0.4), rgba(108, 99, 255, 0.3));
+        filter: blur(2px);
+        box-shadow: 0 8px 32px rgba(0, 191, 165, 0.2);
+      }
+      
+      .bubble-1 { width: 80px; height: 80px; left: 10%; animation: bubble-1 20s ease-in infinite; }
+      .bubble-2 { width: 120px; height: 120px; left: 25%; animation: bubble-2 25s ease-in infinite 3s; }
+      .bubble-3 { width: 60px; height: 60px; left: 45%; animation: bubble-3 22s ease-in infinite 6s; }
+      .bubble-4 { width: 100px; height: 100px; left: 65%; animation: bubble-4 28s ease-in infinite 2s; }
+      .bubble-5 { width: 90px; height: 90px; left: 80%; animation: bubble-5 24s ease-in infinite 8s; }
+      .bubble-6 { width: 70px; height: 70px; left: 90%; animation: bubble-6 26s ease-in infinite 4s; }
+      
+      @keyframes bubble-1 {
+        0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        100% { transform: translateY(-100vh) translateX(-30px) scale(1); opacity: 0; }
+      }
+      
+      @keyframes bubble-2 {
+        0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+        10% { opacity: 0.5; }
+        90% { opacity: 0.5; }
+        100% { transform: translateY(-100vh) translateX(40px) scale(1); opacity: 0; }
+      }
+      
+      @keyframes bubble-3 {
+        0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+        10% { opacity: 0.7; }
+        90% { opacity: 0.7; }
+        100% { transform: translateY(-100vh) translateX(-20px) scale(1); opacity: 0; }
+      }
+      
+      @keyframes bubble-4 {
+        0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+        10% { opacity: 0.5; }
+        90% { opacity: 0.5; }
+        100% { transform: translateY(-100vh) translateX(25px) scale(1); opacity: 0; }
+      }
+      
+      @keyframes bubble-5 {
+        0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        100% { transform: translateY(-100vh) translateX(-35px) scale(1); opacity: 0; }
+      }
+      
+      @keyframes bubble-6 {
+        0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+        10% { opacity: 0.7; }
+        90% { opacity: 0.7; }
+        100% { transform: translateY(-100vh) translateX(15px) scale(1); opacity: 0; }
+      }
+    </style>
+  </head>
+  <body class="no-white-space overflow-x-hidden">
+    <!-- Conteneur des bulles -->
+    <div class="bubble-container">
+      <div class="bubble bubble-1"></div>
+      <div class="bubble bubble-2"></div>
+      <div class="bubble bubble-3"></div>
+      <div class="bubble bubble-4"></div>
+      <div class="bubble bubble-5"></div>
+      <div class="bubble bubble-6"></div>
     </div>
-  </header>
+    
+    <div id="root"></div>
 
-  <section class="section mx-6 md:mx-20 relative z-10">
-    <h2 class="text-2xl font-semibold">L’IA utile et humaine, pour réduire la charge administrative et augmenter votre impact.</h2>
-    <a href="mailto:clement@administr-ia.fr" class="inline-block mt-4 bg-white text-blue-700 font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-blue-100 transition">📧 Contactez-nous</a>
-    <button class="ml-3 bg-purple-600 px-6 py-2 rounded-full shadow-lg hover:bg-purple-700 transition">Découvrir nos solutions</button>
-  </section>
+    <script type="text/javascript">
+      const { useState, useEffect, useRef } = React;
+      const { motion, AnimatePresence } = window.framerMotion || {};
 
-  <section class="section mx-6 md:mx-20 relative z-10">
-    <h2 class="text-3xl font-bold mb-4">Notre vision & mission</h2>
-    <p>Administr-IA remet l’humain au centre. L’IA gère l’administratif ; vous vous concentrez sur votre métier.</p>
-    <div class="grid md:grid-cols-3 gap-4 mt-6">
-      <div><h3 class="text-xl font-semibold">🧠 Automatisation intelligente</h3><p>Fini les tâches répétitives : rédaction, classement, relances, génération de documents.</p></div>
-      <div><h3 class="text-xl font-semibold">🤝 Accompagnement humain</h3><p>Toujours un interlocuteur réel, proximité Alsace-Lorraine et à distance partout en France.</p></div>
-      <div><h3 class="text-xl font-semibold">🚀 Simplicité & efficacité</h3><p>Mise en place rapide, solutions adaptées à vos outils et à votre activité.</p></div>
-    </div>
-  </section>
+      function useInterval(callback, delay) {
+        const savedCallback = React.useRef();
+        useEffect(() => { savedCallback.current = callback; }, [callback]);
+        useEffect(() => {
+          if (delay === null) return;
+          const id = setInterval(() => savedCallback.current(), delay);
+          return () => clearInterval(id);
+        }, [delay]);
+      }
 
-  <section class="section mx-6 md:mx-20 relative z-10">
-    <h2 class="text-3xl font-bold mb-4">Nos solutions</h2>
-    <p>Concrètes, utiles et intégrées à vos outils.</p>
-    <div class="grid md:grid-cols-3 gap-4 mt-6">
-      <div>Automatisation des tâches</div>
-      <div>Assistants virtuels internes</div>
-      <div>Analyse intelligente</div>
-      <div>Intégration de vos outils</div>
-      <div>Solutions pour mairies</div>
-      <div>Optimisation des workflows</div>
-    </div>
-  </section>
+      const slogans = [
+        "Moins d'administratif, plus d'humain.",
+        "Des solutions au service de votre temps et de votre réussite.",
+        "Gagnez du temps, simplifiez votre quotidien grâce à l'IA."
+      ];
 
-  <section class="section mx-6 md:mx-20 relative z-10">
-    <h2 class="text-3xl font-bold mb-4">Nos engagements</h2>
-    <div class="grid md:grid-cols-4 gap-4">
-      <div>🧩 Sans engagement<br>Abonnements flexibles, vous restez libre.</div>
-      <div>💬 Proximité<br>Diagnostic gratuit autour d’un café (visio ou sur place).</div>
-      <div>💸 Tarifs justes<br>Pensés pour artisans, TPE/PME et collectivités.</div>
-      <div>💡 Innovation accessible<br>Le futur de l’IA pour tous.</div>
-    </div>
-  </section>
+      const Section = ({ id, title, subtitle, children }) => (
+        React.createElement('section', { id, className: "relative px-6 md:px-24 lg:px-40 py-48 md:py-56 z-10" },
+          React.createElement('div', { className: "max-w-7xl mx-auto" },
+            motion ? React.createElement(motion.h2, { initial:{opacity:0,y:20}, whileInView:{opacity:1,y:0}, viewport:{once:true, amount:.3}, transition:{duration:.6},
+              className: "text-3xl md:text-5xl font-semibold tracking-tight" }, title) :
+              React.createElement('h2', { className: "text-3xl md:text-5xl font-semibold tracking-tight" }, title),
+            subtitle && (motion ? React.createElement(motion.p, { initial:{opacity:0,y:10}, whileInView:{opacity:1,y:0}, viewport:{once:true, amount:.3}, transition:{delay:.1, duration:.6},
+              className: "mt-3 text-white/70 text-lg md:text-xl" }, subtitle)
+              : React.createElement('p', { className: "mt-3 text-white/70 text-lg md:text-xl" }, subtitle)
+            ),
+            React.createElement('div', { className: "mt-10" }, children)
+          )
+        )
+      );
 
-  <section class="section mx-6 md:mx-20 relative z-10">
-    <h2 class="text-3xl font-bold mb-4">Solutions pour les communes</h2>
-    <div class="grid md:grid-cols-2 gap-4">
-      <div>📝 Formulaire citoyen intelligent<br>Répond 24/7 aux questions simples, oriente et collecte les demandes.</div>
-      <div>📰 Bulletins dématérialisés<br>Diffusez l’info locale rapidement et simplement.</div>
-      <div>🏛️ Réservation de salles<br>Génère conventions et factures automatiquement.</div>
-      <div>📅 Rendez-vous en ligne<br>Organisation fluide et moins chronophage.</div>
-    </div>
-  </section>
+      const Header = () => (
+        React.createElement('header', { className: "sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/5 bg-white/0 border-b border-white/10" },
+          React.createElement('div', { className: "max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 lg:px-20 h-20" },
+            React.createElement('div', { className: "flex items-center gap-3" },
+              React.createElement('img', { src: "assets/logo.png", alt: "Administr-IA", className: "h-14 w-auto rounded-lg ring-1 ring-white/20" }),
+              React.createElement('span', { className: "hidden sm:inline text-white/90 font-medium text-lg" }, "Administr-IA")
+            ),
+            React.createElement('a', { href: "mailto:clement@administr-ia.fr", className: "gradient-ring rounded-2xl px-4 py-2 text-sm font-semibold" },
+              React.createElement('span', { className: "relative z-10" }, "Contact")
+            )
+          )
+        )
+      );
 
-  <footer class="mt-10 py-8 bg-white bg-opacity-10 text-white relative z-10">
-    <h2 class="text-2xl font-semibold">Parlons de votre projet ☕</h2>
-    <p>Gratuit et sans engagement. Administr-IA remet l’humain au centre.</p>
-    <a href="mailto:clement@administr-ia.fr" class="block mt-4 font-semibold underline">📧 Contactez Clément</a>
-    <p class="mt-6 text-sm opacity-70">© 2025 Administr-IA. Tous droits réservés.</p>
-  </footer>
+      const Hero = () => {
+        const [index, setIndex] = useState(0);
+        useInterval(() => { setIndex((i) => (i + 1) % slogans.length); }, 3200);
 
-  <script>
-    // Slogans alternants
-    const slogans = document.querySelectorAll('.slogan');
-    let index = 0;
-    setInterval(() => {
-      slogans.forEach((s, i) => s.style.opacity = i === index ? 1 : 0);
-      index = (index + 1) % slogans.length;
-    }, 3000);
+        return (
+          React.createElement('section', { className: "relative min-h-[86vh] flex items-center justify-center text-center overflow-hidden px-6 md:px-12 lg:px-20 z-10" },
+            React.createElement('div', { className: "absolute inset-0 bg-[linear-gradient(135deg,#6C63FF_0%,#00BFA5_100%)] bg-[length:200%_200%] animate-gradient-x opacity-20" }),
+            React.createElement('div', { className: "relative max-w-5xl mx-auto" },
+              motion ? React.createElement(motion.img, {
+                src: "assets/logo.png", alt: "Administr-IA",
+                initial:{opacity:0, y:10}, animate:{opacity:1, y:0}, transition:{duration:.6},
+                className: "mx-auto h-64 md:h-80 w-auto mb-8 rounded-xl ring-1 ring-white/20"
+              }) : React.createElement('img', { src: "assets/logo.png", alt: "Administr-IA", className: "mx-auto h-64 md:h-80 w-auto mb-8 rounded-xl ring-1 ring-white/20" }),
 
-    // Bulles dynamiques
-    const bubblesContainer = document.getElementById('bubbles');
-    for (let i = 0; i < 20; i++) {
-      const bubble = document.createElement('div');
-      const size = Math.random() * 60 + 20;
-      bubble.classList.add('bubble');
-      bubble.style.width = size + 'px';
-      bubble.style.height = size + 'px';
-      bubble.style.left = Math.random() * 100 + 'vw';
-      bubble.style.animationDuration = (10 + Math.random() * 20) + 's';
-      bubble.style.animationDelay = (Math.random() * 10) + 's';
-      bubblesContainer.appendChild(bubble);
-    }
-  </script>
-</body>
+              React.createElement('div', { className: "h-28 md:h-24 relative" },
+                React.createElement(AnimatePresence || React.Fragment, null,
+                  motion ? React.createElement(motion.h1, {
+                    key: index,
+                    initial:{opacity:0, y:20}, animate:{opacity:1, y:0}, exit:{opacity:0, y:-20},
+                    transition:{duration:.6},
+                    className: "text-3xl md:text-5xl font-semibold tracking-tight"
+                  }, slogans[index]) :
+                  React.createElement('h1', { className: "text-3xl md:text-5xl font-semibold tracking-tight" }, slogans[index])
+                )
+              ),
+              motion ? React.createElement(motion.p, {
+                initial:{opacity:0, y:10}, animate:{opacity:1, y:0}, transition:{delay:.2, duration:.6},
+                className: "max-w-3xl mx-auto mt-4 text-white/70"
+              },
+                "L'IA utile et humaine, pour réduire la charge administrative et augmenter votre impact."
+              ) : React.createElement('p', { className: "max-w-3xl mx-auto mt-4 text-white/70" }, "L'IA utile et humaine, pour réduire la charge administrative et augmenter votre impact."),
+
+              React.createElement('div', { className: "mt-8 flex items-center justify-center gap-4" },
+                React.createElement('a', { href: "mailto:clement@administr-ia.fr", className: "gradient-ring rounded-2xl px-6 py-3 font-semibold" },
+                  React.createElement('span', { className: "relative z-10" }, "📧 Contactez-nous")
+                ),
+                React.createElement('a', { href: "#solutions", className: "rounded-2xl px-6 py-3 font-semibold glass ring-1 ring-white/10" }, "Découvrir nos solutions")
+              )
+            )
+          )
+        );
+      };
+
+      const Card = ({ title, desc, icon }) => (
+        motion ? React.createElement(motion.div, {
+          initial:{opacity:0, y:20}, whileInView:{opacity:1, y:0}, viewport:{once:true, amount:.2}, transition:{duration:.5},
+          className: "glass ring-1 ring-white/10 rounded-3xl p-6 md:p-7 hover:shadow-neon"
+        },
+          React.createElement('div', { className: "text-3xl mb-3" }, icon),
+          React.createElement('h3', { className: "text-xl font-semibold" }, title),
+          React.createElement('p', { className: "mt-2 text-white/70" }, desc)
+        ) : React.createElement('div', { className: "glass ring-1 ring-white/10 rounded-3xl p-6 md:p-7 hover:shadow-neon" },
+          React.createElement('div', { className: "text-3xl mb-3" }, icon),
+          React.createElement('h3', { className: "text-xl font-semibold" }, title),
+          React.createElement('p', { className: "mt-2 text-white/70" }, desc)
+        )
+      );
+
+      const Vision = () => (
+        React.createElement(Section, { id: "vision", title: "Notre vision & mission", subtitle: "Administr-IA remet l'humain au centre. L'IA gère l'administratif ; vous vous concentrez sur votre métier." },
+          React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-3 gap-5" },
+            React.createElement(Card, { icon: "🧠", title: "Automatisation intelligente", desc: "Fini les tâches répétitives : rédaction, classement, relances, génération de documents." }),
+            React.createElement(Card, { icon: "🤝", title: "Accompagnement humain", desc: "Toujours un interlocuteur réel, proximité Alsace-Lorraine et à distance partout en France." }),
+            React.createElement(Card, { icon: "🚀", title: "Simplicité & efficacité", desc: "Mise en place rapide, solutions adaptées à vos outils et à votre activité." })
+          )
+        )
+      );
+
+      const Solutions = () => (
+        React.createElement(Section, { id: "solutions", title: "Nos solutions", subtitle: "Concrètes, utiles et intégrées à vos outils." },
+          React.createElement('div', { className: "overflow-hidden" },
+            React.createElement('div', { className: "flex gap-5 whitespace-nowrap will-change-transform animate-marquee" },
+              ["Automatisation des tâches", "Assistants virtuels internes", "Analyse intelligente", "Intégration de vos outils", "Solutions pour mairies", "Optimisation des workflows"].concat(
+                ["Automatisation des tâches", "Assistants virtuels internes", "Analyse intelligente", "Intégration de vos outils", "Solutions pour mairies", "Optimisation des workflows"]
+              ).map((txt, i) =>
+                React.createElement('div', { key: i, className: "glass ring-1 ring-white/10 rounded-3xl px-6 py-8 inline-block min-w-[280px] text-center hover:shadow-neon" }, txt)
+              )
+            )
+          )
+        )
+      );
+
+      const Avantages = () => (
+        React.createElement(Section, { id: "avantages", title: "Nos engagements", subtitle: "Flexibilité, proximité et innovation accessible." },
+          React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-4 gap-5" },
+            React.createElement(Card, { icon: "🧩", title: "Sans engagement", desc: "Abonnements flexibles, vous restez libre." }),
+            React.createElement(Card, { icon: "💬", title: "Proximité", desc: "Diagnostic gratuit autour d'un café (visio ou sur place)." }),
+            React.createElement(Card, { icon: "💸", title: "Tarifs justes", desc: "Pensés pour artisans, TPE/PME et collectivités." }),
+            React.createElement(Card, { icon: "💡", title: "Innovation accessible", desc: "Le futur de l'IA pour tous." })
+          )
+        )
+      );
+
+      const Communes = () => (
+        React.createElement(Section, { id: "communes", title: "Solutions pour les communes", subtitle: "Modernisez vos services, sans alourdir votre budget." },
+          React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 gap-5" },
+            React.createElement(Card, { icon: "📝", title: "Formulaire citoyen intelligent", desc: "Répond 24/7 aux questions simples, oriente et collecte les demandes." }),
+            React.createElement(Card, { icon: "📰", title: "Bulletins dématérialisés", desc: "Diffusez l'info locale rapidement et simplement." }),
+            React.createElement(Card, { icon: "🏛️", title: "Réservation de salles", desc: "Génère conventions et factures automatiquement." }),
+            React.createElement(Card, { icon: "📅", title: "Rendez-vous en ligne", desc: "Organisation fluide et moins chronophage." })
+          )
+        )
+      );
+
+      const Contact = () => (
+        React.createElement('section', { id: "contact", className: "px-6 md:px-12 lg:px-20 py-20 relative z-10" },
+          React.createElement('div', { className: "max-w-7xl mx-auto glass ring-1 ring-white/10 rounded-3xl p-8 md:p-10 text-center gradient-ring" },
+            React.createElement('h3', { className: "text-2xl md:text-3xl font-semibold" }, "Parlons de votre projet ☕"),
+            React.createElement('p', { className: "mt-2 text-white/70" }, "Gratuit et sans engagement. Administr-IA remet l'humain au centre."),
+            React.createElement('div', { className: "mt-6" },
+              React.createElement('a', { href: "mailto:clement@administr-ia.fr", className: "rounded-2xl px-6 py-3 font-semibold bg-white text-black hover:shadow-neon" }, "📧 Contactez Clément")
+            )
+          )
+        )
+      );
+
+      const Footer = () => (
+        React.createElement('footer', { className: "px-6 md:px-12 lg:px-20 py-10 border-t border-white/10 relative z-10" },
+          React.createElement('div', { className: "max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-white/60" },
+            React.createElement('span', null, "© " + new Date().getFullYear() + " Administr-IA. Tous droits réservés."),
+            React.createElement('a', { href: "mailto:clement@administr-ia.fr", className: "hover:text-white" }, "Contact : clement@administr-ia.fr")
+          )
+        )
+      );
+
+      const App = () => (
+        React.createElement(React.Fragment, null,
+          React.createElement(Header, null),
+          React.createElement(Hero, null),
+          React.createElement(Vision, null),
+          React.createElement(Solutions, null),
+          React.createElement(Avantages, null),
+          React.createElement(Communes, null),
+          React.createElement(Contact, null),
+          React.createElement(Footer, null)
+        )
+      );
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(React.createElement(App, null));
+    </script>
+  </body>
 </html>
