@@ -7,122 +7,120 @@
     <meta name="description" content="Administr-IA : IA au service du temps et de la réussite – automatisations, assistants, intégrations, solutions pour mairies et TPE." />
     <link rel="icon" href="assets/logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
-
     <style>
       body {
         background: radial-gradient(1200px 800px at 80% -10%, rgba(108,99,255,0.25), transparent 60%),
                     radial-gradient(900px 700px at -10% 20%, rgba(0,191,165,0.25), transparent 60%),
                     #0b0b12;
         color: white;
-        overflow-x: hidden;
         font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
       }
       .glass { background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)); backdrop-filter: blur(10px); }
       .gradient-ring { position: relative; }
       .gradient-ring::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, #6C63FF, #00BFA5); filter: blur(8px); border-radius: 28px; opacity: .6; z-index: -1; }
       footer a { text-decoration: underline; }
+      .card { transition: all 0.3s ease; }
+      .card:hover { box-shadow: 0 0 20px rgba(108,99,255,0.4); }
+      .bubble-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
+      .bubble { position: absolute; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(0,191,165,0.4), rgba(108,99,255,0.3)); animation: rise 25s infinite ease-in; opacity: 0.6; }
+      .bubble:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+      .bubble:nth-child(2) { width: 120px; height: 120px; left: 25%; animation-delay: 5s; }
+      .bubble:nth-child(3) { width: 60px; height: 60px; left: 45%; animation-delay: 10s; }
+      .bubble:nth-child(4) { width: 100px; height: 100px; left: 65%; animation-delay: 3s; }
+      .bubble:nth-child(5) { width: 90px; height: 90px; left: 80%; animation-delay: 7s; }
+      @keyframes rise {
+        0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+        10% { opacity: 0.7; }
+        90% { opacity: 0.7; }
+        100% { transform: translateY(-120vh) scale(1); opacity: 0; }
+      }
     </style>
   </head>
-
   <body class="overflow-x-hidden">
-    <div id="root"></div>
 
-    <script type="text/javascript">
-      const { motion } = window.framerMotion;
+    <!-- Fond bulles -->
+    <div class="bubble-container">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
 
-      const Section = ({ id, title, subtitle, children }) => (
-        React.createElement('section', { id, className: 'relative px-6 md:px-24 lg:px-40 py-20 md:py-28 z-10' },
-          React.createElement('div', { className: 'max-w-7xl mx-auto' },
-            React.createElement(motion.h2, { initial:{opacity:0,y:20}, whileInView:{opacity:1,y:0}, viewport:{once:true}, transition:{duration:.6},
-              className: 'text-3xl md:text-5xl font-semibold tracking-tight text-center' }, title),
-            subtitle && React.createElement('p', { className: 'mt-3 text-white/70 text-lg md:text-xl text-center' }, subtitle),
-            React.createElement('div', { className: 'mt-10' }, children)
-          )
-        )
-      );
+    <!-- Section principale -->
+    <section class="relative min-h-[80vh] flex flex-col items-center justify-center text-center px-6 md:px-12 lg:px-20 z-10">
+      <img src="assets/logo.png" alt="Administr-IA" class="mx-auto h-64 md:h-80 w-auto mb-8 rounded-xl ring-1 ring-white/20" />
+      <h1 class="text-3xl md:text-5xl font-semibold mb-6">Moins d'administratif, plus d'humain.</h1>
+      <div class="flex flex-wrap justify-center gap-4 mb-10">
+        <a href="#vision" class="gradient-ring rounded-2xl px-6 py-3 font-semibold bg-white/10 hover:bg-white/20">Notre vision & mission</a>
+        <a href="#engagements" class="gradient-ring rounded-2xl px-6 py-3 font-semibold bg-white/10 hover:bg-white/20">Nos engagements</a>
+        <a href="#communes" class="gradient-ring rounded-2xl px-6 py-3 font-semibold bg-white/10 hover:bg-white/20">Communes</a>
+        <a href="#pme" class="gradient-ring rounded-2xl px-6 py-3 font-semibold bg-white/10 hover:bg-white/20">PME / Artisans</a>
+      </div>
+      <p class="max-w-2xl mx-auto text-white/70 text-lg">L'IA utile et humaine, pour réduire la charge administrative et augmenter votre impact.</p>
+    </section>
 
-      const Card = ({ icon, title, desc }) => (
-        React.createElement('div', { className: 'glass ring-1 ring-white/10 rounded-3xl p-6 md:p-7 hover:shadow-lg transition-all duration-300' },
-          React.createElement('div', { className: 'text-3xl mb-3' }, icon),
-          React.createElement('h3', { className: 'text-xl font-semibold' }, title),
-          React.createElement('p', { className: 'mt-2 text-white/70' }, desc)
-        )
-      );
+    <!-- Vision -->
+    <section id="vision" class="relative px-6 md:px-24 lg:px-40 py-20 md:py-28">
+      <h2 class="text-3xl md:text-5xl font-semibold text-center">Notre vision & mission</h2>
+      <p class="text-center mt-3 text-white/70 text-lg">Administr-IA remet l'humain au centre. L'IA gère l'administratif ; vous vous concentrez sur votre métier.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">🧠</div><h3 class="text-xl font-semibold">Automatisation intelligente</h3><p class="mt-2 text-white/70">Fini les tâches répétitives : rédaction, classement, relances, génération de documents.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">🤝</div><h3 class="text-xl font-semibold">Accompagnement humain</h3><p class="mt-2 text-white/70">Toujours un interlocuteur réel, proximité Alsace-Lorraine et à distance partout en France.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">🚀</div><h3 class="text-xl font-semibold">Simplicité & efficacité</h3><p class="mt-2 text-white/70">Mise en place rapide, solutions adaptées à vos outils et à votre activité.</p></div>
+      </div>
+    </section>
 
-      const Hero = () => (
-        React.createElement('section', { className: 'min-h-[80vh] flex flex-col items-center justify-center text-center px-6 md:px-12 lg:px-20' },
-          React.createElement('img', { src: 'assets/logo.png', alt: 'Administr-IA', className: 'mx-auto h-64 md:h-80 w-auto mb-8 rounded-xl ring-1 ring-white/20' }),
-          React.createElement('h1', { className: 'text-3xl md:text-5xl font-semibold tracking-tight mb-6' }, "Moins d'administratif, plus d'humain."),
-          React.createElement('div', { className: 'flex flex-wrap justify-center gap-4 mb-10' },
-            ['vision','engagements','communes','pme'].map((id,i)=>React.createElement('a',{key:i,href:'#'+id,className:'gradient-ring rounded-2xl px-6 py-3 font-semibold bg-white/10 hover:bg-white/20'},['Notre vision & mission','Nos engagements','Communes','PME / Artisans'][i]))
-          ),
-          React.createElement('p', { className: 'max-w-2xl mx-auto text-white/70 text-lg' }, "L'IA utile et humaine, pour réduire la charge administrative et augmenter votre impact.")
-        )
-      );
+    <!-- Engagements -->
+    <section id="engagements" class="relative px-6 md:px-24 lg:px-40 py-20 md:py-28">
+      <h2 class="text-3xl md:text-5xl font-semibold text-center">Nos engagements</h2>
+      <p class="text-center mt-3 text-white/70 text-lg">Flexibilité, proximité et innovation accessible.</p>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">🧩</div><h3 class="text-xl font-semibold">Sans engagement</h3><p class="mt-2 text-white/70">Abonnements flexibles, vous restez libre.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">💬</div><h3 class="text-xl font-semibold">Proximité</h3><p class="mt-2 text-white/70">Diagnostic gratuit autour d'un café (visio ou sur place).</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">🪙</div><h3 class="text-xl font-semibold">Tarifs accessibles</h3><p class="mt-2 text-white/70">Pensés pour artisans, TPE/PME et collectivités.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">💡</div><h3 class="text-xl font-semibold">Innovation accessible</h3><p class="mt-2 text-white/70">Le futur pour tous mais avec un accompagnement humain et local.</p></div>
+      </div>
+    </section>
 
-      const Vision = () => React.createElement(Section, { id: 'vision', title: 'Notre vision & mission', subtitle: "Administr-IA remet l'humain au centre." },
-        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-5' },
-          React.createElement(Card, { icon: '🧠', title: 'Automatisation intelligente', desc: "Fini les tâches répétitives : rédaction, classement, relances, génération de documents." }),
-          React.createElement(Card, { icon: '🤝', title: 'Accompagnement humain', desc: "Toujours un interlocuteur réel, proximité Alsace-Lorraine et à distance partout en France." }),
-          React.createElement(Card, { icon: '🚀', title: 'Simplicité & efficacité', desc: "Mise en place rapide, solutions adaptées à vos outils et à votre activité." })
-        )
-      );
+    <!-- Communes -->
+    <section id="communes" class="relative px-6 md:px-24 lg:px-40 py-20 md:py-28">
+      <h2 class="text-3xl md:text-5xl font-semibold text-center">Solutions pour les communes</h2>
+      <p class="text-center mt-3 text-white/70 text-lg">Modernisez vos services, sans alourdir votre budget.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">📝</div><h3 class="text-xl font-semibold">Formulaire citoyen intelligent</h3><p class="mt-2 text-white/70">Répond 24/7 aux questions simples, oriente et collecte les demandes.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">📰</div><h3 class="text-xl font-semibold">Bulletins dématérialisés</h3><p class="mt-2 text-white/70">Diffusez l'info locale rapidement et simplement.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">🏛️</div><h3 class="text-xl font-semibold">Réservation de salles</h3><p class="mt-2 text-white/70">Génère conventions et factures automatiquement.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">📅</div><h3 class="text-xl font-semibold">Rendez-vous en ligne</h3><p class="mt-2 text-white/70">Organisation fluide et moins chronophage.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">🌐</div><h3 class="text-xl font-semibold">Création ou modernisation de votre site</h3><p class="mt-2 text-white/70">Un site moderne, clair et ergonomique pour votre commune.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">⚙️</div><h3 class="text-xl font-semibold">Et d'autres solutions adaptées à vos besoins</h3><p class="mt-2 text-white/70">Des outils personnalisés selon vos priorités locales.</p></div>
+      </div>
+      <div class="flex justify-center mt-10">
+        <a href="https://mairie-fictive-de-bergweiler.fr" target="_blank" class="px-8 py-4 rounded-2xl font-semibold bg-white text-black hover:scale-105 transition-transform shadow-lg">🌍 Venez visiter notre site internet d'une commune fictive et testez vous-même ces outils</a>
+      </div>
+    </section>
 
-      const Engagements = () => React.createElement(Section, { id: 'engagements', title: 'Nos engagements', subtitle: 'Flexibilité, proximité et innovation accessible.' },
-        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-4 gap-5' },
-          React.createElement(Card, { icon: '🧩', title: 'Sans engagement', desc: "Abonnements flexibles, vous restez libre." }),
-          React.createElement(Card, { icon: '💬', title: 'Proximité', desc: "Diagnostic gratuit autour d'un café (visio ou sur place)." }),
-          React.createElement(Card, { icon: '🪙', title: 'Tarifs accessibles', desc: "Pensés pour artisans, TPE/PME et collectivités." }),
-          React.createElement(Card, { icon: '💡', title: 'Innovation accessible', desc: "Le futur pour tous mais avec un accompagnement humain et local." })
-        )
-      );
+    <!-- PME -->
+    <section id="pme" class="relative px-6 md:px-24 lg:px-40 py-20 md:py-28">
+      <h2 class="text-3xl md:text-5xl font-semibold text-center">Solutions pour les PME / Artisans</h2>
+      <p class="text-center mt-3 text-white/70 text-lg">Des outils simples et efficaces pour faire gagner du temps aux petites structures.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">📄</div><h3 class="text-xl font-semibold">Automatisation des devis et factures</h3><p class="mt-2 text-white/70">Générez et envoyez vos documents automatiquement.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">🤖</div><h3 class="text-xl font-semibold">Réponses automatiques clients</h3><p class="mt-2 text-white/70">Gérez les demandes et relances sans effort.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">📅</div><h3 class="text-xl font-semibold">Prise de rendez-vous en ligne</h3><p class="mt-2 text-white/70">Organisez votre emploi du temps plus facilement.</p></div>
+        <div class="glass card rounded-3xl p-6"><div class="text-3xl mb-3">🔗</div><h3 class="text-xl font-semibold">Intégration à vos outils</h3><p class="mt-2 text-white/70">Connectez vos outils existants pour plus d'efficacité.</p></div>
+      </div>
+    </section>
 
-      const Communes = () => React.createElement(Section, { id: 'communes', title: 'Solutions pour les communes', subtitle: "Modernisez vos services, sans alourdir votre budget." },
-        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-5 mb-10' },
-          React.createElement(Card, { icon: '📝', title: 'Formulaire citoyen intelligent', desc: "Répond 24/7 aux questions simples, oriente et collecte les demandes." }),
-          React.createElement(Card, { icon: '📰', title: 'Bulletins dématérialisés', desc: "Diffusez l'info locale rapidement et simplement." }),
-          React.createElement(Card, { icon: '🏛️', title: 'Réservation de salles', desc: "Génère conventions et factures automatiquement." }),
-          React.createElement(Card, { icon: '📅', title: 'Rendez-vous en ligne', desc: "Organisation fluide et moins chronophage." }),
-          React.createElement(Card, { icon: '🌐', title: 'Création ou modernisation de votre site', desc: "Un site moderne, clair et ergonomique pour votre commune." }),
-          React.createElement(Card, { icon: '⚙️', title: "Et d'autres solutions adaptées à vos besoins", desc: "Des outils personnalisés selon vos priorités locales." })
-        ),
-        React.createElement('div', { className: 'flex justify-center mt-10' },
-          React.createElement('a', { href: 'https://mairie-fictive-de-bergweiler.fr', target: '_blank', rel: 'noopener', className: 'px-8 py-4 rounded-2xl font-semibold bg-white text-black hover:scale-105 transition-transform shadow-lg' },
-            "🌍 Venez visiter notre site internet d'une commune fictive et testez vous-même ces outils"
-          )
-        )
-      );
+    <!-- Footer -->
+    <footer class="px-6 md:px-12 lg:px-20 py-10 border-t border-white/10 text-center text-white/60 relative z-10">
+      <p>© <script>document.write(new Date().getFullYear())</script> Administr-IA. Tous droits réservés.</p>
+      <div class="mt-3 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="mentions-legales.html" class="hover:text-white underline">Mentions légales</a>
+        <a href="politique-confidentialite.html" class="hover:text-white underline">Politique de confidentialité</a>
+      </div>
+    </footer>
 
-      const PME = () => React.createElement(Section, { id: 'pme', title: 'Solutions pour les PME / Artisans', subtitle: "Des outils simples et efficaces pour faire gagner du temps aux petites structures." },
-        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-5' },
-          React.createElement(Card, { icon: '📄', title: 'Automatisation des devis et factures', desc: "Générez et envoyez vos documents automatiquement." }),
-          React.createElement(Card, { icon: '🤖', title: 'Réponses automatiques clients', desc: "Gérez les demandes et relances sans effort." }),
-          React.createElement(Card, { icon: '📅', title: 'Prise de rendez-vous en ligne', desc: "Organisez votre emploi du temps plus facilement." }),
-          React.createElement(Card, { icon: '🔗', title: 'Intégration à vos outils', desc: "Connectez vos outils existants pour plus d'efficacité." })
-        )
-      );
-
-      const Footer = () => React.createElement('footer', { className: 'px-6 md:px-12 lg:px-20 py-10 border-t border-white/10 text-center text-white/60' },
-        React.createElement('p', null, '© ' + new Date().getFullYear() + ' Administr-IA. Tous droits réservés.'),
-        React.createElement('div', { className: 'mt-3 flex flex-col sm:flex-row justify-center gap-4' },
-          React.createElement('a', { href: 'mentions-legales.html', className: 'hover:text-white underline' }, 'Mentions légales'),
-          React.createElement('a', { href: 'politique-confidentialite.html', className: 'hover:text-white underline' }, 'Politique de confidentialité')
-        )
-      );
-
-      const App = () => React.createElement(React.Fragment, null,
-        React.createElement(Hero, null),
-        React.createElement(Vision, null),
-        React.createElement(Engagements, null),
-        React.createElement(Communes, null),
-        React.createElement(PME, null),
-        React.createElement(Footer, null)
-      );
-
-      ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App, null));
-    </script>
   </body>
 </html>
