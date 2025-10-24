@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Mairie de Bergweiler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #f4f0ff 0%, #ffffff 30%, #ffffff 70%, #f0eaff 100%);
+      background-size: 200% 200%;
+      animation: bgShift 10s ease-in-out infinite alternate;
+      color: #222;
+      overflow-x: hidden;
+    }
+    @keyframes bgShift { from {background-position:0% 50%} to {background-position:100% 50%} }
+
+    .bandeau-rouge {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #b30000;
+      color: white;
+      text-align: center;
+      padding: 0.7rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 2000;
+    }
+
+    .bandeau-rouge .green {
+      color: #6ecb63;
+    }
+
+    .header-modern {
+      position: fixed;
+      top: 65px;
+      width: 90%;
+      left: 5%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(95,45,145,0.85), rgba(140,90,210,0.85), rgba(110,70,180,0.85), rgba(95,45,145,0.85));
+      background-size: 200% 100%;
+      animation: gradientMove 8s ease infinite;
+      border-radius: 16px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    nav ul {
+      list-style:none;
+      display:flex;
+      justify-content:center;
+      margin:0;
+      padding:0.3rem 0;
+      flex-wrap:wrap;
+    }
+
+    nav li {
+      position:relative;
+    }
+
+    nav li:nth-child(1) { animation: menuItemAppear 0.6s ease 0.1s backwards; }
+    nav li:nth-child(2) { animation: menuItemAppear 0.6s ease 0.2s backwards; }
+    nav li:nth-child(3) { animation: menuItemAppear 0.6s ease 0.3s backwards; }
+    nav li:nth-child(4) { animation: menuItemAppear 0.6s ease 0.4s backwards; }
+    nav li:nth-child(5) { animation: menuItemAppear 0.6s ease 0.5s backwards; }
+    nav li:nth-child(6) { animation: menuItemAppear 0.6s ease 0.6s backwards; }
+
+    @keyframes menuItemAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    nav a {
+      color:white;
+      text-decoration:none;
+      padding:1rem 1.3rem;
+      display:block;
+      font-weight:500;
+      font-family:'Poppins',sans-serif;
+      position:relative;
+      transition:all 0.3s ease;
+    }
+
+    nav a::after {
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:8px;
+      width:0%;
+      height:3px;
+      background:linear-gradient(90deg,#ffcf00,#ff7a00);
+      border-radius:2px;
+      transition:all 0.3s ease;
+      transform:translateX(-50%);
+    }
+    nav a:hover::after {width:50%;}
+    nav a:hover {
+      transform:translateY(-2px);
+      text-shadow:0 0 8px rgba(255,255,255,0.4);
+    }
+
+    nav ul ul {
+      display:none;
+      position:absolute;
+      background:rgba(85,40,130,0.95);
+      border-radius:8px;
+      top:100%;
+      left:0;
+      padding:0.5rem 0;
+      backdrop-filter:blur(8px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+      min-width:220px;
+    }
+
+    nav li:hover>ul {display:block;}
+    nav ul ul li a {
+      padding:0.8rem 1.5rem;
+      white-space:nowrap;
+    }
+
+    .container {
+      max-width:1200px;
+      margin:160px auto 3rem auto;
+      padding:2rem 4rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 1s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .avertissement, .exemples {
+      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(249,245,255,0.9) 100%);
+      border-left: 6px solid #7b3fa3;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    .avertissement:hover, .exemples:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .avertissement h3, .exemples h3 {
+      color: #5d2f8b;
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .avertissement h3::after, .exemples h3::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #d4af37, #f9e58c);
+      transform: translateX(-50%);
+      border-radius: 3px;
+    }
+
+    .avertissement ul, .exemples ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .avertissement li, .exemples li {
+      margin: 0.8rem 0;
+      padding-left: 1.8rem;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .avertissement li::before {
+      content: "✅";
+      color: #6ecb63;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .exemples li::before {
+      content: "💬";
+      color: #7b3fa3;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .highlight {
+      color: #7b3fa3;
+      font-weight: 600;
+    }
+
+    iframe {
+      width: 100%;
+      height: 750px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-top: 2rem;
+    }
+
+    footer {
+      border-top: 3px solid #d4af37;
+      background: linear-gradient(90deg, #5d2f8b, #8b4fc0);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #6ecb63;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+      }
+      iframe {
+        height: 600px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bandeau-rouge">
+    ⚠️ Ce site représente un village fictif conçu pour démontrer les solutions d'<span class="green">Administr-IA</span>.<br>
+    Toutes les photos, noms et coordonnées sont fictifs.
+  </div>
+
+  <header class="header-modern">
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="#">Le village au quotidien</a>
+          <ul>
+            <li><a href="ecole.html">École</a></li>
+            <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
+            <li><a href="pompiers.html">Pompiers</a></li>
+            <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Histoire et patrimoine</a>
+          <ul>
+            <li><a href="histoire.html">Histoire</a></li>
+            <li><a href="patrimoine.html">Patrimoine</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Conseil municipal</a>
+          <ul>
+            <li><a href="equipe.html">L'équipe</a></li>
+            <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
+          </ul>
+        </li>
+        <li><a href="infos.html">Informations</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="avertissement">
+      <h3>💡 Testez notre formulaire de contact intelligent</h3>
+      <p><em>Quelques mots avant de tester par vous-même...</em></p>
+
+      <ul>
+        <li><b>Disponible 24h/24 et 7j/7</b> : un assistant intelligent qui prend en charge les demandes simples des citoyens.</li>
+        <li><b>Rapidité de prise en charge</b> : en mode automatique, la réponse est <b>générée en quelques secondes</b>.</li>
+        <li>Il <b>épaule le secrétariat</b> et lui permet de se concentrer sur <span class="highlight">le contact humain</span> et les situations particulières.</li>
+        <li><b>Totalement personnalisable</b> : l'outil s'adapte aux spécificités de votre commune.</li>
+        <li>Il répond aux <b>questions générales réglementaires</b>, mais aussi aux <b>informations locales</b> : horaires, démarches, tarifs, événements…</li>
+        <li><b>Conforme à la réglementation RGPD</b> : les données sont traitées de manière sécurisée et respectueuse de la vie privée.</li>
+        <li><b>Vous gardez la main</b> : réponses automatiques ou validation manuelle par le secrétariat.</li>
+        <li><b>Accessible à toutes les communes</b> : <span class="highlight">tarif d'abonnement proportionnel au nombre d'habitants</span>.</li>
+        <li><b>Abonnement sans engagement.</b></li>
+      </ul>
+    </div>
+
+    <div class="exemples">
+      <h3>🗂️ Exemples de questions traitées</h3>
+      <ul>
+        <li>👶 Comment inscrire mon enfant à l'école pour sa première rentrée ? Quels sont les documents nécessaires ?</li>
+        <li>⚰️ Ma maman vient de décéder, quelles sont les démarches ? J'ai besoin d'un certificat de décès.</li>
+        <li>🗳️ Comment s'inscrire sur les listes électorales ?</li>
+        <li>🎄 Où se tiendra le Marché de Noël du village cette année et quelles seront ses animations principales ?</li>
+        <li>🗑️ Comment se passe le ramassage des ordures ? Je viens d'emménager et je n'ai pas encore de poubelle.</li>
+        <li>🏗️ Faut-il un permis de construire pour mon carport ? Est-ce imposable ?</li>
+        <li>🪪 J'ai perdu ma carte d'identité, que faire ?</li>
+        <li>💍 Quelles sont les démarches et documents demandés pour un mariage ?</li>
+        <li>🌍 J'ai besoin d'un passeport pour chacun des membres de ma famille. Que dois-je faire ?</li>
+        <li>🚮 De quelle déchetterie dépend le village ?</li>
+        <li>⚽ Y a-t-il des clubs sportifs pour les enfants au village ?</li>
+        <li>🏫 Le périscolaire ouvre-t-il le matin ? Y a-t-il des tarifs pour les familles nombreuses ?</li>
+        <li>💬 Et la vôtre ?</li>
+      </ul>
+    </div>
+
+    <iframe src="https://tally.so/r/3XZjRj" loading="lazy"></iframe>
+  </div>
+
+  <footer>
+    <p>Mairie de Bergweiler – 12 rue Principale, 68127 Bergweiler<br>
+    📞 03 89 00 00 00 – ✉️ mairie@bergweiler.fr</p>
+    <p>Horaires : Lundi au Vendredi 9h–12h / 14h–17h</p>
+    <p>Ce site n'utilise pas de cookies.</p>
+  </footer>
+</body>
+</html>

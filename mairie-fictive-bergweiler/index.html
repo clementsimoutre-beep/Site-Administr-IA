@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mairie de Bergweiler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #222;
+      overflow-x: hidden;
+      background: linear-gradient(120deg, #f4f0ff 0%, #ffffff 30%, #ffffff 70%, #f0eaff 100%);
+      background-size: 200% 200%;
+      animation: bgShift 10s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift { 
+      from {background-position: 0% 50%} 
+      to {background-position: 100% 50%} 
+    }
+
+    .bandeau-rouge {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #b30000; color: white; text-align: center;
+      padding: 0.7rem; font-size: 0.9rem; font-weight: bold;
+      font-family: 'Poppins', sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 2000;
+    }
+
+    .bandeau-rouge .green {
+      color: #6ecb63;
+    }
+
+    .header-modern {
+      position: fixed; top: 65px; width: 90%; left: 5%; z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(95,45,145,0.85), rgba(140,90,210,0.85), rgba(110,70,180,0.85), rgba(95,45,145,0.85));
+      background-size: 200% 100%;
+      animation: gradientMove 8s ease infinite;
+      border-radius: 16px; box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    nav ul {list-style:none;display:flex;justify-content:center;margin:0;padding:0.3rem 0;flex-wrap:wrap;}
+    nav li {position:relative;}
+    nav li:nth-child(1) { animation: menuItemAppear 0.6s ease 0.1s backwards; }
+    nav li:nth-child(2) { animation: menuItemAppear 0.6s ease 0.2s backwards; }
+    nav li:nth-child(3) { animation: menuItemAppear 0.6s ease 0.3s backwards; }
+    nav li:nth-child(4) { animation: menuItemAppear 0.6s ease 0.4s backwards; }
+    nav li:nth-child(5) { animation: menuItemAppear 0.6s ease 0.5s backwards; }
+    nav li:nth-child(6) { animation: menuItemAppear 0.6s ease 0.6s backwards; }
+
+    @keyframes menuItemAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    nav a {
+      color:white;text-decoration:none;padding:1rem 1.3rem;display:block;
+      font-weight:500;font-family:'Poppins',sans-serif;position:relative;transition:all 0.3s ease;
+    }
+    nav a::after {content:"";position:absolute;left:50%;bottom:8px;width:0%;height:3px;
+      background:linear-gradient(90deg,#ffcf00,#ff7a00);border-radius:2px;transition:all 0.3s ease;transform:translateX(-50%);
+    }
+    nav a:hover::after {width:50%;}
+    nav ul ul {
+      display:none;position:absolute;background:rgba(85,40,130,0.95);border-radius:8px;top:100%;left:0;
+      padding:0.5rem 0;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,0.3);min-width:220px;
+    }
+    nav li:hover>ul{display:block;}
+
+    /* Hero Section Améliorée */
+    .hero {
+      margin-top: 150px;
+      height: 480px;
+      background: url('entrée village.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(93,47,139,0.7) 0%, rgba(123,63,163,0.5) 50%, rgba(0,0,0,0.6) 100%);
+      animation: gradientShift 8s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes gradientShift {
+      0% { opacity: 0.8; }
+      100% { opacity: 0.95; }
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(110,203,99,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(212,175,55,0.15) 0%, transparent 50%);
+      animation: pulseOverlay 6s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes pulseOverlay {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+
+    /* Particules flottantes */
+    .hero-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 50%;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+    }
+
+    .hero h1 {
+      color: #fff;
+      font-size: 3.5rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      text-shadow: 2px 3px 10px rgba(0,0,0,0.6);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: titleAppear 1.5s ease-out 0.3s forwards;
+      letter-spacing: 2px;
+    }
+
+    @keyframes titleAppear {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Sections avec animations au scroll */
+    .container {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 2rem;
+    }
+
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mot du Maire avec Glassmorphisme renforcé */
+    .mot-maire-centre {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(247,242,255,0.7) 0%, rgba(241,234,255,0.8) 100%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 2px solid rgba(93,47,139,0.15);
+      border-radius: 24px;
+      box-shadow: 
+        0 8px 32px rgba(93,47,139,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        inset 0 -1px 0 rgba(93,47,139,0.1);
+      padding: 2.5rem 2rem;
+      margin: 2rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .mot-maire-centre::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(110,203,99,0.1) 0%, transparent 70%);
+      animation: rotateGlow 15s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotateGlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .mot-maire-centre:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 16px 48px rgba(93,47,139,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        inset 0 -1px 0 rgba(93,47,139,0.15);
+      border-color: rgba(110,203,99,0.3);
+    }
+
+    .mot-maire-centre img {
+      width: 110px;
+      height: auto;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 4px 12px rgba(93,47,139,0.3));
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .mot-maire-centre:hover img {
+      transform: scale(1.1) rotate(5deg);
+      filter: drop-shadow(0 8px 20px rgba(110,203,99,0.4));
+    }
+
+    .mot-maire-centre h2 {
+      color: #5d2f8b;
+      margin-top: 0.2rem;
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
+
+    .mot-maire-centre p {
+      text-align: justify;
+      line-height: 1.85;
+      margin: 0 auto 1rem auto;
+      max-width: 780px;
+      position: relative;
+    }
+
+    /* Encart Administ-IA avec glassmorphisme */
+    .encart-administia {
+      margin-top: 4rem;
+      padding: 2.5rem 2rem;
+      background: linear-gradient(135deg, rgba(244,240,255,0.75) 0%, rgba(241,234,255,0.8) 100%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      color: #2c2043;
+      border-radius: 24px;
+      border: 2px solid rgba(93,47,139,0.15);
+      box-shadow: 
+        0 8px 32px rgba(93,47,139,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .encart-administia::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(110,203,99,0.08) 0%, transparent 70%);
+      animation: rotateGlow 15s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotateGlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .encart-administia:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 16px 48px rgba(93,47,139,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .encart-administia h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #6ecb63;
+      position: relative;
+    }
+
+    .encart-administia h3 a {
+      color: #6ecb63;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .encart-administia h3 a:hover {
+      color: #87d977;
+      text-shadow: 0 0 20px rgba(110,203,99,0.5);
+    }
+
+    .encart-administia h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: #7b3fa3;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .encart-administia p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: justify;
+    }
+
+    /* Accordéon */
+    .accordion {
+      max-width: 950px;
+      margin: 2rem auto 0;
+    }
+
+    .accordion-item {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(93,47,139,0.15);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .accordion-item:hover {
+      border-color: rgba(110,203,99,0.4);
+      box-shadow: 0 4px 16px rgba(110,203,99,0.1);
+    }
+
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 1.5rem;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .accordion-header:hover {
+      background: rgba(110,203,99,0.08);
+    }
+
+    .accordion-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #5d2f8b;
+      margin: 0;
+      flex: 1;
+      text-align: left;
+    }
+
+    .accordion-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6ecb63, #87d977);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+      box-shadow: 0 2px 8px rgba(110,203,99,0.3);
+      flex-shrink: 0;
+    }
+
+    .accordion-icon::before,
+    .accordion-icon::after {
+      content: "";
+      position: absolute;
+      background: white;
+      transition: all 0.4s ease;
+    }
+
+    .accordion-icon::before {
+      width: 12px;
+      height: 2px;
+    }
+
+    .accordion-icon::after {
+      width: 2px;
+      height: 12px;
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(180deg);
+      background: linear-gradient(135deg, #7b3fa3, #9c68cc);
+    }
+
+    .accordion-item.active .accordion-icon::after {
+      height: 0;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.5s ease;
+      padding: 0 1.5rem;
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 800px;
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    .accordion-content p {
+      margin: 0.7rem 0;
+      color: #2c2043;
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .accordion-intro {
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 880px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      color: #2c2043;
+    }
+
+    /* Encart Contact avec glassmorphisme */
+    .encart-contact {
+      margin-top: 3rem;
+      background: linear-gradient(135deg, rgba(244,240,255,0.65) 0%, rgba(255,246,224,0.7) 100%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 2px solid rgba(212,175,55,0.3);
+      border-radius: 24px;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      box-shadow: 
+        0 8px 32px rgba(110,203,99,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .encart-contact::after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #6ecb63, #d4af37, #7b3fa3, #6ecb63);
+      background-size: 300% 300%;
+      border-radius: 24px;
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.4s ease;
+      animation: borderGlow 4s ease infinite;
+    }
+
+    @keyframes borderGlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .encart-contact:hover::after {
+      opacity: 0.6;
+    }
+
+    .encart-contact::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
+      transition: left 0.8s ease;
+      z-index: 0;
+    }
+
+    .encart-contact:hover::before {
+      left: 100%;
+    }
+
+    .encart-contact:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 16px 48px rgba(110,203,99,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .encart-contact h3 {
+      color: #5d2f8b;
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
+
+    .encart-contact p {
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 750px;
+      margin: 0 auto 1.5rem;
+      color: #2c2043;
+      position: relative;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #7b3fa3, #9c68cc);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 0.9rem 1.8rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.4s ease;
+      margin: 0.5rem;
+      box-shadow: 0 6px 20px rgba(123,63,163,0.3);
+      border: 2px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 32px rgba(123,63,163,0.5);
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, #6ecb63, #87d977);
+      box-shadow: 0 6px 20px rgba(110,203,99,0.3);
+    }
+
+    .btn-green:hover {
+      box-shadow: 0 12px 32px rgba(110,203,99,0.5);
+    }
+
+    .violet {color: #5d2f8b; font-weight: 600;}
+    .green {color: #6ecb63; font-weight: 600;}
+    .signature {margin-top: 1rem; color: #5d2f8b; font-weight: 700;}
+    .fonction {font-style: italic; color: #7b3fa3;}
+    .precontact {margin-top: 1.2rem; font-weight: 600; color: #2c2043;}
+
+    footer {
+      background: linear-gradient(90deg, #5d2f8b, #7b3fa3);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+      line-height: 1.6;
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #6ecb63;
+    }
+  </style>
+</head>
+<body>
+  <div class="bandeau-rouge">
+    ⚠️ Ce site représente un village fictif conçu pour démontrer les solutions d'<span class="green">Administr-IA</span>.<br>
+    Toutes les photos, noms et coordonnées sont fictifs.
+  </div>
+
+  <header class="header-modern">
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="#">Le village au quotidien</a>
+          <ul>
+            <li><a href="ecole.html">École</a></li>
+            <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
+            <li><a href="pompiers.html">Pompiers</a></li>
+            <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Histoire et patrimoine</a>
+          <ul>
+            <li><a href="histoire.html">Histoire</a></li>
+            <li><a href="patrimoine.html">Patrimoine</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Conseil municipal</a>
+          <ul>
+            <li><a href="equipe.html">L'équipe</a></li>
+            <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
+          </ul>
+        </li>
+        <li><a href="infos.html">Informations</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <h1>Bienvenue à Bergweiler</h1>
+    </div>
+  </section>
+
+  <div class="container" id="contenu">
+    <section class="mot-maire-centre fade-in-section">
+      <img src="blason bergweiler.jpg" alt="Blason de Bergweiler">
+      <h2>Le mot du Maire</h2>
+      <p>Chères habitantes, chers habitants,</p>
+      <p>C'est avec plaisir que je vous souhaite la bienvenue sur le site officiel de notre commune de <strong>Bergweiler</strong>.
+      Ce site, doté d'<span class="violet">outils modernes et intelligents</span> a été conçu pour être <span class="violet">pratique, vivant et proche de vous</span>, au service de la vie locale et du lien entre la mairie et les citoyens.</p>
+      <p>Conçus par <strong class="green">Administr-IA</strong>, ils ont été pensés pour vous <span class="violet">simplifier le quotidien</span>.</p>
+      <p>Je tiens à remercier toutes celles et ceux qui participent chaque jour à la vitalité de notre commune – les agents, les associations, les bénévoles, les élus et bien sûr les habitants, qui font de Bergweiler un lieu où il fait bon vivre.</p>
+      <p>Au nom de l'ensemble du conseil municipal, je vous souhaite une excellente navigation et reste à votre écoute pour toute suggestion d'amélioration ou d'initiative locale.</p>
+      <div class="signature">Andréa Kappelmann</div>
+      <div class="fonction">Maire de Bergweiler</div>
+    </section>
+
+    <section class="encart-administia fade-in-section">
+      <h3><a href="https://administr-ia.fr" target="_blank"><span class="green">Administr-IA</span></a> – L'innovation au service des communes</h3>
+      <h4>Des outils simples, une aide concrète pour les secrétariats et les citoyens</h4>
+      
+      <p class="accordion-intro">
+        Ce site illustre une <strong>mairie fictive</strong>, celle de <em>Bergweiler</em>, créée pour démontrer les possibilités qu'offre <strong>Administr-IA</strong> aux communes souhaitant moderniser leurs services à un <strong>tarif attractif et proportionné à leur taille</strong>.
+      </p>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3 class="accordion-title">🌐 Un site internet moderne et accessible</h3>
+            <div class="accordion-icon"></div>
+          </div>
+          <div class="accordion-content">
+            <p>
+              Grâce à Administr-IA, chaque mairie peut disposer d'un <strong>site internet moderne</strong>, simple à gérer, conforme aux exigences réglementaires et pensé pour alléger le travail des équipes municipales tout en facilitant la vie des habitants.
+            </p>
+            <p>
+              Un design attractif, une navigation intuitive et une compatibilité mobile garantie pour que tous les citoyens puissent accéder facilement aux informations municipales.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3 class="accordion-title">🤖 Formulaire de contact intelligent</h3>
+            <div class="accordion-icon"></div>
+          </div>
+          <div class="accordion-content">
+            <p>
+              Le <strong>formulaire de contact intelligent</strong> est capable de répondre instantanément aux questions simples des citoyens, <strong>24h/24 et 7j/7</strong>.
+            </p>
+            <p>
+              Horaires d'ouverture, démarches administratives courantes, numéros utiles... L'assistant répond immédiatement, libérant du temps pour le secrétariat qui peut se concentrer sur les demandes plus complexes.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3 class="accordion-title">📰 Diffusion d'informations dématérialisées</h3>
+            <div class="accordion-icon"></div>
+          </div>
+          <div class="accordion-content">
+            <p>
+              Le <strong>système de diffusion d'informations et de bulletins communaux dématérialisés</strong> permet aux habitants qui le souhaitent de recevoir directement les actualités de la commune.
+            </p>
+            <p>
+              Économie de papier, de temps d'impression et de distribution. L'information arrive instantanément chez les citoyens, tout en conservant la possibilité d'éditer des versions papier pour ceux qui le préfèrent.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3 class="accordion-title">📅 Planning de réservation automatisé</h3>
+            <div class="accordion-icon"></div>
+          </div>
+          <div class="accordion-content">
+            <p>
+              Le <strong>planning de réservation de la salle communale</strong> génère automatiquement les <strong>conventions de location</strong> et <strong>les factures correspondantes</strong>.
+            </p>
+            <p>
+              Plus besoin de vérifier manuellement les disponibilités, de rédiger les conventions ou de calculer les montants. Le système s'occupe de tout : les citoyens réservent en ligne, la convention est générée automatiquement et la facture est envoyée. Un gain de temps considérable pour le secrétariat !
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3 class="accordion-title">⏰ Module de rendez-vous en ligne</h3>
+            <div class="accordion-icon"></div>
+          </div>
+          <div class="accordion-content">
+            <p>
+              Le <strong>module de rendez-vous en ligne</strong> permet une organisation plus fluide et moins chronophage.
+            </p>
+            <p>
+              Les citoyens prennent rendez-vous directement en ligne selon les créneaux disponibles. Fini les appels téléphoniques répétés, les oublis ou les doubles réservations. Le calendrier se synchronise automatiquement.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3 class="accordion-title">💡 Une approche flexible et sans engagement</h3>
+            <div class="accordion-icon"></div>
+          </div>
+          <div class="accordion-content">
+            <p>
+              <strong>Chaque solution peut être adoptée séparément</strong>, selon les besoins et les moyens de la commune, <strong>sans aucune durée d'engagement</strong>.
+            </p>
+            <p>
+              Vous n'adhérez que si vous constatez des résultats concrets et un gain réel dans votre fonctionnement quotidien. Commencez par un outil, testez-le, et ajoutez-en d'autres si vous êtes satisfait.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3 class="accordion-title">🤝 Une entreprise locale à votre écoute</h3>
+            <div class="accordion-icon"></div>
+          </div>
+          <div class="accordion-content">
+            <p>
+              <strong>Administr-IA</strong> est disponible pour <strong>écouter les difficultés administratives</strong> de votre mairie et <strong>mettre en place des solutions adaptées</strong> afin de <strong>redonner du temps et de la sérénité</strong> aux secrétariats et aux citoyens.
+            </p>
+            <p>
+              Entreprise <strong>locale et proche des petites communes</strong>, Administr-IA privilégie la <strong>relation humaine</strong> : accompagnement à distance quand c'est pratique, présence sur le terrain quand c'est nécessaire.
+            </p>
+            <p>
+              Parce que nous croyons qu'<strong>l'intelligence artificielle doit être au service de l'humain</strong>, pour améliorer son quotidien – pas le remplacer.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="precontact">💬 <strong>Contactez Administr-IA</strong> pour mettre ces outils à votre service ou ouvrir une discussion sur d'autres possibilités d'aides.</p>
+    </section>
+
+    <section class="encart-contact fade-in-section">
+      <h3>Contact</h3>
+      <p>Voyons ensemble comment Administr-IA peut vous épauler et construire des solutions personnalisées pour votre commune.</p>
+      <a href="https://administr-ia.fr" target="_blank" class="btn">🌐 Visitez le site Administr-IA</a>
+      <a href="mailto:clement@administr-ia.fr" class="btn btn-green">📧 Contacter Administr-IA</a>
+    </section>
+  </div>
+
+  <footer>
+    <p>Mairie de Bergweiler – 12 rue Principale, 68127 Bergweiler<br>
+    📞 03 89 00 00 00 – ✉️ mairie@bergweiler.fr</p>
+    <p>Horaires : Lundi au Vendredi 9h–12h / 14h–17h</p>
+    <p><a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+
+  <script>
+    // Génération des particules
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 20 + 's';
+      particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    // Animation au scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Accordéon
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        const wasActive = item.classList.contains('active');
+        
+        // Fermer tous les autres items
+        document.querySelectorAll('.accordion-item').forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle l'item cliqué
+        if (wasActive) {
+          item.classList.remove('active');
+        } else {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

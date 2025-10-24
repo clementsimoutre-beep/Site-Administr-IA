@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lâ€™Ã©quipe municipale â€“ Mairie de Bergweiler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #faf7fc 0%, #f2eef9 100%);
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    .bandeau-rouge {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #b30000;
+      color: white;
+      text-align: center;
+      padding: 0.7rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 2000;
+    }
+
+    header {
+      background: linear-gradient(90deg, #5d2f8b, #8b4fc0);
+      position: fixed;
+      top: 65px;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 1rem;
+      display: block;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    nav li {
+      position: relative;
+    }
+
+    nav ul ul {
+      display: none;
+      position: absolute;
+      background-color: #5d2f8b;
+      border-radius: 0 0 6px 6px;
+      top: 100%;
+      left: 0;
+    }
+
+    nav li:hover > ul {
+      display: block;
+    }
+
+    .hero {
+      margin-top: 150px;
+      height: 480px;
+      background: url('salle du CM.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+
+    .hero h1 {
+      color: #fff;
+      font-size: 3rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      text-shadow: 2px 3px 10px rgba(0,0,0,0.6);
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlide 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeSlide {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container h2 {
+      color: #5d2f8b;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+
+    .container p {
+      line-height: 1.6;
+      font-size: 1.05rem;
+      text-align: justify;
+      margin-top: 1rem;
+      background: rgba(255,255,255,0.6);
+      padding: 1rem;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+    }
+
+    footer {
+      background: #5d2f8b;
+      color: white;
+      text-align: center;
+      padding: 1.8rem;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+      line-height: 1.6;
+    }
+
+    footer a {
+      color: #c8def8;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+        text-align: center;
+        padding: 0 1rem;
+      }
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bandeau-rouge">
+    âš ï¸ Ce site reprÃ©sente un village entiÃ¨rement fictif, conÃ§u Ã  titre d'exemple pour tester et voir les solutions proposÃ©es par Administ-IA.<br>
+    Toutes les photos, noms, et coordonnÃ©es sont fictives.
+  </div>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li>
+          <a href="#">Le village au quotidien â–¾</a>
+          <ul>
+            <li><a href="ecole.html">Ã‰cole</a></li>
+            <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
+            <li><a href="pompiers.html">Pompiers</a></li>
+            <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Histoire et patrimoine â–¾</a>
+          <ul>
+            <li><a href="histoire.html">Histoire</a></li>
+            <li><a href="patrimoine.html">Patrimoine</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Conseil municipal â–¾</a>
+          <ul>
+            <li><a href="equipe.html">Lâ€™Ã©quipe</a></li>
+            <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
+          </ul>
+        </li>
+        <li><a href="infos.html">Informations</a></li>
+        <li><a href="contact.html">Contactez-nous</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Lâ€™Ã©quipe municipale</h1>
+  </section>
+
+  <div class="container">
+    <h2>Conseil municipal de Bergweiler</h2>
+    <p><strong>Maire :</strong> AndrÃ©a Kappelmann</p>
+    <p><strong>Adjoints :</strong><br>
+       Jean-Marc Heininger â€“ 1er adjoint (Finances et administration gÃ©nÃ©rale)<br>
+       Sabine Oberfeld â€“ 2e adjointe (Affaires sociales, scolaires et culturelles)<br>
+       Marc Wintzler â€“ 3e adjoint (Urbanisme, voirie et patrimoine)<br>
+       Claire Dietschler â€“ 4e adjointe (Environnement, dÃ©veloppement durable et vie associative)</p>
+    <p><strong>Conseillers municipaux :</strong><br>
+       Thomas Elzacher, Nathalie Bruchner, Denis Holtzmann, Mireille Kuntzel, Patrick Wersinger, 
+       Caroline Dottweiler, Laurent Rauffmann, Sylvie Henschel, Olivier Stierlen, Aurore Ziegenthal</p>
+  </div>
+
+  <footer>
+    <p>Mairie de Bergweiler â€“ 12 rue Principale, 68127 Bergweiler<br>
+    ðŸ“ž 03 89 00 00 00 â€“ âœ‰ï¸ mairie@bergweiler.fr</p>
+    <p>Horaires : Lundi au Vendredi 9hâ€“12h / 14hâ€“17h</p>
+    <p><a href="mentions-legales.html">Mentions lÃ©gales</a></p>
+  </footer>
+</body>
+</html>

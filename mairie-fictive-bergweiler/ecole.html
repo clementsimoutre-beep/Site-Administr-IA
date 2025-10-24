@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>École élémentaire Les Tilleuls – Bergweiler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #222;
+      overflow-x: hidden;
+      background: linear-gradient(120deg, #f4f0ff 0%, #ffffff 30%, #ffffff 70%, #f0eaff 100%);
+      background-size: 200% 200%;
+      animation: bgShift 10s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift { 
+      from {background-position: 0% 50%} 
+      to {background-position: 100% 50%} 
+    }
+
+    .bandeau-rouge {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #b30000; color: white; text-align: center;
+      padding: 0.7rem; font-size: 0.9rem; font-weight: bold;
+      font-family: 'Poppins', sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 2000;
+    }
+
+    .bandeau-rouge .green {
+      color: #6ecb63;
+    }
+
+    .header-modern {
+      position: fixed; top: 65px; width: 90%; left: 5%; z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(95,45,145,0.85), rgba(140,90,210,0.85), rgba(110,70,180,0.85), rgba(95,45,145,0.85));
+      background-size: 200% 100%;
+      animation: gradientMove 8s ease infinite;
+      border-radius: 16px; box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    nav ul {list-style:none;display:flex;justify-content:center;margin:0;padding:0.3rem 0;flex-wrap:wrap;}
+    nav li {position:relative;}
+    nav li:nth-child(1) { animation: menuItemAppear 0.6s ease 0.1s backwards; }
+    nav li:nth-child(2) { animation: menuItemAppear 0.6s ease 0.2s backwards; }
+    nav li:nth-child(3) { animation: menuItemAppear 0.6s ease 0.3s backwards; }
+    nav li:nth-child(4) { animation: menuItemAppear 0.6s ease 0.4s backwards; }
+    nav li:nth-child(5) { animation: menuItemAppear 0.6s ease 0.5s backwards; }
+    nav li:nth-child(6) { animation: menuItemAppear 0.6s ease 0.6s backwards; }
+
+    @keyframes menuItemAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    nav a {
+      color:white;text-decoration:none;padding:1rem 1.3rem;display:block;
+      font-weight:500;font-family:'Poppins',sans-serif;position:relative;transition:all 0.3s ease;
+    }
+    nav a::after {content:"";position:absolute;left:50%;bottom:8px;width:0%;height:3px;
+      background:linear-gradient(90deg,#ffcf00,#ff7a00);border-radius:2px;transition:all 0.3s ease;transform:translateX(-50%);
+    }
+    nav a:hover::after {width:50%;}
+    nav ul ul {
+      display:none;position:absolute;background:rgba(85,40,130,0.95);border-radius:8px;top:100%;left:0;
+      padding:0.5rem 0;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,0.3);min-width:220px;
+    }
+    nav li:hover>ul{display:block;}
+    nav ul ul li a{padding:0.8rem 1.5rem;white-space:nowrap;}
+
+    .hero {
+      margin-top: 150px;
+      height: 380px;
+      background: url('école les tilleuls.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(93,47,139,0.7) 0%, rgba(123,63,163,0.5) 50%, rgba(0,0,0,0.6) 100%);
+      animation: gradientShift 8s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes gradientShift {
+      0% { opacity: 0.8; }
+      100% { opacity: 0.95; }
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(110,203,99,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(212,175,55,0.15) 0%, transparent 50%);
+      animation: pulseOverlay 6s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes pulseOverlay {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+
+    .hero h1 {
+      color: #fff;
+      font-size: 2.8rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      text-shadow: 2px 3px 10px rgba(0,0,0,0.6);
+      position: relative;
+      z-index: 3;
+      opacity: 0;
+      transform: translateY(30px) scale(0.8);
+      animation: titleAppear 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+      letter-spacing: 2px;
+    }
+
+    @keyframes titleAppear {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8) rotateX(-20deg);
+      }
+      60% {
+        transform: translateY(-10px) scale(1.05) rotateX(0deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 2rem 4rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 1s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .info-section {
+      background: linear-gradient(135deg, rgba(247,242,255,0.7) 0%, rgba(241,234,255,0.8) 100%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 2px solid rgba(93,47,139,0.15);
+      border-radius: 24px;
+      box-shadow: 
+        0 8px 32px rgba(93,47,139,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        inset 0 -1px 0 rgba(93,47,139,0.1);
+      padding: 2.5rem 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .info-section::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(110,203,99,0.1) 0%, transparent 70%);
+      animation: rotateGlow 15s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotateGlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .info-section:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 16px 48px rgba(93,47,139,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        inset 0 -1px 0 rgba(93,47,139,0.15);
+      border-color: rgba(110,203,99,0.3);
+    }
+
+    .info-section h2 {
+      color: #5d2f8b;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      position: relative;
+    }
+
+    .info-section p {
+      line-height: 1.85;
+      font-size: 1.05rem;
+      position: relative;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-section ul {
+      list-style: none;
+      padding: 0;
+      position: relative;
+    }
+
+    .info-section li {
+      padding: 0.7rem 0;
+      padding-left: 1.8rem;
+      position: relative;
+    }
+
+    .info-section li::before {
+      content: "🎓";
+      position: absolute;
+      left: 0;
+    }
+
+    .encart-perisco {
+      background: linear-gradient(90deg, #f3ecff, #f8f5ff);
+      border-left: 6px solid #7b3fa3;
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      margin-top: 2.5rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .encart-perisco:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .encart-perisco h2 {
+      color: #7b3fa3;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .encart-perisco p {
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+
+    footer {
+      background: linear-gradient(90deg, #5d2f8b, #7b3fa3);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+      line-height: 1.6;
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #6ecb63;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bandeau-rouge">
+    ⚠️ Ce site représente un village fictif conçu pour démontrer les solutions d'<span class="green">Administr-IA</span>.<br>
+    Toutes les photos, noms et coordonnées sont fictifs.
+  </div>
+
+  <header class="header-modern">
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="#">Le village au quotidien</a>
+          <ul>
+            <li><a href="ecole.html" class="active">École</a></li>
+            <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
+            <li><a href="pompiers.html">Pompiers</a></li>
+            <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Histoire et patrimoine</a>
+          <ul>
+            <li><a href="histoire.html">Histoire</a></li>
+            <li><a href="patrimoine.html">Patrimoine</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Conseil municipal</a>
+          <ul>
+            <li><a href="equipe.html">L'équipe</a></li>
+            <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
+          </ul>
+        </li>
+        <li><a href="infos.html">Informations</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>École élémentaire Les Tilleuls</h1>
+  </section>
+
+  <div class="container">
+    <div class="info-section">
+      <h2>Organisation pédagogique</h2>
+      <p>📚 <strong>4 classes – 92 élèves</strong></p>
+      <ul>
+        <li><b>Classe 1 :</b> Petite et Moyenne Section (PS–MS) – <em>Enseignante 
