@@ -29,49 +29,102 @@
       position: fixed;
       top: 0; left: 0; width: 100%;
       background-color: #b30000; color: white; text-align: center;
-      padding: 0.7rem; font-size: 0.9rem; font-weight: bold;
+      padding: 0.5rem; font-size: 0.85rem; font-weight: bold;
       font-family: 'Poppins', sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 2000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .bandeau-rouge .green {
       color: #6ecb63;
     }
 
+    /* Menu rétractable - se cache sous la barre rouge */
     .header-modern {
-      position: fixed; top: 65px; width: 90%; left: 5%; z-index: 1000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1500;
       backdrop-filter: blur(10px);
       background: linear-gradient(90deg, rgba(95,45,145,0.85), rgba(140,90,210,0.85), rgba(110,70,180,0.85), rgba(95,45,145,0.85));
       background-size: 200% 100%;
       animation: gradientMove 8s ease infinite;
-      border-radius: 16px; box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
       border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.4s ease;
+      transform: translateY(calc(-100% + 77px));
+    }
+
+    .header-modern:hover,
+    .header-modern.force-open {
+      transform: translateY(42px);
+    }
+
+    /* Étiquette Menu - visible en permanence */
+    .menu-tab {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      background: transparent;
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 0 0 8px 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      z-index: 1;
       transition: all 0.3s ease;
     }
 
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+    /* Menu hamburger pour mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 10px;
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      z-index: 2500;
+      background: rgba(95,45,145,0.9);
+      border-radius: 8px;
     }
 
-    nav ul {list-style:none;display:flex;justify-content:center;margin:0;padding:0.3rem 0;flex-wrap:wrap;}
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Navigation desktop */
+    nav ul {
+      list-style:none;
+      display:flex;
+      justify-content:center;
+      margin:0;
+      padding:0.3rem 0;
+      flex-wrap:wrap;
+    }
     nav li {position:relative;}
-    nav li:nth-child(1) { animation: menuItemAppear 0.6s ease 0.1s backwards; }
-    nav li:nth-child(2) { animation: menuItemAppear 0.6s ease 0.2s backwards; }
-    nav li:nth-child(3) { animation: menuItemAppear 0.6s ease 0.3s backwards; }
-    nav li:nth-child(4) { animation: menuItemAppear 0.6s ease 0.4s backwards; }
-    nav li:nth-child(5) { animation: menuItemAppear 0.6s ease 0.5s backwards; }
-    nav li:nth-child(6) { animation: menuItemAppear 0.6s ease 0.6s backwards; }
-
-    @keyframes menuItemAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
     nav a {
       color:white;text-decoration:none;padding:1rem 1.3rem;display:block;
@@ -87,9 +140,9 @@
     }
     nav li:hover>ul{display:block;}
 
-    /* Hero Section Améliorée */
+    /* Hero Section */
     .hero {
-      margin-top: 150px;
+      margin-top: 100px;
       height: 480px;
       background: url('entrée village.jpg') center/cover no-repeat;
       display: flex;
@@ -129,7 +182,6 @@
       50% { opacity: 0.8; transform: scale(1.05); }
     }
 
-    /* Particules flottantes */
     .hero-particles {
       position: absolute;
       width: 100%;
@@ -179,10 +231,9 @@
       }
     }
 
-    /* Sections avec animations au scroll */
     .container {
-      max-width: 1000px;
-      margin: 3rem auto;
+      max-width: calc(100% - 2cm);
+      margin: 3rem 1cm;
       padding: 2rem;
     }
 
@@ -197,18 +248,15 @@
       transform: translateY(0);
     }
 
-    /* Mot du Maire avec Glassmorphisme renforcé */
     .mot-maire-centre {
       text-align: center;
       background: linear-gradient(135deg, rgba(247,242,255,0.7) 0%, rgba(241,234,255,0.8) 100%);
       backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 2px solid rgba(93,47,139,0.15);
       border-radius: 24px;
       box-shadow: 
         0 8px 32px rgba(93,47,139,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.5),
-        inset 0 -1px 0 rgba(93,47,139,0.1);
+        inset 0 1px 0 rgba(255,255,255,0.5);
       padding: 2.5rem 2rem;
       margin: 2rem 0 3rem;
       position: relative;
@@ -237,8 +285,7 @@
       transform: translateY(-8px);
       box-shadow: 
         0 16px 48px rgba(93,47,139,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.6),
-        inset 0 -1px 0 rgba(93,47,139,0.15);
+        inset 0 1px 0 rgba(255,255,255,0.6);
       border-color: rgba(110,203,99,0.3);
     }
 
@@ -247,12 +294,11 @@
       height: auto;
       margin-bottom: 1rem;
       filter: drop-shadow(0 4px 12px rgba(93,47,139,0.3));
-      transition: transform 0.4s ease, filter 0.4s ease;
+      transition: transform 0.4s ease;
     }
 
     .mot-maire-centre:hover img {
       transform: scale(1.1) rotate(5deg);
-      filter: drop-shadow(0 8px 20px rgba(110,203,99,0.4));
     }
 
     .mot-maire-centre h2 {
@@ -271,66 +317,55 @@
       position: relative;
     }
 
-    /* Encart Administ-IA avec glassmorphisme */
     .encart-administia {
       margin-top: 4rem;
       padding: 2.5rem 2rem;
       background: linear-gradient(135deg, rgba(244,240,255,0.75) 0%, rgba(241,234,255,0.8) 100%);
       backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
       color: #2c2043;
       border-radius: 24px;
       border: 2px solid rgba(93,47,139,0.15);
-      box-shadow: 
-        0 8px 32px rgba(93,47,139,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.5);
+      box-shadow: 0 8px 32px rgba(93,47,139,0.12);
       text-align: center;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       transition: all 0.4s ease;
-    }
-
-    .encart-administia::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(110,203,99,0.08) 0%, transparent 70%);
-      animation: rotateGlow 15s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes rotateGlow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      width: calc(100% + 4cm);
+      margin-left: -2cm;
+      margin-right: -2cm;
     }
 
     .encart-administia:hover {
       transform: translateY(-8px);
-      box-shadow: 
-        0 16px 48px rgba(93,47,139,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.7);
+      box-shadow: 0 16px 48px rgba(93,47,139,0.2);
+    }
+
+    .administria-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .administria-header img {
+      height: 80px;
+      width: auto;
+      filter: drop-shadow(0 4px 12px rgba(93,47,139,0.3));
     }
 
     .encart-administia h3 {
       font-family: 'Poppins', sans-serif;
       font-size: 1.8rem;
-      margin-bottom: 0.5rem;
+      margin: 0;
       color: #6ecb63;
-      position: relative;
     }
 
     .encart-administia h3 a {
       color: #6ecb63;
       text-decoration: none;
       transition: color 0.3s ease;
-    }
-
-    .encart-administia h3 a:hover {
-      color: #87d977;
-      text-shadow: 0 0 20px rgba(110,203,99,0.5);
     }
 
     .encart-administia h4 {
@@ -350,7 +385,6 @@
       text-align: justify;
     }
 
-    /* Accordéon */
     .accordion {
       max-width: 950px;
       margin: 2rem auto 0;
@@ -366,11 +400,6 @@
       transition: all 0.3s ease;
     }
 
-    .accordion-item:hover {
-      border-color: rgba(110,203,99,0.4);
-      box-shadow: 0 4px 16px rgba(110,203,99,0.1);
-    }
-
     .accordion-header {
       display: flex;
       justify-content: space-between;
@@ -379,7 +408,6 @@
       cursor: pointer;
       user-select: none;
       transition: all 0.3s ease;
-      position: relative;
     }
 
     .accordion-header:hover {
@@ -388,7 +416,7 @@
 
     .accordion-title {
       font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: #5d2f8b;
       margin: 0;
@@ -407,6 +435,7 @@
       transition: all 0.4s ease;
       box-shadow: 0 2px 8px rgba(110,203,99,0.3);
       flex-shrink: 0;
+      position: relative;
     }
 
     .accordion-icon::before,
@@ -455,6 +484,17 @@
       font-size: 0.98rem;
     }
 
+    .accordion-content a {
+      color: #5d2f8b;
+      text-decoration: underline;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .accordion-content a:hover {
+      color: #6ecb63;
+    }
+
     .accordion-intro {
       font-size: 1rem;
       line-height: 1.75;
@@ -464,70 +504,23 @@
       color: #2c2043;
     }
 
-    /* Encart Contact avec glassmorphisme */
     .encart-contact {
       margin-top: 3rem;
       background: linear-gradient(135deg, rgba(244,240,255,0.65) 0%, rgba(255,246,224,0.7) 100%);
       backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 2px solid rgba(212,175,55,0.3);
       border-radius: 24px;
       text-align: center;
       padding: 2.5rem 2rem;
-      box-shadow: 
-        0 8px 32px rgba(110,203,99,0.15),
-        inset 0 1px 0 rgba(255,255,255,0.6);
+      box-shadow: 0 8px 32px rgba(110,203,99,0.15);
       position: relative;
       overflow: hidden;
       transition: all 0.4s ease;
     }
 
-    .encart-contact::after {
-      content: "";
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(45deg, #6ecb63, #d4af37, #7b3fa3, #6ecb63);
-      background-size: 300% 300%;
-      border-radius: 24px;
-      opacity: 0;
-      z-index: -1;
-      transition: opacity 0.4s ease;
-      animation: borderGlow 4s ease infinite;
-    }
-
-    @keyframes borderGlow {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .encart-contact:hover::after {
-      opacity: 0.6;
-    }
-
-    .encart-contact::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
-      transition: left 0.8s ease;
-      z-index: 0;
-    }
-
-    .encart-contact:hover::before {
-      left: 100%;
-    }
-
     .encart-contact:hover {
       transform: translateY(-8px);
-      box-shadow: 
-        0 16px 48px rgba(110,203,99,0.25),
-        inset 0 1px 0 rgba(255,255,255,0.8);
+      box-shadow: 0 16px 48px rgba(110,203,99,0.25);
     }
 
     .encart-contact h3 {
@@ -535,7 +528,6 @@
       font-size: 1.6rem;
       margin-bottom: 0.8rem;
       font-family: 'Poppins', sans-serif;
-      position: relative;
     }
 
     .encart-contact p {
@@ -544,7 +536,6 @@
       max-width: 750px;
       margin: 0 auto 1.5rem;
       color: #2c2043;
-      position: relative;
     }
 
     .btn {
@@ -561,23 +552,6 @@
       margin: 0.5rem;
       box-shadow: 0 6px 20px rgba(123,63,163,0.3);
       border: 2px solid rgba(255,255,255,0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .btn:hover::before {
-      left: 100%;
     }
 
     .btn:hover {
@@ -606,7 +580,7 @@
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
-      margin-top: 4rem;
+      margin: 4rem 1cm 0 1cm;
       line-height: 1.6;
       box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
     }
@@ -620,15 +594,98 @@
     footer a:hover {
       color: #6ecb63;
     }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 2rem 0.5cm;
+        padding: 1rem;
+      }
+      .hero {
+        margin-top: 80px;
+      }
+      .encart-administia {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .accordion-title {
+        font-size: 0.85rem;
+      }
+      
+      /* Menu hamburger visible sur mobile */
+      .hamburger {
+        display: flex;
+      }
+      
+      .menu-tab {
+        display: none;
+      }
+      
+      .header-modern {
+        transform: translateX(-100%);
+        top: 42px;
+        width: 80%;
+        max-width: 300px;
+        border-radius: 0 16px 16px 0;
+        transition: transform 0.4s ease;
+      }
+      
+      .header-modern.active {
+        transform: translateX(0);
+      }
+      
+      .header-modern:hover {
+        transform: translateX(-100%);
+      }
+      
+      .header-modern.active:hover {
+        transform: translateX(0);
+      }
+      
+      nav ul {
+        flex-direction: column;
+        padding: 1rem 0;
+      }
+      
+      nav li {
+        width: 100%;
+      }
+      
+      nav a {
+        padding: 0.8rem 1.5rem;
+        text-align: left;
+      }
+      
+      nav ul ul {
+        position: static;
+        display: none;
+        background: rgba(75,35,110,0.95);
+        padding-left: 1rem;
+      }
+      
+      nav li.active > ul {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="bandeau-rouge">
-    ⚠️ Ce site représente un village fictif conçu pour démontrer les solutions d'<span class="green">Administr-IA</span>.<br>
-    Toutes les photos, noms et coordonnées sont fictifs.
+    ⚠️ Site fictif - Démonstration <span class="green">Administr-IA</span> - Photos et coordonnées fictives
   </div>
 
-  <header class="header-modern">
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <header class="header-modern" id="mainMenu">
     <nav>
       <ul>
         <li><a href="index.html">Accueil</a></li>
@@ -656,6 +713,7 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+    <div class="menu-tab">Menu</div>
   </header>
 
   <section class="hero">
@@ -680,7 +738,10 @@
     </section>
 
     <section class="encart-administia fade-in-section">
-      <h3><a href="https://administr-ia.fr" target="_blank"><span class="green">Administr-IA</span></a> – L'innovation au service des communes</h3>
+      <div class="administria-header">
+        <img src="assets/logo.png" alt="Logo Administr-IA">
+        <h3><a href="https://administr-ia.fr" target="_blank"><span class="green">Administr-IA</span></a> – L'innovation au service des communes</h3>
+      </div>
       <h4>Des outils simples, une aide concrète pour les secrétariats et les citoyens</h4>
       
       <p class="accordion-intro">
@@ -710,7 +771,7 @@
           </div>
           <div class="accordion-content">
             <p>
-              Le <strong>formulaire de contact intelligent</strong> est capable de répondre instantanément aux questions simples des citoyens, <strong>24h/24 et 7j/7</strong>.
+              Le <strong><a href="contact.html" target="_blank">formulaire de contact intelligent</a></strong> est capable de répondre instantanément aux questions simples des citoyens, <strong>24h/24 et 7j/7</strong>.
             </p>
             <p>
               Horaires d'ouverture, démarches administratives courantes, numéros utiles... L'assistant répond immédiatement, libérant du temps pour le secrétariat qui peut se concentrer sur les demandes plus complexes.
@@ -740,7 +801,7 @@
           </div>
           <div class="accordion-content">
             <p>
-              Le <strong>planning de réservation de la salle communale</strong> génère automatiquement les <strong>conventions de location</strong> et <strong>les factures correspondantes</strong>.
+              Le <strong><a href="salle-polyvalente.html" target="_blank">planning de réservation de la salle communale</a></strong> génère automatiquement les <strong>conventions de location</strong> et <strong>les factures correspondantes</strong>.
             </p>
             <p>
               Plus besoin de vérifier manuellement les disponibilités, de rédiger les conventions ou de calculer les montants. Le système s'occupe de tout : les citoyens réservent en ligne, la convention est générée automatiquement et la facture est envoyée. Un gain de temps considérable pour le secrétariat !
@@ -851,20 +912,52 @@
         const item = header.parentElement;
         const wasActive = item.classList.contains('active');
         
-        // Fermer tous les autres items
         document.querySelectorAll('.accordion-item').forEach(otherItem => {
           if (otherItem !== item) {
             otherItem.classList.remove('active');
           }
         });
         
-        // Toggle l'item cliqué
         if (wasActive) {
           item.classList.remove('active');
         } else {
           item.classList.add('active');
         }
       });
+    });
+
+    // Menu hamburger pour mobile
+    const hamburger = document.getElementById('hamburger');
+    const mainMenu = document.getElementById('mainMenu');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mainMenu.classList.toggle('active');
+    });
+
+    // Gestion des sous-menus sur mobile
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('nav > ul > li > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const parentLi = link.parentElement;
+          const submenu = parentLi.querySelector('ul');
+          
+          if (submenu) {
+            e.preventDefault();
+            parentLi.classList.toggle('active');
+          }
+        });
+      });
+    }
+
+    // Fermer le menu si on clique en dehors
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        if (!hamburger.contains(e.target) && !mainMenu.contains(e.target)) {
+          hamburger.classList.remove('active');
+          mainMenu.classList.remove('active');
+        }
+      }
     });
   </script>
 </body>
