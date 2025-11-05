@@ -6,7 +6,6 @@
     <title>Administr-IA – Automatisation IA pour communes et artisans en Alsace</title>
     <meta name="description" content="Administr-IA : automatisations intelligentes et IA pour mairies, artisans et TPE en Alsace. Gagnez 10h/semaine, réduisez l'administratif de 70%." />
     <link rel="icon" href="assets/logo.png" />
-    <!-- Tailwind via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -43,10 +42,8 @@
         }
       }
     </script>
-    <!-- React & ReactDOM UMD -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <!-- Framer Motion UMD -->
     <script crossorigin src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
     <style>
       html, body { height: 100%; scroll-behavior: smooth; }
@@ -307,8 +304,8 @@
                   React.createElement('div', { className: "text-sm text-white/70 mt-1" }, "de tâches automatisées")
                 ),
                 React.createElement('div', { className: "stat-box rounded-2xl p-4" },
-                  React.createElement('div', { className: "text-3xl font-bold text-cyan-400" }, "24/7"),
-                  React.createElement('div', { className: "text-sm text-white/70 mt-1" }, "disponibilité IA")
+                  React.createElement('div', { className: "text-3xl font-bold text-cyan-400" }, "24h/24 7j/7"),
+                  React.createElement('div', { className: "text-sm text-white/70 mt-1" }, "vos automatisations IA tournent en continu")
                 )
               )
             )
@@ -337,7 +334,7 @@
         React.createElement(Section, { id: "vision", title: "Pourquoi Administr-IA ?", subtitle: "Parce que votre temps vaut mieux que des tâches répétitives." },
           React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-3 gap-6" },
             React.createElement(Card, { icon: "🎯", title: "Accompagnement local et humain", desc: "Un vrai humain basé en Alsace qui vous écoute, vous conseille et s'adapte à VOTRE réalité. Pas un robot de support." }),
-            React.createElement(Card, { icon: "🛠️", title: "Sur-mesure technique", desc: "Solutions sur-mesure et non standardisées. Nous codons vos automatisations, connectons vos outils (même les vieux !), et créons ce qui n'existe pas encore." }),
+            React.createElement(Card, { icon: "🛠️", title: "Solutions personnalisées", desc: "Solutions sur-mesure et non standardisées. Je code vos automatisations, connecte vos outils, et crée ce qui n'existe pas encore." }),
             React.createElement(Card, { icon: "💰", title: "Accessible à tous", desc: "Solutions pensées pour rendre l'IA et l'automatisation accessibles aux artisans, TPE/PME et communes. Sans engagement de durée.", highlight: "Premières solutions à partir de 49€/mois" })
           )
         )
@@ -349,7 +346,7 @@
             React.createElement('div', { className: "text-center" },
               React.createElement('div', { className: "w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-2xl font-bold" }, "1"),
               React.createElement('h3', { className: "text-xl font-bold mb-3" }, "📞 Diagnostic gratuit"),
-              React.createElement('p', { className: "text-white/70" }, "1 heure en présentiel (Colmar et alentours) ou en visio. Vous me racontez ce qui vous prend du temps, je vous montre comment l'automatiser."),
+              React.createElement('p', { className: "text-white/70" }, "Une heure en présentiel. Vous m'expliquez vos besoins, ce qui vous prend du temps et je vous dis si je peux vous aider et comment. C'est un entretien gratuit, vous n'avez rien à perdre."),
               React.createElement('p', { className: "text-cyan-400 text-sm mt-2 font-semibold" }, "Gratuit • Sans engagement")
             ),
             React.createElement('div', { className: "text-center" },
@@ -361,7 +358,7 @@
             React.createElement('div', { className: "text-center" },
               React.createElement('div', { className: "w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-2xl font-bold" }, "3"),
               React.createElement('h3', { className: "text-xl font-bold mb-3" }, "🚀 Vous gagnez du temps"),
-              React.createElement('p', { className: "text-white/70" }, "Vos automatisations tournent 24/7. Je reste disponible pour ajuster, améliorer ou ajouter de nouvelles fonctionnalités."),
+              React.createElement('p', { className: "text-white/70" }, "Vos automatisations tournent 24/7. Je reste disponible pour ajuster, améliorer ou ajouter de nouvelles fonctionnalités. Vous pouvez arrêter à tout moment, vous restez libre."),
               React.createElement('p', { className: "text-cyan-400 text-sm mt-2 font-semibold" }, "Support illimité • Évolutions possibles")
             )
           )
@@ -374,33 +371,35 @@
             React.createElement(Card, { 
               icon: "📝", 
               title: "Assistant contact intelligent", 
-              desc: "Répond directement ou prépare vos réponses pour la plupart des questions de citoyens (horaires, démarches, infos pratiques)."
+              desc: "Répond directement ou prépare vos réponses pour la plupart des questions de citoyens (horaires, démarches, infos pratiques). Personnalisé pour chaque commune.",
+              highlight: "↗ Jusqu'à 70% de demandes citoyennes traitées automatiquement."
             }),
             React.createElement(Card, { 
               icon: "📰", 
               title: "Bulletin municipal dématérialisé", 
-              desc: "Diffusion automatique par email à vos citoyens. Simple et efficace."
+              desc: "Diffusion automatique par email à vos citoyens. Solution économique et écologique."
             }),
             React.createElement(Card, { 
               icon: "📄", 
               title: "Réservation de salles", 
-              desc: "Planning en ligne + génération auto des conventions et factures. Plus d'allers-retours."
+              desc: "Planning en ligne + génération auto des conventions et factures. Rapide et efficace.",
+              highlight: "→ Toutes les étapes se font toutes seules, vous n'avez qu'à valider"
             }),
             React.createElement(Card, { 
               icon: "📅", 
               title: "Rendez-vous citoyens", 
-              desc: "Prise de RDV en ligne 24/7 avec rappels SMS automatiques. Moins de no-shows."
+              desc: "Prise de RDV en ligne 24/7 avec rappels automatiques."
             }),
             React.createElement(Card, { 
               icon: "🌐", 
               title: "Site web moderne", 
-              desc: "Site responsive, accessible, rapide. Avec tout ce dont vous avez besoin (formulaires, actus, docs).",
-              highlight: "→ Site professionnel clé en main"
+              desc: "Modernisation ou création possible. Site responsive (adapté pour les téléphones), accessible, rapide. Avec tout ce dont vous avez besoin (formulaires, actus, docs).",
+              highlight: "→ Site professionnel clé en main à partir de 0,85€ par habitant"
             }),
             React.createElement(Card, { 
               icon: "🔧", 
-              title: "Sur-mesure", 
-              desc: "Dites-moi ce dont vous avez besoin, et je trouve la solution adaptée."
+              title: "Solution sur-mesure", 
+              desc: "Dites-moi ce dont vous avez besoin, et je fais une proposition personnalisée."
             })
           ),
           React.createElement('div', { className: "text-center mt-10" },
@@ -427,7 +426,8 @@
             React.createElement(Card, { 
               icon: "🌐", 
               title: "Site moderne & professionnel", 
-              desc: "Augmentez votre impact et votre visibilité avec un site web à votre image."
+              desc: "Augmentez votre impact et votre visibilité avec un site web à votre image.",
+              highlight: "→ Site professionnel clé en main à partir de 59€/mois"
             }),
             React.createElement(Card, { 
               icon: "📅", 
@@ -458,7 +458,7 @@
           React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 gap-6" },
             React.createElement('div', { className: "glass ring-1 ring-white/10 rounded-2xl p-6" },
               React.createElement('h3', { className: "font-bold text-lg mb-2 text-cyan-400" }, "💰 Combien ça coûte vraiment ?"),
-              React.createElement('p', { className: "text-white/70" }, "Premières solutions à partir de 49€/mois. Diagnostic et devis personnalisé gratuits, toujours. Tarifs clairs dès notre premier échange.")
+              React.createElement('p', { className: "text-white/70" }, "Premières solutions à partir de 49€/mois pour un artisan. Pour une petite commune, cela peut démarrer à partir de quelques euros seulement. Diagnostic et devis personnalisé gratuits. Tarifs clairs dès notre premier échange.")
             ),
             React.createElement('div', { className: "glass ring-1 ring-white/10 rounded-2xl p-6" },
               React.createElement('h3', { className: "font-bold text-lg mb-2 text-cyan-400" }, "⏱️ Combien de temps pour la mise en place ?"),
@@ -466,7 +466,7 @@
             ),
             React.createElement('div', { className: "glass ring-1 ring-white/10 rounded-2xl p-6" },
               React.createElement('h3', { className: "font-bold text-lg mb-2 text-cyan-400" }, "🔒 Je suis engagé combien de temps ?"),
-              React.createElement('p', { className: "text-white/70" }, "Zéro engagement. Vous arrêtez quand vous voulez, sans frais. Je préfère que vous restiez parce que vous êtes satisfait, pas piégé.")
+              React.createElement('p', { className: "text-white/70" }, "Zéro engagement. Vous arrêtez quand vous voulez. C'est simple, si ça ne vous est pas utile, ne continuez pas...")
             ),
             React.createElement('div', { className: "glass ring-1 ring-white/10 rounded-2xl p-6" },
               React.createElement('h3', { className: "font-bold text-lg mb-2 text-cyan-400" }, "🛠️ Et si j'ai un problème ?"),
@@ -513,7 +513,7 @@
             React.createElement('div', { className: "mt-8 p-6 bg-gradient-to-r from-purple-900/30 to-cyan-900/30 rounded-2xl border border-white/10" },
               React.createElement('h4', { className: "font-bold text-lg mb-2 text-yellow-400" }, "⚠️ Transparence totale :"),
               React.createElement('p', { className: "text-white/80 text-sm leading-relaxed" }, 
-                "Administr-IA vient de démarrer (octobre 2024). Je n'ai pas encore de clients, donc pas de témoignages. Mais j'ai des sites de démo fonctionnels que vous pouvez tester. Les premiers clients bénéficieront d'un accompagnement encore plus poussé et de tarifs préférentiels. Vous serez mes cas d'école, je ferai tout pour que ça marche parfaitement."
+                "Administr-IA vient de démarrer (novembre 2025). Je n'ai pas encore de clients, donc pas de témoignages. Mais j'ai des sites de démonstration fonctionnels que vous pouvez tester pour vous faire un premier avis."
               )
             )
           )
@@ -535,7 +535,7 @@
                   React.createElement('span', { className: "relative z-10" }, "📧 clement@administr-ia.fr")
                 )
               ),
-              React.createElement('p', { className: "text-white/60 text-sm mt-6" }, "Diagnostic gratuit • Sans engagement • Réponse sous 24h")
+              React.createElement('p', { className: "text-white/60 text-sm mt-6" }, "Diagnostic gratuit • Sans engagement • Réponse sous 48h")
             )
           )
         )
