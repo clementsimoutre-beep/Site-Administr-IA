@@ -78,31 +78,6 @@
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        .droplet {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            animation: fall 3s infinite ease-in;
-        }
-
-        .droplet:nth-child(4) { width: 15px; height: 15px; left: 15%; top: -50px; animation-delay: 0s; }
-        .droplet:nth-child(5) { width: 20px; height: 20px; left: 35%; top: -50px; animation-delay: 1s; }
-        .droplet:nth-child(6) { width: 12px; height: 12px; left: 55%; top: -50px; animation-delay: 2s; }
-        .droplet:nth-child(7) { width: 18px; height: 18px; left: 75%; top: -50px; animation-delay: 0.5s; }
-        .droplet:nth-child(8) { width: 16px; height: 16px; left: 85%; top: -50px; animation-delay: 1.5s; }
-
-        @keyframes fall {
-            0% {
-                top: -50px;
-                opacity: 1;
-            }
-            100% {
-                top: 110vh;
-                opacity: 0;
-            }
-        }
-
         nav {
             position: fixed;
             top: 50px;
@@ -133,15 +108,20 @@
         }
 
         .nav-links a {
-            color: #fff;
+            color: #0a1f0f;
+            background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
             text-decoration: none;
             transition: all 0.3s;
-            font-weight: 500;
+            font-weight: 700;
+            padding: 15px 35px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(56, 239, 125, 0.4);
+            font-size: 18px;
         }
 
         .nav-links a:hover {
-            color: #38ef7d;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(56, 239, 125, 0.6);
         }
 
         .hero-content {
@@ -233,16 +213,9 @@
             background: rgba(17, 153, 142, 0.1);
             padding: 40px;
             border-radius: 20px;
-            transition: all 0.3s;
+            transition: none;
             border: 2px solid rgba(56, 239, 125, 0.2);
             backdrop-filter: blur(10px);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(56, 239, 125, 0.3);
-            border-color: #38ef7d;
-            background: rgba(17, 153, 142, 0.2);
         }
 
         .service-icon {
@@ -331,8 +304,9 @@
             border-radius: 30px;
             border: 2px solid rgba(56, 239, 125, 0.5);
             position: relative;
-            min-height: 800px;
-            transition: min-height 0.3s ease;
+            min-height: 2000px;
+            transition: min-height 0.6s ease-out;
+            overflow: visible;
         }
 
         .form-container::before,
@@ -369,48 +343,6 @@
             }
         }
 
-        .water-drops-outer {
-            position: absolute;
-            top: 0;
-            left: -30px;
-            width: 30px;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .water-drops-outer-right {
-            position: absolute;
-            top: 0;
-            right: -30px;
-            width: 30px;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .water-drop {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: rgba(56, 239, 125, 0.6);
-            border-radius: 50%;
-            animation: dropFall 6s linear infinite;
-        }
-
-        .water-drop:nth-child(1) { left: 5px; animation-delay: 0s; }
-        .water-drop:nth-child(2) { left: 15px; animation-delay: 1s; }
-        .water-drop:nth-child(3) { left: 10px; animation-delay: 2s; }
-
-        @keyframes dropFall {
-            0% {
-                top: -20px;
-                opacity: 1;
-            }
-            100% {
-                top: calc(100% + 20px);
-                opacity: 0;
-            }
-        }
-
         .iframe-wrapper {
             position: relative;
             width: 100%;
@@ -419,21 +351,11 @@
 
         .iframe-wrapper iframe {
             width: 100%;
-            height: 100%;
-            min-height: 2500px;
+            height: auto;
+            min-height: 2000px;
             border: none;
-        }
-
-        @media (max-width: 768px) {
-            .iframe-wrapper iframe {
-                min-height: 3000px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .iframe-wrapper iframe {
-                min-height: 3500px;
-            }
+            overflow: hidden !important;
+            transition: height 0.6s ease-out, min-height 0.6s ease-out;
         }
 
         footer {
@@ -485,11 +407,6 @@
             <div class="wave"></div>
             <div class="wave"></div>
             <div class="wave"></div>
-            <div class="droplet"></div>
-            <div class="droplet"></div>
-            <div class="droplet"></div>
-            <div class="droplet"></div>
-            <div class="droplet"></div>
         </div>
         <div class="hero-content">
             <h1>🌿 Plomberie Dutuyau</h1>
@@ -553,18 +470,8 @@
         </div>
 
         <div class="form-container" id="formContainer">
-            <div class="water-drops-outer">
-                <div class="water-drop"></div>
-                <div class="water-drop"></div>
-                <div class="water-drop"></div>
-            </div>
-            <div class="water-drops-outer-right">
-                <div class="water-drop"></div>
-                <div class="water-drop"></div>
-                <div class="water-drop"></div>
-            </div>
             <div class="iframe-wrapper">
-                <iframe src="https://tally.so/r/mV2l5a?transparentBackground=1&alignLeft=1" id="tallyFrame" frameborder="0" marginheight="0" marginwidth="0" title="Formulaire de réservation Plomberie Dutuyau"></iframe>
+                <iframe src="https://tally.so/r/mV2l5a?transparentBackground=1&alignLeft=1" id="tallyFrame" frameborder="0" marginheight="0" marginwidth="0" title="Formulaire de réservation Plomberie Dutuyau" scrolling="no"></iframe>
             </div>
         </div>
     </section>
@@ -582,15 +489,21 @@
 
     <script>
         // Écoute les messages de l'iframe Tally pour ajuster la hauteur dynamiquement
+        let lastHeight = 2000;
+        
         window.addEventListener('message', function(e) {
             if (e.data && e.data.type === 'tally.heightChanged') {
                 const iframe = document.getElementById('tallyFrame');
                 const container = document.getElementById('formContainer');
                 const newHeight = e.data.height;
                 
-                if (newHeight) {
-                    iframe.style.height = newHeight + 'px';
-                    container.style.minHeight = (newHeight + 100) + 'px';
+                if (newHeight && newHeight > 0 && Math.abs(newHeight - lastHeight) > 50) {
+                    // Ne met à jour que si le changement est significatif (>50px)
+                    // Cela évite les micro-ajustements qui font "sursauter"
+                    lastHeight = newHeight;
+                    iframe.style.height = (newHeight + 200) + 'px';
+                    iframe.style.minHeight = (newHeight + 200) + 'px';
+                    container.style.minHeight = (newHeight + 300) + 'px';
                 }
             }
         });
@@ -599,19 +512,25 @@
         const iframe = document.getElementById('tallyFrame');
         const container = document.getElementById('formContainer');
         
+        // Force l'absence de scroll
+        iframe.setAttribute('scrolling', 'no');
+        
         // Ajustement initial après chargement
         iframe.addEventListener('load', function() {
             setTimeout(() => {
                 try {
-                    const iframeHeight = iframe.contentWindow.document.body.scrollHeight;
-                    if (iframeHeight > 0) {
-                        iframe.style.height = iframeHeight + 'px';
-                        container.style.minHeight = (iframeHeight + 100) + 'px';
-                    }
+                    iframe.contentWindow.postMessage({type: 'tally.getHeight'}, '*');
                 } catch(e) {
-                    // Cross-origin, on garde la hauteur par défaut
+                    console.log('Waiting for height...');
                 }
-            }, 500);
+            }, 1000);
+            
+            // Surveille les changements de hauteur moins fréquemment pour éviter les sursauts
+            setInterval(() => {
+                try {
+                    iframe.contentWindow.postMessage({type: 'tally.getHeight'}, '*');
+                } catch(e) {}
+            }, 1000);
         });
     </script>
 </body>
