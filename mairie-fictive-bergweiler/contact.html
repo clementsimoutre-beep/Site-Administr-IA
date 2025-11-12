@@ -30,36 +30,121 @@
       background-color: #b30000;
       color: white;
       text-align: center;
-      padding: 0.7rem;
-      font-size: 0.9rem;
+      padding: 0.5rem;
+      font-size: 0.85rem;
       font-weight: bold;
       font-family: 'Poppins', sans-serif;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       z-index: 2000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .bandeau-rouge .green {
       color: #6ecb63;
     }
 
+    /* Menu rétractable avec filet violet */
     .header-modern {
       position: fixed;
-      top: 65px;
-      width: 90%;
-      left: 5%;
-      z-index: 1000;
+      top: 42px;
+      left: 0;
+      width: 100%;
+      z-index: 1500;
+      transition: all 0.4s ease;
+    }
+
+    .menu-bar {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #5d2f8b, #7b3fa3, #9c68cc);
+      box-shadow: 0 2px 8px rgba(93,47,139,0.4);
+    }
+
+    .menu-button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 4px;
+      background: linear-gradient(135deg, #5d2f8b, #7b3fa3);
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 0 0 16px 16px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(93,47,139,0.4);
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .menu-button:hover {
+      background: linear-gradient(135deg, #7b3fa3, #9c68cc);
+      transform: translateX(-50%) translateY(2px);
+      box-shadow: 0 6px 20px rgba(93,47,139,0.6);
+    }
+
+    .menu-content {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 100%;
       backdrop-filter: blur(10px);
-      background: linear-gradient(90deg, rgba(95,45,145,0.85), rgba(140,90,210,0.85), rgba(110,70,180,0.85), rgba(95,45,145,0.85));
+      background: linear-gradient(90deg, rgba(95,45,145,0.95), rgba(140,90,210,0.95), rgba(110,70,180,0.95), rgba(95,45,145,0.95));
       background-size: 200% 100%;
       animation: gradientMove 8s ease infinite;
-      border-radius: 16px;
-      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
       border: 1px solid rgba(255,255,255,0.1);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0;
     }
-    
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+
+    .header-modern:hover .menu-content,
+    .header-modern.force-open .menu-content {
+      max-height: 600px;
+      padding: 5rem 0 1rem 0;
+    }
+
+    /* Menu hamburger pour mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 10px;
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      z-index: 2500;
+      background: rgba(95,45,145,0.9);
+      border-radius: 8px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
     }
 
     nav ul {
@@ -73,24 +158,6 @@
 
     nav li {
       position:relative;
-    }
-
-    nav li:nth-child(1) { animation: menuItemAppear 0.6s ease 0.1s backwards; }
-    nav li:nth-child(2) { animation: menuItemAppear 0.6s ease 0.2s backwards; }
-    nav li:nth-child(3) { animation: menuItemAppear 0.6s ease 0.3s backwards; }
-    nav li:nth-child(4) { animation: menuItemAppear 0.6s ease 0.4s backwards; }
-    nav li:nth-child(5) { animation: menuItemAppear 0.6s ease 0.5s backwards; }
-    nav li:nth-child(6) { animation: menuItemAppear 0.6s ease 0.6s backwards; }
-
-    @keyframes menuItemAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     nav a {
@@ -117,10 +184,6 @@
       transform:translateX(-50%);
     }
     nav a:hover::after {width:50%;}
-    nav a:hover {
-      transform:translateY(-2px);
-      text-shadow:0 0 8px rgba(255,255,255,0.4);
-    }
 
     nav ul ul {
       display:none;
@@ -136,14 +199,10 @@
     }
 
     nav li:hover>ul {display:block;}
-    nav ul ul li a {
-      padding:0.8rem 1.5rem;
-      white-space:nowrap;
-    }
 
     .container {
       max-width:1200px;
-      margin:160px auto 3rem auto;
+      margin:120px auto 3rem auto;
       padding:2rem 4rem;
       opacity: 0;
       transform: translateY(30px);
@@ -256,12 +315,82 @@
       color: #6ecb63;
     }
 
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
     @media (max-width: 768px) {
       .container {
         padding: 1.5rem;
+        margin-top: 100px;
       }
       iframe {
         height: 600px;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .menu-button {
+        display: none;
+      }
+      
+      .menu-bar {
+        display: none;
+      }
+      
+      .menu-content {
+        max-height: none !important;
+        padding: 0 !important;
+      }
+      
+      .header-modern {
+        top: 42px;
+        transform: translateX(-100%);
+        width: 80%;
+        max-width: 300px;
+        border-radius: 0 16px 16px 0;
+        transition: transform 0.4s ease;
+        background: linear-gradient(135deg, rgba(95,45,145,0.98), rgba(110,70,180,0.98));
+      }
+      
+      .header-modern.active {
+        transform: translateX(0);
+      }
+      
+      .header-modern:hover {
+        transform: translateX(-100%);
+      }
+      
+      .header-modern.active:hover {
+        transform: translateX(0);
+      }
+      
+      nav ul {
+        flex-direction: column;
+        padding: 1rem 0;
+      }
+      
+      nav li {
+        width: 100%;
+      }
+      
+      nav a {
+        padding: 0.8rem 1.5rem;
+        text-align: left;
+      }
+      
+      nav ul ul {
+        position: static;
+        display: none;
+        background: rgba(75,35,110,0.95);
+        padding-left: 1rem;
+      }
+      
+      nav li.active > ul {
+        display: block;
       }
     }
   </style>
@@ -269,38 +398,47 @@
 
 <body>
   <div class="bandeau-rouge">
-    ⚠️ Ce site représente un village fictif conçu pour démontrer les solutions d'<span class="green">Administr-IA</span>.<br>
-    Toutes les photos, noms et coordonnées sont fictifs.
+    ⚠️ Site fictif - Démonstration <span class="green">Administr-IA</span> - Photos et coordonnées fictives
   </div>
 
-  <header class="header-modern">
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="#">Le village au quotidien</a>
-          <ul>
-            <li><a href="ecole.html">École</a></li>
-            <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
-            <li><a href="pompiers.html">Pompiers</a></li>
-            <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Histoire et patrimoine</a>
-          <ul>
-            <li><a href="histoire.html">Histoire</a></li>
-            <li><a href="patrimoine.html">Patrimoine</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Conseil municipal</a>
-          <ul>
-            <li><a href="equipe.html">L'équipe</a></li>
-            <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
-          </ul>
-        </li>
-        <li><a href="infos.html">Informations</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
-      </ul>
-    </nav>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <header class="header-modern" id="mainMenu">
+    <div class="menu-bar"></div>
+    <div class="menu-button">MENU</div>
+    <div class="menu-content">
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="#">Le village au quotidien</a>
+            <ul>
+              <li><a href="ecole.html">École</a></li>
+              <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
+              <li><a href="pompiers.html">Pompiers</a></li>
+              <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Histoire et patrimoine</a>
+            <ul>
+              <li><a href="histoire.html">Histoire</a></li>
+              <li><a href="patrimoine.html">Patrimoine</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Conseil municipal</a>
+            <ul>
+              <li><a href="equipe.html">L'équipe</a></li>
+              <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
+            </ul>
+          </li>
+          <li><a href="infos.html">Informations</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <div class="container">
@@ -349,5 +487,38 @@
     <p>Horaires : Lundi au Vendredi 9h–12h / 14h–17h</p>
     <p>Ce site n'utilise pas de cookies.</p>
   </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mainMenu = document.getElementById('mainMenu');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mainMenu.classList.toggle('active');
+    });
+
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('nav > ul > li > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const parentLi = link.parentElement;
+          const submenu = parentLi.querySelector('ul');
+          
+          if (submenu) {
+            e.preventDefault();
+            parentLi.classList.toggle('active');
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        if (!hamburger.contains(e.target) && !mainMenu.contains(e.target)) {
+          hamburger.classList.remove('active');
+          mainMenu.classList.remove('active');
+        }
+      }
+    });
+  </script>
 </body>
 </html>

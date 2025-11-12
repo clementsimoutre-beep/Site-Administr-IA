@@ -40,44 +40,71 @@
       color: #6ecb63;
     }
 
-    /* Menu rétractable - se cache sous la barre rouge */
+    /* Menu rétractable avec filet violet */
     .header-modern {
       position: fixed;
-      top: 0;
+      top: 42px;
       left: 0;
       width: 100%;
       z-index: 1500;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(90deg, rgba(95,45,145,0.85), rgba(140,90,210,0.85), rgba(110,70,180,0.85), rgba(95,45,145,0.85));
-      background-size: 200% 100%;
-      animation: gradientMove 8s ease infinite;
-      border-radius: 0 0 16px 16px;
-      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.4s ease;
-      transform: translateY(calc(-100% + 77px));
+      transition: all 0.4s ease;
     }
 
-    .header-modern:hover,
-    .header-modern.force-open {
-      transform: translateY(42px);
+    .menu-bar {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #5d2f8b, #7b3fa3, #9c68cc);
+      box-shadow: 0 2px 8px rgba(93,47,139,0.4);
     }
 
-    /* Étiquette Menu - visible en permanence */
-    .menu-tab {
+    .menu-button {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 0;
-      background: transparent;
+      top: 4px;
+      background: linear-gradient(135deg, #5d2f8b, #7b3fa3);
       color: white;
-      padding: 0.6rem 1.5rem;
-      border-radius: 0 0 8px 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
+      padding: 1rem 3rem;
+      border-radius: 0 0 16px 16px;
+      font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
-      z-index: 1;
+      z-index: 2;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(93,47,139,0.4);
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .menu-button:hover {
+      background: linear-gradient(135deg, #7b3fa3, #9c68cc);
+      transform: translateX(-50%) translateY(2px);
+      box-shadow: 0 6px 20px rgba(93,47,139,0.6);
+    }
+
+    .menu-content {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(95,45,145,0.95), rgba(140,90,210,0.95), rgba(110,70,180,0.95), rgba(95,45,145,0.95));
+      background-size: 200% 100%;
+      animation: gradientMove 8s ease infinite;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0;
+    }
+
+    .header-modern:hover .menu-content,
+    .header-modern.force-open .menu-content {
+      max-height: 600px;
+      padding: 5rem 0 1rem 0;
     }
 
     /* Menu hamburger pour mobile */
@@ -506,36 +533,74 @@
 
     .encart-contact {
       margin-top: 3rem;
-      background: linear-gradient(135deg, rgba(244,240,255,0.65) 0%, rgba(255,246,224,0.7) 100%);
+      background: linear-gradient(135deg, rgba(110,203,99,0.15) 0%, rgba(244,240,255,0.8) 50%, rgba(255,246,224,0.7) 100%);
       backdrop-filter: blur(20px) saturate(180%);
-      border: 2px solid rgba(212,175,55,0.3);
+      border: 2px solid rgba(110,203,99,0.3);
       border-radius: 24px;
       text-align: center;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 8px 32px rgba(110,203,99,0.15);
+      padding: 3rem 2rem;
+      box-shadow: 0 8px 32px rgba(110,203,99,0.2);
       position: relative;
       overflow: hidden;
       transition: all 0.4s ease;
     }
 
+    .encart-contact::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(110,203,99,0.15) 0%, transparent 70%);
+      animation: rotateGlow 20s linear infinite;
+      pointer-events: none;
+    }
+
+    .encart-contact::after {
+      content: "";
+      position: absolute;
+      bottom: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(123,63,163,0.1) 0%, transparent 70%);
+      animation: rotateGlow 25s linear infinite reverse;
+      pointer-events: none;
+    }
+
     .encart-contact:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 48px rgba(110,203,99,0.25);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(110,203,99,0.3);
+      border-color: rgba(110,203,99,0.5);
     }
 
     .encart-contact h3 {
       color: #5d2f8b;
-      font-size: 1.6rem;
-      margin-bottom: 0.8rem;
+      font-size: 2rem;
+      margin-bottom: 1rem;
       font-family: 'Poppins', sans-serif;
+      position: relative;
+      z-index: 1;
     }
 
     .encart-contact p {
-      font-size: 1rem;
-      line-height: 1.75;
+      font-size: 1.1rem;
+      line-height: 1.8;
       max-width: 750px;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto 2rem;
       color: #2c2043;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
 
     .btn {
@@ -622,17 +687,27 @@
         display: flex;
       }
       
-      .menu-tab {
+      .menu-button {
         display: none;
       }
       
+      .menu-bar {
+        display: none;
+      }
+      
+      .menu-content {
+        max-height: none !important;
+        padding: 0 !important;
+      }
+      
       .header-modern {
-        transform: translateX(-100%);
         top: 42px;
+        transform: translateX(-100%);
         width: 80%;
         max-width: 300px;
         border-radius: 0 16px 16px 0;
         transition: transform 0.4s ease;
+        background: linear-gradient(135deg, rgba(95,45,145,0.98), rgba(110,70,180,0.98));
       }
       
       .header-modern.active {
@@ -686,34 +761,37 @@
   </div>
 
   <header class="header-modern" id="mainMenu">
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="#">Le village au quotidien</a>
-          <ul>
-            <li><a href="ecole.html">École</a></li>
-            <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
-            <li><a href="pompiers.html">Pompiers</a></li>
-            <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Histoire et patrimoine</a>
-          <ul>
-            <li><a href="histoire.html">Histoire</a></li>
-            <li><a href="patrimoine.html">Patrimoine</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Conseil municipal</a>
-          <ul>
-            <li><a href="equipe.html">L'équipe</a></li>
-            <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
-          </ul>
-        </li>
-        <li><a href="infos.html">Informations</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="menu-tab">Menu</div>
+    <div class="menu-bar"></div>
+    <div class="menu-button">MENU</div>
+    <div class="menu-content">
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="#">Le village au quotidien</a>
+            <ul>
+              <li><a href="ecole.html">École</a></li>
+              <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
+              <li><a href="pompiers.html">Pompiers</a></li>
+              <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Histoire et patrimoine</a>
+            <ul>
+              <li><a href="histoire.html">Histoire</a></li>
+              <li><a href="patrimoine.html">Patrimoine</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Conseil municipal</a>
+            <ul>
+              <li><a href="equipe.html">L'équipe</a></li>
+              <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
+            </ul>
+          </li>
+          <li><a href="infos.html">Informations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <section class="hero">
@@ -862,10 +940,12 @@
     </section>
 
     <section class="encart-contact fade-in-section">
-      <h3>Contact</h3>
+      <h3>💬 Contactez Administr-IA</h3>
       <p>Voyons ensemble comment Administr-IA peut vous épauler et construire des solutions personnalisées pour votre commune.</p>
-      <a href="https://administr-ia.fr" target="_blank" class="btn">🌐 Visitez le site Administr-IA</a>
-      <a href="mailto:clement@administr-ia.fr" class="btn btn-green">📧 Contacter Administr-IA</a>
+      <div class="contact-buttons">
+        <a href="https://administr-ia.fr" target="_blank" class="btn">🌐 Visitez le site Administr-IA</a>
+        <a href="mailto:clement@administr-ia.fr" class="btn btn-green">📧 Envoyer un email</a>
+      </div>
     </section>
   </div>
 

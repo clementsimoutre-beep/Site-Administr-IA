@@ -29,49 +29,121 @@
       position: fixed;
       top: 0; left: 0; width: 100%;
       background-color: #b30000; color: white; text-align: center;
-      padding: 0.7rem; font-size: 0.9rem; font-weight: bold;
+      padding: 0.5rem; font-size: 0.85rem; font-weight: bold;
       font-family: 'Poppins', sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 2000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .bandeau-rouge .green {
       color: #6ecb63;
     }
 
+    /* Menu rétractable avec filet violet */
     .header-modern {
-      position: fixed; top: 65px; width: 90%; left: 5%; z-index: 1000;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(90deg, rgba(95,45,145,0.85), rgba(140,90,210,0.85), rgba(110,70,180,0.85), rgba(95,45,145,0.85));
-      background-size: 200% 100%;
-      animation: gradientMove 8s ease infinite;
-      border-radius: 16px; box-shadow: 0 4px 25px rgba(0,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: all 0.3s ease;
+      position: fixed;
+      top: 42px;
+      left: 0;
+      width: 100%;
+      z-index: 1500;
+      transition: all 0.4s ease;
     }
 
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+    .menu-bar {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #5d2f8b, #7b3fa3, #9c68cc);
+      box-shadow: 0 2px 8px rgba(93,47,139,0.4);
+    }
+
+    .menu-button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 4px;
+      background: linear-gradient(135deg, #5d2f8b, #7b3fa3);
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 0 0 16px 16px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(93,47,139,0.4);
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .menu-button:hover {
+      background: linear-gradient(135deg, #7b3fa3, #9c68cc);
+      transform: translateX(-50%) translateY(2px);
+      box-shadow: 0 6px 20px rgba(93,47,139,0.6);
+    }
+
+    .menu-content {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(95,45,145,0.95), rgba(140,90,210,0.95), rgba(110,70,180,0.95), rgba(95,45,145,0.95));
+      background-size: 200% 100%;
+      animation: gradientMove 8s ease infinite;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0;
+    }
+
+    .header-modern:hover .menu-content,
+    .header-modern.force-open .menu-content {
+      max-height: 600px;
+      padding: 5rem 0 1rem 0;
+    }
+
+    /* Menu hamburger pour mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 10px;
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      z-index: 2500;
+      background: rgba(95,45,145,0.9);
+      border-radius: 8px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
     }
 
     nav ul {list-style:none;display:flex;justify-content:center;margin:0;padding:0.3rem 0;flex-wrap:wrap;}
     nav li {position:relative;}
-    nav li:nth-child(1) { animation: menuItemAppear 0.6s ease 0.1s backwards; }
-    nav li:nth-child(2) { animation: menuItemAppear 0.6s ease 0.2s backwards; }
-    nav li:nth-child(3) { animation: menuItemAppear 0.6s ease 0.3s backwards; }
-    nav li:nth-child(4) { animation: menuItemAppear 0.6s ease 0.4s backwards; }
-    nav li:nth-child(5) { animation: menuItemAppear 0.6s ease 0.5s backwards; }
-    nav li:nth-child(6) { animation: menuItemAppear 0.6s ease 0.6s backwards; }
-
-    @keyframes menuItemAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
     nav a {
       color:white;text-decoration:none;padding:1rem 1.3rem;display:block;
@@ -89,7 +161,7 @@
     nav ul ul li a{padding:0.8rem 1.5rem;white-space:nowrap;}
 
     .hero {
-      margin-top: 150px;
+      margin-top: 100px;
       height: 380px;
       background: url('école les tilleuls.jpg') center/cover no-repeat;
       display: flex;
@@ -296,12 +368,84 @@
       color: #6ecb63;
     }
 
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
     @media (max-width: 768px) {
       .container {
         padding: 1.5rem;
       }
+      .hero {
+        margin-top: 80px;
+      }
       .hero h1 {
         font-size: 2rem;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .menu-button {
+        display: none;
+      }
+      
+      .menu-bar {
+        display: none;
+      }
+      
+      .menu-content {
+        max-height: none !important;
+        padding: 0 !important;
+      }
+      
+      .header-modern {
+        top: 42px;
+        transform: translateX(-100%);
+        width: 80%;
+        max-width: 300px;
+        border-radius: 0 16px 16px 0;
+        transition: transform 0.4s ease;
+        background: linear-gradient(135deg, rgba(95,45,145,0.98), rgba(110,70,180,0.98));
+      }
+      
+      .header-modern.active {
+        transform: translateX(0);
+      }
+      
+      .header-modern:hover {
+        transform: translateX(-100%);
+      }
+      
+      .header-modern.active:hover {
+        transform: translateX(0);
+      }
+      
+      nav ul {
+        flex-direction: column;
+        padding: 1rem 0;
+      }
+      
+      nav li {
+        width: 100%;
+      }
+      
+      nav a {
+        padding: 0.8rem 1.5rem;
+        text-align: left;
+      }
+      
+      nav ul ul {
+        position: static;
+        display: none;
+        background: rgba(75,35,110,0.95);
+        padding-left: 1rem;
+      }
+      
+      nav li.active > ul {
+        display: block;
       }
     }
   </style>
@@ -309,38 +453,47 @@
 
 <body>
   <div class="bandeau-rouge">
-    ⚠️ Ce site représente un village fictif conçu pour démontrer les solutions d'<span class="green">Administr-IA</span>.<br>
-    Toutes les photos, noms et coordonnées sont fictifs.
+    ⚠️ Site fictif - Démonstration <span class="green">Administr-IA</span> - Photos et coordonnées fictives
   </div>
 
-  <header class="header-modern">
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="#">Le village au quotidien</a>
-          <ul>
-            <li><a href="ecole.html" class="active">École</a></li>
-            <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
-            <li><a href="pompiers.html">Pompiers</a></li>
-            <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Histoire et patrimoine</a>
-          <ul>
-            <li><a href="histoire.html">Histoire</a></li>
-            <li><a href="patrimoine.html">Patrimoine</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Conseil municipal</a>
-          <ul>
-            <li><a href="equipe.html">L'équipe</a></li>
-            <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
-          </ul>
-        </li>
-        <li><a href="infos.html">Informations</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <header class="header-modern" id="mainMenu">
+    <div class="menu-bar"></div>
+    <div class="menu-button">MENU</div>
+    <div class="menu-content">
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="#">Le village au quotidien</a>
+            <ul>
+              <li><a href="ecole.html" class="active">École</a></li>
+              <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
+              <li><a href="pompiers.html">Pompiers</a></li>
+              <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Histoire et patrimoine</a>
+            <ul>
+              <li><a href="histoire.html">Histoire</a></li>
+              <li><a href="patrimoine.html">Patrimoine</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Conseil municipal</a>
+            <ul>
+              <li><a href="equipe.html">L'équipe</a></li>
+              <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
+            </ul>
+          </li>
+          <li><a href="infos.html">Informations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <section class="hero">
@@ -352,4 +505,72 @@
       <h2>Organisation pédagogique</h2>
       <p>📚 <strong>4 classes – 92 élèves</strong></p>
       <ul>
-        <li><b>Classe 1 :</b> Petite et Moyenne Section (PS–MS) – <em>Enseignante 
+        <li><b>Classe 1 :</b> Petite et Moyenne Section (PS–MS) – <em>Enseignante : Mme Hélène Roussel</em></li>
+        <li><b>Classe 2 :</b> Grande Section et CP (GS–CP) – <em>Enseignant : M. Thomas Marchal</em></li>
+        <li><b>Classe 3 :</b> CE1 et CE2 – <em>Enseignante : Mme Claire Dubois</em></li>
+        <li><b>Classe 4 :</b> CM1 et CM2 – <em>Enseignant : M. Olivier Lambert</em></li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <h2>Coordonnées et horaires</h2>
+      <p><strong>Adresse :</strong> 8 rue de l'École, 68127 Bergweiler</p>
+      <p><strong>Téléphone :</strong> 03 89 12 34 56</p>
+      <p><strong>Email :</strong> ecole.tilleuls@bergweiler.fr</p>
+      <p><strong>Horaires :</strong></p>
+      <ul>
+        <li>Lundi, mardi, jeudi, vendredi : 8h30–11h30 / 13h30–16h30</li>
+      </ul>
+    </div>
+
+    <div class="encart-perisco">
+      <h2>🏫 Accueil périscolaire</h2>
+      <p>L'accueil périscolaire est assuré par la commune :</p>
+      <p><strong>Matin :</strong> 7h30 – 8h20</p>
+      <p><strong>Soir :</strong> 16h40 – 18h30</p>
+      <p><strong>Tarifs :</strong> En fonction du quotient familial (de 1,50 € à 3,50 € par demi-journée)</p>
+      <p><strong>Inscriptions :</strong> Mairie de Bergweiler – 03 89 00 00 00</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Mairie de Bergweiler – 12 rue Principale, 68127 Bergweiler<br>
+    📞 03 89 00 00 00 – ✉️ mairie@bergweiler.fr</p>
+    <p>Horaires : Lundi au Vendredi 9h–12h / 14h–17h</p>
+    <p><a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mainMenu = document.getElementById('mainMenu');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mainMenu.classList.toggle('active');
+    });
+
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('nav > ul > li > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const parentLi = link.parentElement;
+          const submenu = parentLi.querySelector('ul');
+          
+          if (submenu) {
+            e.preventDefault();
+            parentLi.classList.toggle('active');
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        if (!hamburger.contains(e.target) && !mainMenu.contains(e.target)) {
+          hamburger.classList.remove('active');
+          mainMenu.classList.remove('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

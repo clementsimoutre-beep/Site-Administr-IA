@@ -3,15 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lâ€™Ã©quipe municipale â€“ Mairie de Bergweiler</title>
+  <title>L'équipe municipale – Mairie de Bergweiler</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #faf7fc 0%, #f2eef9 100%);
+      background: linear-gradient(120deg, #f4f0ff 0%, #ffffff 30%, #ffffff 70%, #f0eaff 100%);
+      background-size: 200% 200%;
+      animation: bgShift 10s ease-in-out infinite alternate;
       color: #222;
       overflow-x: hidden;
+    }
+
+    @keyframes bgShift { 
+      from {background-position: 0% 50%} 
+      to {background-position: 100% 50%} 
     }
 
     .bandeau-rouge {
@@ -22,21 +34,121 @@
       background-color: #b30000;
       color: white;
       text-align: center;
-      padding: 0.7rem;
-      font-size: 0.9rem;
+      padding: 0.5rem;
+      font-size: 0.85rem;
       font-weight: bold;
       font-family: 'Poppins', sans-serif;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       z-index: 2000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    header {
-      background: linear-gradient(90deg, #5d2f8b, #8b4fc0);
+    .bandeau-rouge .green {
+      color: #6ecb63;
+    }
+
+    /* Menu rétractable avec filet violet */
+    .header-modern {
       position: fixed;
-      top: 65px;
+      top: 42px;
+      left: 0;
       width: 100%;
-      z-index: 1000;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      z-index: 1500;
+      transition: all 0.4s ease;
+    }
+
+    .menu-bar {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #5d2f8b, #7b3fa3, #9c68cc);
+      box-shadow: 0 2px 8px rgba(93,47,139,0.4);
+    }
+
+    .menu-button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 4px;
+      background: linear-gradient(135deg, #5d2f8b, #7b3fa3);
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 0 0 16px 16px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(93,47,139,0.4);
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .menu-button:hover {
+      background: linear-gradient(135deg, #7b3fa3, #9c68cc);
+      transform: translateX(-50%) translateY(2px);
+      box-shadow: 0 6px 20px rgba(93,47,139,0.6);
+    }
+
+    .menu-content {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(95,45,145,0.95), rgba(140,90,210,0.95), rgba(110,70,180,0.95), rgba(95,45,145,0.95));
+      background-size: 200% 100%;
+      animation: gradientMove 8s ease infinite;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0;
+    }
+
+    .header-modern:hover .menu-content,
+    .header-modern.force-open .menu-content {
+      max-height: 600px;
+      padding: 5rem 0 1rem 0;
+    }
+
+    /* Menu hamburger pour mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 10px;
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      z-index: 2500;
+      background: rgba(95,45,145,0.9);
+      border-radius: 8px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
     }
 
     nav ul {
@@ -44,36 +156,53 @@
       display: flex;
       justify-content: center;
       margin: 0;
-      padding: 0;
+      padding: 0.3rem 0;
       flex-wrap: wrap;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 1rem;
-      display: block;
-      font-weight: 500;
-      font-family: 'Poppins', sans-serif;
-      transition: all 0.3s ease;
-    }
-
-    nav a:hover {
-      background-color: rgba(255,255,255,0.15);
-      transform: translateY(-2px);
     }
 
     nav li {
       position: relative;
     }
 
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 1rem 1.3rem;
+      display: block;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #ffcf00, #ff7a00);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after {
+      width: 50%;
+    }
+
     nav ul ul {
       display: none;
       position: absolute;
-      background-color: #5d2f8b;
-      border-radius: 0 0 6px 6px;
+      background: rgba(85,40,130,0.95);
+      border-radius: 8px;
       top: 100%;
       left: 0;
+      padding: 0.5rem 0;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      min-width: 220px;
     }
 
     nav li:hover > ul {
@@ -81,7 +210,7 @@
     }
 
     .hero {
-      margin-top: 150px;
+      margin-top: 100px;
       height: 480px;
       background: url('salle du CM.jpg') center/cover no-repeat;
       display: flex;
@@ -91,11 +220,34 @@
       overflow: hidden;
     }
 
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(93,47,139,0.7) 0%, rgba(123,63,163,0.5) 50%, rgba(0,0,0,0.6) 100%);
+      animation: gradientShift 8s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes gradientShift {
+      0% { opacity: 0.8; }
+      100% { opacity: 0.95; }
+    }
+
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.45);
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(110,203,99,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(212,175,55,0.15) 0%, transparent 50%);
+      animation: pulseOverlay 6s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes pulseOverlay {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
     }
 
     .hero h1 {
@@ -105,6 +257,7 @@
       font-weight: 600;
       text-shadow: 2px 3px 10px rgba(0,0,0,0.6);
       position: relative;
+      z-index: 3;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeSlide 1.2s ease-out forwards;
@@ -148,18 +301,29 @@
     }
 
     footer {
-      background: #5d2f8b;
+      background: linear-gradient(90deg, #5d2f8b, #7b3fa3);
       color: white;
       text-align: center;
-      padding: 1.8rem;
+      padding: 2rem;
       font-size: 0.9rem;
       margin-top: 4rem;
       line-height: 1.6;
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
     }
 
     footer a {
-      color: #c8def8;
+      color: #fff;
       text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #6ecb63;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     @media (max-width: 768px) {
@@ -168,9 +332,76 @@
         text-align: center;
         padding: 0 1rem;
       }
+      .hero {
+        margin-top: 80px;
+      }
       .container {
         margin: 1rem;
         padding: 1rem;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .menu-button {
+        display: none;
+      }
+      
+      .menu-bar {
+        display: none;
+      }
+      
+      .menu-content {
+        max-height: none !important;
+        padding: 0 !important;
+      }
+      
+      .header-modern {
+        top: 42px;
+        transform: translateX(-100%);
+        width: 80%;
+        max-width: 300px;
+        border-radius: 0 16px 16px 0;
+        transition: transform 0.4s ease;
+        background: linear-gradient(135deg, rgba(95,45,145,0.98), rgba(110,70,180,0.98));
+      }
+      
+      .header-modern.active {
+        transform: translateX(0);
+      }
+      
+      .header-modern:hover {
+        transform: translateX(-100%);
+      }
+      
+      .header-modern.active:hover {
+        transform: translateX(0);
+      }
+      
+      nav ul {
+        flex-direction: column;
+        padding: 1rem 0;
+      }
+      
+      nav li {
+        width: 100%;
+      }
+      
+      nav a {
+        padding: 0.8rem 1.5rem;
+        text-align: left;
+      }
+      
+      nav ul ul {
+        position: static;
+        display: none;
+        background: rgba(75,35,110,0.95);
+        padding-left: 1rem;
+      }
+      
+      nav li.active > ul {
+        display: block;
       }
     }
   </style>
@@ -178,65 +409,104 @@
 
 <body>
   <div class="bandeau-rouge">
-    âš ï¸ Ce site reprÃ©sente un village entiÃ¨rement fictif, conÃ§u Ã  titre d'exemple pour tester et voir les solutions proposÃ©es par Administ-IA.<br>
-    Toutes les photos, noms, et coordonnÃ©es sont fictives.
+    ⚠️ Site fictif - Démonstration <span class="green">Administr-IA</span> - Photos et coordonnées fictives
   </div>
 
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li>
-          <a href="#">Le village au quotidien â–¾</a>
-          <ul>
-            <li><a href="ecole.html">Ã‰cole</a></li>
-            <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
-            <li><a href="pompiers.html">Pompiers</a></li>
-            <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Histoire et patrimoine â–¾</a>
-          <ul>
-            <li><a href="histoire.html">Histoire</a></li>
-            <li><a href="patrimoine.html">Patrimoine</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Conseil municipal â–¾</a>
-          <ul>
-            <li><a href="equipe.html">Lâ€™Ã©quipe</a></li>
-            <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
-          </ul>
-        </li>
-        <li><a href="infos.html">Informations</a></li>
-        <li><a href="contact.html">Contactez-nous</a></li>
-      </ul>
-    </nav>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <header class="header-modern" id="mainMenu">
+    <div class="menu-bar"></div>
+    <div class="menu-button">MENU</div>
+    <div class="menu-content">
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="#">Le village au quotidien</a>
+            <ul>
+              <li><a href="ecole.html">École</a></li>
+              <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
+              <li><a href="pompiers.html">Pompiers</a></li>
+              <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Histoire et patrimoine</a>
+            <ul>
+              <li><a href="histoire.html">Histoire</a></li>
+              <li><a href="patrimoine.html">Patrimoine</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Conseil municipal</a>
+            <ul>
+              <li><a href="equipe.html">L'équipe</a></li>
+              <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
+            </ul>
+          </li>
+          <li><a href="infos.html">Informations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <section class="hero">
-    <h1>Lâ€™Ã©quipe municipale</h1>
+    <h1>L'équipe municipale</h1>
   </section>
 
   <div class="container">
     <h2>Conseil municipal de Bergweiler</h2>
-    <p><strong>Maire :</strong> AndrÃ©a Kappelmann</p>
+    <p><strong>Maire :</strong> Andréa Kappelmann</p>
     <p><strong>Adjoints :</strong><br>
-       Jean-Marc Heininger â€“ 1er adjoint (Finances et administration gÃ©nÃ©rale)<br>
-       Sabine Oberfeld â€“ 2e adjointe (Affaires sociales, scolaires et culturelles)<br>
-       Marc Wintzler â€“ 3e adjoint (Urbanisme, voirie et patrimoine)<br>
-       Claire Dietschler â€“ 4e adjointe (Environnement, dÃ©veloppement durable et vie associative)</p>
+       Jean-Marc Heininger – 1er adjoint (Finances et administration générale)<br>
+       Sabine Oberfeld – 2e adjointe (Affaires sociales, scolaires et culturelles)<br>
+       Marc Wintzler – 3e adjoint (Urbanisme, voirie et patrimoine)<br>
+       Claire Dietschler – 4e adjointe (Environnement, développement durable et vie associative)</p>
     <p><strong>Conseillers municipaux :</strong><br>
        Thomas Elzacher, Nathalie Bruchner, Denis Holtzmann, Mireille Kuntzel, Patrick Wersinger, 
        Caroline Dottweiler, Laurent Rauffmann, Sylvie Henschel, Olivier Stierlen, Aurore Ziegenthal</p>
   </div>
 
   <footer>
-    <p>Mairie de Bergweiler â€“ 12 rue Principale, 68127 Bergweiler<br>
-    ðŸ“ž 03 89 00 00 00 â€“ âœ‰ï¸ mairie@bergweiler.fr</p>
-    <p>Horaires : Lundi au Vendredi 9hâ€“12h / 14hâ€“17h</p>
-    <p><a href="mentions-legales.html">Mentions lÃ©gales</a></p>
+    <p>Mairie de Bergweiler – 12 rue Principale, 68127 Bergweiler<br>
+    📞 03 89 00 00 00 – ✉️ mairie@bergweiler.fr</p>
+    <p>Horaires : Lundi au Vendredi 9h–12h / 14h–17h</p>
+    <p><a href="mentions-legales.html">Mentions légales</a></p>
   </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mainMenu = document.getElementById('mainMenu');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mainMenu.classList.toggle('active');
+    });
+
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('nav > ul > li > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const parentLi = link.parentElement;
+          const submenu = parentLi.querySelector('ul');
+          
+          if (submenu) {
+            e.preventDefault();
+            parentLi.classList.toggle('active');
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        if (!hamburger.contains(e.target) && !mainMenu.contains(e.target)) {
+          hamburger.classList.remove('active');
+          mainMenu.classList.remove('active');
+        }
+      }
+    });
+  </script>
 </body>
 </html>

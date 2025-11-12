@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comptes-rendus du Conseil municipal – Mairie de Bergweiler</title>
+  <title>Salle Polyvalente – Bergweiler</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     * {
@@ -20,6 +20,7 @@
       background-size: 200% 200%;
       animation: bgShift 10s ease-in-out infinite alternate;
     }
+    
     @keyframes bgShift { 
       from {background-position: 0% 50%} 
       to {background-position: 100% 50%} 
@@ -27,10 +28,18 @@
 
     .bandeau-rouge {
       position: fixed;
-      top: 0; left: 0; width: 100%;
-      background-color: #b30000; color: white; text-align: center;
-      padding: 0.5rem; font-size: 0.85rem; font-weight: bold;
-      font-family: 'Poppins', sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 2000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #b30000;
+      color: white;
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 2000;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -142,27 +151,73 @@
       transform: rotate(-45deg) translate(7px, -7px);
     }
 
-    nav ul {list-style:none;display:flex;justify-content:center;margin:0;padding:0.3rem 0;flex-wrap:wrap;}
-    nav li {position:relative;}
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0.3rem 0;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      position: relative;
+    }
 
     nav a {
-      color:white;text-decoration:none;padding:1rem 1.3rem;display:block;
-      font-weight:500;font-family:'Poppins',sans-serif;position:relative;transition:all 0.3s ease;
+      color: white;
+      text-decoration: none;
+      padding: 1rem 1.3rem;
+      display: block;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+      position: relative;
     }
-    nav a::after {content:"";position:absolute;left:50%;bottom:8px;width:0%;height:3px;
-      background:linear-gradient(90deg,#ffcf00,#ff7a00);border-radius:2px;transition:all 0.3s ease;transform:translateX(-50%);
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #ffcf00, #ff7a00);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
     }
-    nav a:hover::after {width:50%;}
+
+    nav a:hover::after {
+      width: 50%;
+    }
+
     nav ul ul {
-      display:none;position:absolute;background:rgba(85,40,130,0.95);border-radius:8px;top:100%;left:0;
-      padding:0.5rem 0;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,0.3);min-width:220px;
+      display: none;
+      position: absolute;
+      background: rgba(85,40,130,0.95);
+      border-radius: 8px;
+      top: 100%;
+      left: 0;
+      padding: 0.5rem 0;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      min-width: 220px;
     }
-    nav li:hover>ul{display:block;}
+
+    nav li:hover > ul {
+      display: block;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
 
     .hero {
       margin-top: 100px;
       height: 480px;
-      background: url('salle du CM.jpg') center/cover no-repeat;
+      background: url('salle pol ext.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -209,22 +264,14 @@
       position: relative;
       z-index: 3;
       opacity: 0;
-      transform: translateY(30px) scale(0.8);
-      animation: titleAppear 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
-      letter-spacing: 2px;
+      transform: translateY(20px);
+      animation: fadeSlide 1.2s ease-out forwards;
     }
 
-    @keyframes titleAppear {
-      0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.8) rotateX(-20deg);
-      }
-      60% {
-        transform: translateY(-10px) scale(1.05) rotateX(0deg);
-      }
-      100% {
+    @keyframes fadeSlide {
+      to {
         opacity: 1;
-        transform: translateY(0) scale(1) rotateX(0deg);
+        transform: translateY(0);
       }
     }
 
@@ -244,7 +291,7 @@
       }
     }
 
-    .intro-section {
+    .info-section {
       background: linear-gradient(135deg, rgba(247,242,255,0.7) 0%, rgba(241,234,255,0.8) 100%);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -256,13 +303,12 @@
         inset 0 -1px 0 rgba(93,47,139,0.1);
       padding: 2.5rem 2rem;
       margin-bottom: 3rem;
-      text-align: center;
       position: relative;
       overflow: hidden;
       transition: all 0.4s ease;
     }
 
-    .intro-section::before {
+    .info-section::before {
       content: "";
       position: absolute;
       top: -50%;
@@ -279,7 +325,7 @@
       to { transform: rotate(360deg); }
     }
 
-    .intro-section:hover {
+    .info-section:hover {
       transform: translateY(-8px);
       box-shadow: 
         0 16px 48px rgba(93,47,139,0.2),
@@ -288,7 +334,7 @@
       border-color: rgba(110,203,99,0.3);
     }
 
-    .intro-section h2 {
+    .info-section h2 {
       color: #5d2f8b;
       font-family: 'Poppins', sans-serif;
       margin-bottom: 1rem;
@@ -296,73 +342,138 @@
       position: relative;
     }
 
-    .intro-section p {
+    .info-section p {
       line-height: 1.85;
       font-size: 1.05rem;
-      max-width: 850px;
-      margin: 0 auto;
       position: relative;
+      margin-bottom: 1rem;
     }
 
-    .documents-list {
+    .info-section ul {
       list-style: none;
       padding: 0;
-      margin-top: 2rem;
-    }
-
-    .documents-list li {
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(93,47,139,0.15);
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      animation: slideIn 0.6s ease-out backwards;
-    }
-
-    .documents-list li:nth-child(1) { animation-delay: 0.1s; }
-    .documents-list li:nth-child(2) { animation-delay: 0.2s; }
-    .documents-list li:nth-child(3) { animation-delay: 0.3s; }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .documents-list li:hover {
-      border-color: rgba(110,203,99,0.4);
-      box-shadow: 0 4px 16px rgba(110,203,99,0.15);
-      transform: translateX(10px);
-    }
-
-    .documents-list li a {
-      display: flex;
-      align-items: center;
-      padding: 1.2rem 1.5rem;
-      color: #5d2f8b;
-      text-decoration: none;
-      font-weight: 600;
-      font-family: 'Poppins', sans-serif;
-      transition: all 0.3s ease;
       position: relative;
     }
 
-    .documents-list li a::before {
-      content: "📄";
-      margin-right: 1rem;
-      font-size: 1.5rem;
+    .info-section li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .info-section li::before {
+      content: "✓";
+      color: #6ecb63;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    .salle-image {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      margin: 2rem 0;
       transition: transform 0.3s ease;
     }
 
-    .documents-list li:hover a::before {
-      transform: scale(1.2) rotate(5deg);
+    .salle-image:hover {
+      transform: scale(1.02);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: rgba(255,255,255,0.8);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    table th, table td {
+      border: 1px solid rgba(93,47,139,0.1);
+      padding: 1rem;
+      text-align: left;
+    }
+
+    table th {
+      background: linear-gradient(135deg, #5d2f8b, #7b3fa3);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+
+    table tr:hover {
+      background: rgba(110,203,99,0.05);
+    }
+
+    .reservation-section {
+      margin-top: 4rem;
+      padding: 2.5rem 2rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(249,245,255,0.9) 100%);
+      border-left: 6px solid #7b3fa3;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      line-height: 1.7;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    .reservation-section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .reservation-section h3 {
+      color: #5d2f8b;
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .reservation-section h3::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #d4af37, #f9e58c);
+      transform: translateX(-50%);
+      border-radius: 3px;
+    }
+
+    .reservation-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+
+    .reservation-section li {
+      margin: 0.8rem 0;
+      padding-left: 1.8rem;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .reservation-section li::before {
+      content: "✅";
+      color: #6ecb63;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    iframe {
+      width: 100%;
+      height: 750px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-top: 2rem;
     }
 
     footer {
@@ -386,20 +497,18 @@
       color: #6ecb63;
     }
 
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
     @media (max-width: 768px) {
-      .container {
-        padding: 1.5rem;
+      .hero h1 {
+        font-size: 2rem;
+        text-align: center;
+        padding: 0 1rem;
       }
       .hero {
         margin-top: 80px;
       }
-      .hero h1 {
-        font-size: 2rem;
+      .container {
+        margin: 1rem;
+        padding: 1rem;
       }
       
       .hamburger {
@@ -465,6 +574,10 @@
       nav li.active > ul {
         display: block;
       }
+      
+      iframe {
+        height: 600px;
+      }
     }
   </style>
 </head>
@@ -514,23 +627,74 @@
   </header>
 
   <section class="hero">
-    <h1>Comptes-rendus du Conseil Municipal</h1>
+    <h1>Salle Polyvalente de Bergweiler</h1>
   </section>
 
   <div class="container">
-    <div class="intro-section">
-      <h2>Transparence et décisions locales</h2>
+    <div class="info-section">
+      <h2>Présentation</h2>
       <p>
-        Les comptes rendus de séance reflètent les décisions et échanges du Conseil municipal.  
-        Ils sont publiés pour garantir la transparence et permettre à chacun de suivre la vie démocratique de Bergweiler.
+        La salle polyvalente de Bergweiler est un espace moderne et convivial pouvant accueillir jusqu'à 80 personnes.
+        Conçue pour la vie associative et familiale du village, elle dispose d'un parquet chaleureux, d'une bonne acoustique et d'un accès facile.
+      </p>
+
+      <h2 style="margin-top: 2rem;">Équipements</h2>
+      <ul>
+        <li>Capacité : 80 personnes assises (100 debout)</li>
+        <li>15 tables rectangulaires, 80 chaises empilables</li>
+        <li>Estrade modulable</li>
+        <li>Cuisine équipée : four, plaques, réfrigérateur, congélateur, lave-vaisselle, vaisselle complète</li>
+        <li>Sanitaires (dont accès PMR)</li>
+        <li>Terrasse et parking (20 places)</li>
+      </ul>
+    </div>
+
+    <img src="salle pol int.jpg" alt="Intérieur de la salle polyvalente" class="salle-image">
+
+    <div class="info-section">
+      <h2>Tarifs de location</h2>
+      <table>
+        <tr>
+          <th>Catégorie</th>
+          <th>Tarif</th>
+        </tr>
+        <tr>
+          <td>Habitants du village</td>
+          <td>100 €</td>
+        </tr>
+        <tr>
+          <td>Extérieurs</td>
+          <td>180 €</td>
+        </tr>
+        <tr>
+          <td>Associations locales</td>
+          <td>50 € (tarif préférentiel)</td>
+        </tr>
+      </table>
+
+      <h2 style="margin-top: 2rem;">Conditions</h2>
+      <p>
+        Caution de 300 € – Location de 8h à minuit (jusqu'à 2h du matin sur demande).
       </p>
     </div>
 
-    <ul class="documents-list">
-      <li><a href="compte rendu du conseil municipal du 12 septembre 2025 - Bergweiler.pdf" target="_blank">Séance du 12 septembre 2025</a></li>
-      <li><a href="compte rendu du conseil municipal du 14 mars 2025 - Bergweiler.pdf" target="_blank">Séance du 14 mars 2025</a></li>
-      <li><a href="compte rendu du conseil municipal du 19 janvier 2025 - Bergweiler.pdf" target="_blank">Séance du 19 janvier 2025</a></li>
-    </ul>
+    <div class="reservation-section">
+      <h3>💡 Réservez en ligne 24h/24 et 7j/7</h3>
+      <p><em>Un système intelligent au service des mairies et des citoyens</em></p>
+
+      <ul>
+        <li><b>Disponible à tout moment</b> : vos habitants peuvent réserver la salle en ligne, même en dehors des horaires d'ouverture de la mairie.</li>
+        <li><b>Vérification automatique des disponibilités</b> : plus besoin de consulter manuellement le calendrier, le système gère tout en temps réel.</li>
+        <li><b>Convention générée automatiquement</b> : dès la validation de la réservation, la convention de location est créée et envoyée au locataire.</li>
+        <li><b>Facturation automatisée</b> : la facture correspondante est générée et transmise, sans intervention manuelle du secrétariat.</li>
+        <li><b>Gain de temps considérable</b> : libérez votre secrétariat des tâches répétitives pour se concentrer sur l'essentiel.</li>
+        <li><b>Conformité assurée</b> : toutes les réservations sont enregistrées et tracées de manière sécurisée.</li>
+        <li><b>Accessible à toutes les communes</b> : <span style="color:#7b3fa3;font-weight:600;">tarif d'abonnement proportionnel au nombre d'habitants</span>.</li>
+        <li><b>Essai gratuit</b> et abonnement sans engagement.</li>
+      </ul>
+
+      <iframe src="https://tally.so/r/w78gJa" loading="lazy"></iframe>
+    </div>
   </div>
 
   <footer>
