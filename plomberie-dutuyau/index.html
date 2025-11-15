@@ -304,7 +304,7 @@
             border-radius: 30px;
             border: 2px solid rgba(56, 239, 125, 0.5);
             position: relative;
-            min-height: 2000px;
+            min-height: 2250px;
             transition: min-height 0.6s ease-out;
             overflow: visible;
         }
@@ -352,7 +352,7 @@
         .iframe-wrapper iframe {
             width: 100%;
             height: auto;
-            min-height: 2000px;
+            min-height: 2250px;
             border: none;
             overflow: hidden !important;
             transition: height 0.6s ease-out, min-height 0.6s ease-out;
@@ -489,7 +489,7 @@
 
     <script>
         // Écoute les messages de l'iframe Tally pour ajuster la hauteur dynamiquement
-        let lastHeight = 2000;
+        let lastHeight = 2250;
         
         window.addEventListener('message', function(e) {
             if (e.data && e.data.type === 'tally.heightChanged') {
