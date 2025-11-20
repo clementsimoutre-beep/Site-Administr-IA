@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patrimoine & Découvertes – Bergweiler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #222;
+      overflow-x: hidden;
+      background: linear-gradient(120deg, #f4f0ff 0%, #ffffff 30%, #ffffff 70%, #f0eaff 100%);
+      background-size: 200% 200%;
+      animation: bgShift 10s ease-in-out infinite alternate;
+    }
+    
+    @keyframes bgShift { 
+      from {background-position: 0% 50%} 
+      to {background-position: 100% 50%} 
+    }
+
+    .bandeau-rouge {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #b30000; color: white; text-align: center;
+      padding: 0.5rem; font-size: 0.85rem; font-weight: bold;
+      font-family: 'Poppins', sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 2000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bandeau-rouge .green { color: #6ecb63; }
+
+    /* --- MENU (Identique) --- */
+    .header-modern {
+      position: fixed;
+      top: 42px;
+      left: 0;
+      width: 100%;
+      z-index: 1500;
+      transition: all 0.4s ease;
+    }
+
+    .menu-bar {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #5d2f8b, #7b3fa3, #9c68cc);
+      box-shadow: 0 2px 8px rgba(93,47,139,0.4);
+    }
+
+    .menu-button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 4px;
+      background: linear-gradient(135deg, #5d2f8b, #7b3fa3);
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 0 0 16px 16px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(93,47,139,0.4);
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .menu-button:hover {
+      background: linear-gradient(135deg, #7b3fa3, #9c68cc);
+      transform: translateX(-50%) translateY(2px);
+      box-shadow: 0 6px 20px rgba(93,47,139,0.6);
+    }
+
+    .menu-content {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(95,45,145,0.95), rgba(140,90,210,0.95), rgba(110,70,180,0.95), rgba(95,45,145,0.95));
+      background-size: 200% 100%;
+      animation: gradientMove 8s ease infinite;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0;
+    }
+
+    .header-modern:hover .menu-content,
+    .header-modern.force-open .menu-content {
+      max-height: 600px;
+      padding: 5rem 0 1rem 0;
+      overflow: visible;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 10px;
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      z-index: 2500;
+      background: rgba(95,45,145,0.9);
+      border-radius: 8px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    nav ul {list-style:none;display:flex;justify-content:center;margin:0;padding:0.3rem 0;flex-wrap:wrap;}
+    nav li {position:relative;}
+
+    nav a {
+      color:white;text-decoration:none;padding:1rem 1.3rem;display:block;
+      font-weight:500;font-family:'Poppins',sans-serif;position:relative;transition:all 0.3s ease;
+    }
+    nav a::after {content:"";position:absolute;left:50%;bottom:8px;width:0%;height:3px;
+      background:linear-gradient(90deg,#ffcf00,#ff7a00);border-radius:2px;transition:all 0.3s ease;transform:translateX(-50%);
+    }
+    nav a:hover::after {width:50%;}
+    nav ul ul {
+      display:none;position:absolute;background:rgba(85,40,130,0.95);border-radius:8px;top:100%;left:0;
+      padding:0.5rem 0;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,0.3);min-width:220px;
+      z-index: 2000;
+    }
+    nav li:hover>ul{display:block;}
+    nav li.open>ul{display:block;}
+
+    /* --- STYLE CONTENU PATRIMOINE --- */
+    .hero {
+      margin-top: 100px;
+      height: 450px;
+      background: url('eglise-bergweiler.jpg') center/cover no-repeat; /* Image fictive */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(93,47,139,0.6) 0%, rgba(44,32,67,0.6) 100%);
+      z-index: 1;
+    }
+
+    .hero h1 {
+      color: #fff;
+      font-size: 3rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      text-align: center;
+      text-shadow: 2px 3px 15px rgba(0,0,0,0.7);
+      position: relative;
+      z-index: 3;
+      padding: 0 1rem;
+      animation: fadeSlide 1.5s ease-out forwards;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .intro-patrimoine {
+      text-align: center;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .patrimoine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(93,47,139,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(93,47,139,0.05);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(93,47,139,0.15);
+    }
+
+    .card-img {
+      height: 220px;
+      background-color: #ddd;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-content h3 {
+      color: #5d2f8b;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-content p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #4a4a4a;
+      margin-bottom: 1rem;
+    }
+
+    .card-tag {
+      display: inline-block;
+      background: rgba(110,203,99,0.15);
+      color: #2e7d32;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .nature-section {
+      margin-top: 5rem;
+      background: linear-gradient(135deg, rgba(110,203,99,0.1) 0%, rgba(244,240,255,0.5) 100%);
+      border-radius: 24px;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .nature-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #2c2043;
+      margin-bottom: 1rem;
+    }
+
+    .nature-content p {
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      color: #444;
+    }
+
+    .nature-img {
+      flex: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      max-width: 450px;
+    }
+
+    .nature-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    footer {
+      background: linear-gradient(90deg, #5d2f8b, #7b3fa3);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+      line-height: 1.6;
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+    }
+
+    footer a { color: #fff; text-decoration: none; }
+    footer a:hover { color: #6ecb63; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .nature-section { flex-direction: column-reverse; padding: 1.5rem; }
+      .nature-img { width: 100%; max-width: none; }
+      
+      /* Mobile Menu */
+      .hamburger { display: flex; }
+      .menu-button, .menu-bar { display: none; }
+      .menu-content { max-height: none !important; padding: 0 !important; }
+      .header-modern {
+        top: 42px; transform: translateX(-100%); width: 80%;
+        max-width: 300px; border-radius: 0 16px 16px 0;
+        background: linear-gradient(135deg, rgba(95,45,145,0.98), rgba(110,70,180,0.98));
+      }
+      .header-modern.active { transform: translateX(0); }
+      nav ul { flexDirection: column; padding: 1rem 0; }
+      nav li { width: 100%; }
+      nav a { padding: 0.8rem 1.5rem; textAlign: left; }
+      nav ul ul { position: static; display: none; background: rgba(75,35,110,0.95); padding-left: 1rem; }
+      nav li.active > ul, nav li.open > ul { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bandeau-rouge">
+    ⚠️ Site fictif - Démonstration <span class="green">Administr-IA</span> - Photos et coordonnées fictives
+  </div>
+
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <header class="header-modern" id="mainMenu">
+    <div class="menu-bar"></div>
+    <div class="menu-button">MENU</div>
+    <div class="menu-content">
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="#">Le village au quotidien</a>
+            <ul>
+              <li><a href="ecole.html">École</a></li>
+              <li><a href="pompiers.html">Pompiers</a></li>
+              <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Histoire et patrimoine</a>
+            <ul>
+              <li><a href="histoire.html">Histoire</a></li>
+              <li><a href="patrimoine.html" class="active">Patrimoine</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Conseil municipal</a>
+            <ul>
+              <li><a href="equipe.html">L'équipe</a></li>
+              <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
+            </ul>
+          </li>
+          <li><a href="infos.html">Informations</a></li>
+          <li><a href="rendez-vous.html">Prenez rendez-vous</a></li>
+          <li><a href="contact.html">Une question ?</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Le Patrimoine de Bergweiler</h1>
+  </section>
+
+  <div class="container">
+    <p class="intro-patrimoine">
+      Bergweiler a su préserver au fil des siècles un caractère authentique. 
+      De l'architecture typique de ses fermes aux monuments religieux, en passant par ses espaces naturels préservés, 
+      le village invite à la flânerie et à la découverte de ses trésors cachés.
+    </p>
+
+    <div class="patrimoine-grid">
+      <div class="card">
+        <div class="card-img">
+          <img src="eglise-st-gilles.jpg" alt="Église Saint-Gilles">
+        </div>
+        <div class="card-content">
+          <span class="card-tag">Monument historique</span>
+          <h3>L'Église Saint-Gilles</h3>
+          <p>
+            Caractérisée par son clocher-porche roman du XIIe siècle, l'église abrite une nef reconstruite au XVIIIe siècle dans un style baroque sobre. Ne manquez pas l'orgue Silbermann (1765), classé, dont la sonorité exceptionnelle attire des mélomanes chaque été.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="maison-colombages.jpg" alt="Ferme à colombages">
+        </div>
+        <div class="card-content">
+          <span class="card-tag">Architecture</span>
+          <h3>Les Fermes à Colombages</h3>
+          <p>
+            La rue Principale et la rue des Tilleuls concentrent de magnifiques exemples de corps de ferme des XVIIIe et XIXe siècles. Observez les poteaux corniers sculptés et les inscriptions sur les linteaux de porte, témoins de la prospérité agricole d'antan.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="lavoir.jpg" alt="Le Lavoir">
+        </div>
+        <div class="card-content">
+          <span class="card-tag">Petit patrimoine</span>
+          <h3>Le Lavoir du Dorfbach</h3>
+          <p>
+            Situé en contrebas de l'école, ce lavoir couvert datant de 1885 a été entièrement restauré en 1995 par une équipe de bénévoles. Il est alimenté par le ruisseau du Dorfbach et constitue un lieu de fraîcheur très apprécié en été.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nature-section">
+      <div class="nature-content">
+        <h2>🌿 Le Sentier des Vergers</h2>
+        <p>
+          Ce parcours pédestre de 4,5 km au départ de la mairie vous emmène à la découverte de la ceinture verte de Bergweiler. Il traverse les vergers hautes-tiges traditionnels (pommiers, cerisiers, quetschiers) qui font la fierté de la commune.
+        </p>
+        <p>
+          <strong>À voir :</strong> Le panorama sur la plaine depuis la colline du "Geissberg" et les panneaux pédagogiques sur la faune locale (chouettes chevêches, hérissons) installés par l'association "Nature & Terroir".
+        </p>
+      </div>
+      <div class="nature-img">
+        <img src="sentier-vergers.jpg" alt="Sentier des vergers">
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Mairie de Bergweiler – 12 rue Principale, 68127 Bergweiler<br>
+    📞 03 89 00 00 00 – ✉️ mairie@bergweiler.fr</p>
+    <p>Horaires : Lundi au Vendredi 9h–12h / 14h–17h</p>
+    <p><a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mainMenu = document.getElementById('mainMenu');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mainMenu.classList.toggle('active');
+    });
+
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('nav > ul > li > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const parentLi = link.parentElement;
+          const submenu = parentLi.querySelector('ul');
+          
+          if (submenu) {
+            e.preventDefault();
+            parentLi.classList.toggle('open');
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        if (!hamburger.contains(e.target) && !mainMenu.contains(e.target)) {
+          hamburger.classList.remove('active');
+          mainMenu.classList.remove('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

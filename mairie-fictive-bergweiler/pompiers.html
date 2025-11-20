@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>École élémentaire Les Tilleuls – Bergweiler</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Sapeurs-Pompiers – Mairie de Bergweiler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -40,7 +40,7 @@
       color: #6ecb63;
     }
 
-    /* --- DÉBUT DU STYLE DU MENU (Copié de indexM) --- */
+    /* --- DÉBUT STYLE MENU (Version indexM) --- */
     .header-modern {
       position: fixed;
       top: 42px;
@@ -160,12 +160,13 @@
     }
     nav li:hover>ul{display:block;}
     nav li.open>ul{display:block;}
-    /* --- FIN DU STYLE DU MENU --- */
+    /* --- FIN STYLE MENU --- */
 
     .hero {
       margin-top: 100px;
-      height: 380px;
-      background: url('école les tilleuls.jpg') center/cover no-repeat;
+      height: 400px;
+      /* Image fictive, en production il faudrait une vraie image */
+      background: url('pompiers_bergweiler.jpg') center/cover no-repeat, linear-gradient(to bottom, #2c2043, #5d2f8b);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -177,7 +178,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(93,47,139,0.7) 0%, rgba(123,63,163,0.5) 50%, rgba(0,0,0,0.6) 100%);
+      background: linear-gradient(135deg, rgba(179,0,0,0.6) 0%, rgba(93,47,139,0.6) 100%);
       animation: gradientShift 8s ease-in-out infinite alternate;
       z-index: 1;
     }
@@ -187,47 +188,23 @@
       100% { opacity: 0.95; }
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(110,203,99,0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(212,175,55,0.15) 0%, transparent 50%);
-      animation: pulseOverlay 6s ease-in-out infinite;
-      z-index: 2;
-    }
-
-    @keyframes pulseOverlay {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.05); }
-    }
-
     .hero h1 {
       color: #fff;
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       text-shadow: 2px 3px 10px rgba(0,0,0,0.6);
       position: relative;
       z-index: 3;
       opacity: 0;
-      transform: translateY(30px) scale(0.8);
-      animation: titleAppear 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
-      letter-spacing: 2px;
+      transform: translateY(20px);
+      animation: fadeSlide 1.2s ease-out forwards;
     }
 
-    @keyframes titleAppear {
-      0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.8) rotateX(-20deg);
-      }
-      60% {
-        transform: translateY(-10px) scale(1.05) rotateX(0deg);
-      }
-      100% {
+    @keyframes fadeSlide {
+      to {
         opacity: 1;
-        transform: translateY(0) scale(1) rotateX(0deg);
+        transform: translateY(0);
       }
     }
 
@@ -250,44 +227,17 @@
     .info-section {
       background: linear-gradient(135deg, rgba(247,242,255,0.7) 0%, rgba(241,234,255,0.8) 100%);
       backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 2px solid rgba(93,47,139,0.15);
       border-radius: 24px;
-      box-shadow: 
-        0 8px 32px rgba(93,47,139,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.5),
-        inset 0 -1px 0 rgba(93,47,139,0.1);
+      box-shadow: 0 8px 32px rgba(93,47,139,0.12);
       padding: 2.5rem 2rem;
       margin-bottom: 2rem;
-      position: relative;
-      overflow: hidden;
       transition: all 0.4s ease;
     }
 
-    .info-section::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(110,203,99,0.1) 0%, transparent 70%);
-      animation: rotateGlow 15s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes rotateGlow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
     .info-section:hover {
-      transform: translateY(-8px);
-      box-shadow: 
-        0 16px 48px rgba(93,47,139,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.6),
-        inset 0 -1px 0 rgba(93,47,139,0.15);
-      border-color: rgba(110,203,99,0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(93,47,139,0.2);
     }
 
     .info-section h2 {
@@ -295,58 +245,90 @@
       font-family: 'Poppins', sans-serif;
       margin-bottom: 1rem;
       font-size: 1.6rem;
-      position: relative;
     }
 
     .info-section p {
       line-height: 1.85;
       font-size: 1.05rem;
-      position: relative;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
+      text-align: justify;
     }
 
-    .info-section ul {
+    .urgence-box {
+      background: linear-gradient(135deg, #b30000, #d90000);
+      color: white;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 25px rgba(179,0,0,0.3);
+      animation: pulseShadow 3s infinite;
+    }
+
+    @keyframes pulseShadow {
+      0% { box-shadow: 0 0 0 0 rgba(179,0,0,0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(179,0,0,0); }
+      100% { box-shadow: 0 0 0 0 rgba(179,0,0,0); }
+    }
+
+    .urgence-numbers {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .urgence-item {
+      background: rgba(255,255,255,0.2);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+    }
+
+    .urgence-item span {
+      font-size: 2.5rem;
+      font-weight: 800;
+      font-family: 'Poppins', sans-serif;
+      display: block;
+    }
+
+    .recrutement {
+      border-left: 6px solid #6ecb63;
+      background: linear-gradient(90deg, #f0fff4, #ffffff);
+    }
+
+    .recrutement h2 { color: #2e7d32; }
+
+    .btn-action {
+      display: inline-block;
+      background: linear-gradient(135deg, #b30000, #d90000);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(179,0,0,0.3);
+    }
+
+    .btn-action:hover {
+      transform: translateY(-3px);
+    }
+
+    ul.liste-style {
       list-style: none;
-      padding: 0;
+    }
+    ul.liste-style li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
       position: relative;
     }
-
-    .info-section li {
-      padding: 0.7rem 0;
-      padding-left: 1.8rem;
-      position: relative;
-    }
-
-    .info-section li::before {
-      content: "🎓";
+    ul.liste-style li::before {
+      content: "🚒";
       position: absolute;
       left: 0;
-    }
-
-    .encart-perisco {
-      background: linear-gradient(90deg, #f3ecff, #f8f5ff);
-      border-left: 6px solid #7b3fa3;
-      border-radius: 16px;
-      padding: 2rem 2.5rem;
-      margin-top: 2.5rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-    }
-
-    .encart-perisco:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .encart-perisco h2 {
-      color: #7b3fa3;
-      font-family: 'Poppins', sans-serif;
-      margin-bottom: 1rem;
-    }
-
-    .encart-perisco p {
-      line-height: 1.8;
-      margin-bottom: 0.8rem;
     }
 
     footer {
@@ -360,103 +342,33 @@
       box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
     }
 
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: #6ecb63;
-    }
-
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
+    footer a { color: #fff; text-decoration: none; }
+    footer a:hover { color: #6ecb63; }
 
     @media (max-width: 768px) {
-      .container {
-        padding: 1.5rem;
-      }
-      .hero {
-        margin-top: 80px;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
+      .container { padding: 1.5rem; }
+      .hero { margin-top: 80px; }
+      .hero h1 { font-size: 2rem; text-align: center; }
       
-      /* Adaptation Mobile du Menu */
-      .hamburger {
-        display: flex;
-      }
-      
-      .menu-button {
-        display: none;
-      }
-      
-      .menu-bar {
-        display: none;
-      }
-      
-      .menu-content {
-        max-height: none !important;
-        padding: 0 !important;
-      }
+      .hamburger { display: flex; }
+      .menu-button, .menu-bar { display: none; }
+      .menu-content { max-height: none !important; padding: 0 !important; }
       
       .header-modern {
-        top: 42px;
-        transform: translateX(-100%);
-        width: 80%;
-        max-width: 300px;
-        border-radius: 0 16px 16px 0;
-        transition: transform 0.4s ease;
+        top: 42px; transform: translateX(-100%); width: 80%;
+        max-width: 300px; border-radius: 0 16px 16px 0;
         background: linear-gradient(135deg, rgba(95,45,145,0.98), rgba(110,70,180,0.98));
       }
+      .header-modern.active { transform: translateX(0); }
       
-      .header-modern.active {
-        transform: translateX(0);
-      }
-      
-      .header-modern:hover {
-        transform: translateX(-100%);
-      }
-      
-      .header-modern.active:hover {
-        transform: translateX(0);
-      }
-      
-      nav ul {
-        flex-direction: column;
-        padding: 1rem 0;
-      }
-      
-      nav li {
-        width: 100%;
-      }
-      
-      nav a {
-        padding: 0.8rem 1.5rem;
-        text-align: left;
-      }
-      
-      nav ul ul {
-        position: static;
-        display: none;
-        background: rgba(75,35,110,0.95);
-        padding-left: 1rem;
-      }
-      
-      nav li.active > ul {
-        display: block;
-      }
-      nav li.open > ul {
-        display: block;
-      }
+      nav ul { flexDirection: column; padding: 1rem 0; }
+      nav li { width: 100%; }
+      nav a { padding: 0.8rem 1.5rem; textAlign: left; }
+      nav ul ul { position: static; display: none; background: rgba(75,35,110,0.95); padding-left: 1rem; }
+      nav li.active > ul, nav li.open > ul { display: block; }
     }
   </style>
 </head>
-
 <body>
   <div class="bandeau-rouge">
     ⚠️ Site fictif - Démonstration <span class="green">Administr-IA</span> - Photos et coordonnées fictives
@@ -477,8 +389,8 @@
           <li><a href="index.html">Accueil</a></li>
           <li><a href="#">Le village au quotidien</a>
             <ul>
-              <li><a href="ecole.html" class="active">École</a></li>
-              <li><a href="pompiers.html">Pompiers</a></li>
+              <li><a href="ecole.html">École</a></li>
+              <li><a href="pompiers.html" class="active">Pompiers</a></li>
               <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
             </ul>
           </li>
@@ -503,39 +415,65 @@
   </header>
 
   <section class="hero">
-    <h1>École élémentaire Les Tilleuls</h1>
+    <h1>Sapeurs-Pompiers de Bergweiler</h1>
   </section>
 
   <div class="container">
-    <div class="info-section">
-      <h2>Organisation pédagogique</h2>
-      <p>📚 <strong>4 classes – 92 élèves</strong></p>
-      <ul>
-        <li><b>Classe 1 :</b> Petite et Moyenne Section (PS–MS) – <em>Enseignante : Mme Hélène Roussel</em></li>
-        <li><b>Classe 2 :</b> Grande Section et CP (GS–CP) – <em>Enseignant : M. Thomas Marchal</em></li>
-        <li><b>Classe 3 :</b> CE1 et CE2 – <em>Enseignante : Mme Claire Dubois</em></li>
-        <li><b>Classe 4 :</b> CM1 et CM2 – <em>Enseignant : M. Olivier Lambert</em></li>
-      </ul>
+    <div class="urgence-box">
+      <h2>🆘 En cas d'urgence</h2>
+      <div class="urgence-numbers">
+        <div class="urgence-item">
+          <span>18</span>
+          Pompiers
+        </div>
+        <div class="urgence-item">
+          <span>112</span>
+          Numéro européen
+        </div>
+      </div>
     </div>
 
     <div class="info-section">
-      <h2>Coordonnées et horaires</h2>
-      <p><strong>Adresse :</strong> 8 rue de l'École, 68127 Bergweiler</p>
-      <p><strong>Téléphone :</strong> 03 89 12 34 56</p>
-      <p><strong>Email :</strong> ecole.tilleuls@bergweiler.fr</p>
-      <p><strong>Horaires :</strong></p>
-      <ul>
-        <li>Lundi, mardi, jeudi, vendredi : 8h30–11h30 / 13h30–16h30</li>
-      </ul>
+      <h2>Le Centre de Première Intervention (CPI)</h2>
+      <p>
+        Le Corps des Sapeurs-Pompiers de Bergweiler est composé exclusivement de volontaires dévoués à la sécurité des biens et des personnes. 
+        Intégré au Service Départemental d'Incendie et de Secours (SDIS 68), notre centre assure les interventions de première urgence sur la commune et ses environs.
+      </p>
+      <p>
+        <strong>Chef de corps :</strong> Lieutenant Stéphane Muller<br>
+        <strong>Effectif :</strong> 18 sapeurs-pompiers volontaires (femmes et hommes)<br>
+        <strong>Moyens :</strong> 1 Véhicule de Première Intervention (VPI), 1 Véhicule Tout Usage (VTU).
+      </p>
+      <p>
+        Chaque année, nos pompiers réalisent environ <strong>70 interventions</strong> (secours à personne, incendies, accidents de la route, opérations diverses).
+      </p>
     </div>
 
-    <div class="encart-perisco">
-      <h2>🏫 Accueil périscolaire</h2>
-      <p>L'accueil périscolaire est assuré par la commune :</p>
-      <p><strong>Matin :</strong> 7h30 – 8h20</p>
-      <p><strong>Soir :</strong> 16h40 – 18h30</p>
-      <p><strong>Tarifs :</strong> En fonction du quotient familial (de 1,50 € à 3,50 € par demi-journée)</p>
-      <p><strong>Inscriptions :</strong> Mairie de Bergweiler – 03 89 00 00 00</p>
+    <div class="info-section">
+      <h2>Les Jeunes Sapeurs-Pompiers (JSP)</h2>
+      <p>
+        Dès 11 ans, les jeunes de Bergweiler peuvent rejoindre la section des JSP. C'est une véritable école de la vie qui permet de :
+      </p>
+      <ul class="liste-style">
+        <li>Découvrir le matériel et les techniques de lutte contre l'incendie.</li>
+        <li>Apprendre les gestes qui sauvent (secourisme).</li>
+        <li>Pratiquer du sport et développer l'esprit d'équipe.</li>
+        <li>Participer aux cérémonies officielles du village.</li>
+      </ul>
+      <p style="margin-top:1rem">
+        <em>Les manœuvres ont lieu tous les samedis matin de 9h à 12h à la caserne.</em>
+      </p>
+    </div>
+
+    <div class="info-section recrutement">
+      <h2>Engagement Volontaire : Rejoignez-nous !</h2>
+      <p>
+        Vous avez envie de vous rendre utile ? De vivre une expérience humaine enrichissante ? Le CPI de Bergweiler recrute toute l'année des femmes et des hommes motivés.
+      </p>
+      <p>
+        <strong>Conditions :</strong> Avoir entre 16 et 55 ans, résider à proximité de la caserne (pour la rapidité des départs), et jouir de ses droits civiques. Aucune formation préalable n'est requise, tout est pris en charge par le SDIS.
+      </p>
+      <a href="contact.html" class="btn-action">📩 Contacter le Chef de corps</a>
     </div>
   </div>
 
@@ -547,7 +485,6 @@
   </footer>
 
   <script>
-    // Script adapté pour gérer le menu mobile (toggle 'open')
     const hamburger = document.getElementById('hamburger');
     const mainMenu = document.getElementById('mainMenu');
     

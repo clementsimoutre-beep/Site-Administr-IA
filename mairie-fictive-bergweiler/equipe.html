@@ -49,7 +49,7 @@
       color: #6ecb63;
     }
 
-    /* Menu rétractable avec filet violet */
+    /* --- DÉBUT DU STYLE DU MENU (Identique à indexM.html) --- */
     .header-modern {
       position: fixed;
       top: 42px;
@@ -114,6 +114,7 @@
     .header-modern.force-open .menu-content {
       max-height: 600px;
       padding: 5rem 0 1rem 0;
+      overflow: visible;
     }
 
     /* Menu hamburger pour mobile */
@@ -203,15 +204,23 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       min-width: 220px;
+      z-index: 2000;
     }
 
     nav li:hover > ul {
       display: block;
     }
+    
+    nav li.open > ul {
+      display: block;
+    }
+    /* --- FIN DU STYLE DU MENU --- */
 
+    /* Hero spécifique à la page Equipe (Image de la salle du CM) */
     .hero {
       margin-top: 100px;
       height: 480px;
+      /* Conservation de l'image originale de la page équipe */
       background: url('salle du CM.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
@@ -340,6 +349,7 @@
         padding: 1rem;
       }
       
+      /* Adaptation Mobile du Menu */
       .hamburger {
         display: flex;
       }
@@ -403,6 +413,9 @@
       nav li.active > ul {
         display: block;
       }
+      nav li.open > ul {
+        display: block;
+      }
     }
   </style>
 </head>
@@ -428,7 +441,6 @@
           <li><a href="#">Le village au quotidien</a>
             <ul>
               <li><a href="ecole.html">École</a></li>
-              <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
               <li><a href="pompiers.html">Pompiers</a></li>
               <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
             </ul>
@@ -446,7 +458,8 @@
             </ul>
           </li>
           <li><a href="infos.html">Informations</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="rendez-vous.html">Prenez rendez-vous</a></li>
+          <li><a href="contact.html">Une question ?</a></li>
         </ul>
       </nav>
     </div>
@@ -477,6 +490,7 @@
   </footer>
 
   <script>
+    // Script copié et adapté de indexM pour gérer le nouveau menu
     const hamburger = document.getElementById('hamburger');
     const mainMenu = document.getElementById('mainMenu');
     
@@ -493,7 +507,8 @@
           
           if (submenu) {
             e.preventDefault();
-            parentLi.classList.toggle('active');
+            // Utilisation de 'open' comme dans indexM
+            parentLi.classList.toggle('open');
           }
         });
       });

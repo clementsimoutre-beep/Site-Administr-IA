@@ -105,6 +105,7 @@
     .header-modern.force-open .menu-content {
       max-height: 600px;
       padding: 5rem 0 1rem 0;
+      overflow: visible;
     }
 
     /* Menu hamburger pour mobile */
@@ -164,8 +165,10 @@
     nav ul ul {
       display:none;position:absolute;background:rgba(85,40,130,0.95);border-radius:8px;top:100%;left:0;
       padding:0.5rem 0;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,0.3);min-width:220px;
+      z-index: 2000;
     }
     nav li:hover>ul{display:block;}
+    nav li.open>ul{display:block;}
 
     /* Hero Section */
     .hero {
@@ -746,6 +749,10 @@
       nav li.active > ul {
         display: block;
       }
+      
+      nav li.open > ul {
+        display: block;
+      }
     }
   </style>
 </head>
@@ -770,7 +777,6 @@
           <li><a href="#">Le village au quotidien</a>
             <ul>
               <li><a href="ecole.html">École</a></li>
-              <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
               <li><a href="pompiers.html">Pompiers</a></li>
               <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
             </ul>
@@ -788,7 +794,8 @@
             </ul>
           </li>
           <li><a href="infos.html">Informations</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="rendez-vous.html">Prenez rendez-vous</a></li>
+          <li><a href="contact.html">Une question ?</a></li>
         </ul>
       </nav>
     </div>
@@ -849,7 +856,7 @@
           </div>
           <div class="accordion-content">
             <p>
-              Le <strong><a href="contact.html" target="_blank">formulaire de contact intelligent</a></strong> est capable de répondre instantanément aux questions simples des citoyens, <strong>24h/24 et 7j/7</strong>.
+              Le <strong><a href="contact.html">formulaire de contact intelligent</a></strong> est capable de répondre instantanément aux questions simples des citoyens, <strong>24h/24 et 7j/7</strong>.
             </p>
             <p>
               Horaires d'ouverture, démarches administratives courantes, numéros utiles... L'assistant répond immédiatement, libérant du temps pour le secrétariat qui peut se concentrer sur les demandes plus complexes.
@@ -894,7 +901,7 @@
           </div>
           <div class="accordion-content">
             <p>
-              Le <strong>module de rendez-vous en ligne</strong> permet une organisation plus fluide et moins chronophage.
+              Le <strong><a href="rendez-vous.html">module de rendez-vous en ligne</a></strong> permet une organisation plus fluide et moins chronophage.
             </p>
             <p>
               Les citoyens prennent rendez-vous directement en ligne selon les créneaux disponibles. Fini les appels téléphoniques répétés, les oublis ou les doubles réservations. Le calendrier se synchronise automatiquement.
@@ -1015,20 +1022,18 @@
       mainMenu.classList.toggle('active');
     });
 
-    // Gestion des sous-menus sur mobile
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll('nav > ul > li > a').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const parentLi = link.parentElement;
-          const submenu = parentLi.querySelector('ul');
-          
-          if (submenu) {
-            e.preventDefault();
-            parentLi.classList.toggle('active');
-          }
-        });
+    // Gestion des sous-menus sur mobile et desktop
+    document.querySelectorAll('nav > ul > li > a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const parentLi = link.parentElement;
+        const submenu = parentLi.querySelector('ul');
+        
+        if (submenu) {
+          e.preventDefault();
+          parentLi.classList.toggle('open');
+        }
       });
-    }
+    });
 
     // Fermer le menu si on clique en dehors
     document.addEventListener('click', (e) => {

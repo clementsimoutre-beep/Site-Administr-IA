@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>École élémentaire Les Tilleuls – Bergweiler</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Rendez-vous en ligne - Mairie de Bergweiler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -40,7 +40,7 @@
       color: #6ecb63;
     }
 
-    /* --- DÉBUT DU STYLE DU MENU (Copié de indexM) --- */
+    /* Menu rétractable avec filet violet */
     .header-modern {
       position: fixed;
       top: 42px;
@@ -105,9 +105,9 @@
     .header-modern.force-open .menu-content {
       max-height: 600px;
       padding: 5rem 0 1rem 0;
-      overflow: visible;
     }
 
+    /* Menu hamburger pour mobile */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -142,7 +142,15 @@
       transform: rotate(-45deg) translate(7px, -7px);
     }
 
-    nav ul {list-style:none;display:flex;justify-content:center;margin:0;padding:0.3rem 0;flex-wrap:wrap;}
+    /* Navigation desktop */
+    nav ul {
+      list-style:none;
+      display:flex;
+      justify-content:center;
+      margin:0;
+      padding:0.3rem 0;
+      flex-wrap:wrap;
+    }
     nav li {position:relative;}
 
     nav a {
@@ -152,119 +160,92 @@
     nav a::after {content:"";position:absolute;left:50%;bottom:8px;width:0%;height:3px;
       background:linear-gradient(90deg,#ffcf00,#ff7a00);border-radius:2px;transition:all 0.3s ease;transform:translateX(-50%);
     }
-    nav a:hover::after {width:50%;}
+    
+    /* MODIFICATION : Ajout de la classe active ici */
+    nav a:hover::after,
+    nav a.active::after {
+      width:50%;
+    }
+    
     nav ul ul {
       display:none;position:absolute;background:rgba(85,40,130,0.95);border-radius:8px;top:100%;left:0;
       padding:0.5rem 0;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,0.3);min-width:220px;
-      z-index: 2000;
     }
     nav li:hover>ul{display:block;}
-    nav li.open>ul{display:block;}
-    /* --- FIN DU STYLE DU MENU --- */
 
+    /* Hero Section */
     .hero {
       margin-top: 100px;
-      height: 380px;
-      background: url('école les tilleuls.jpg') center/cover no-repeat;
+      height: 320px;
+      background: linear-gradient(135deg, rgba(93,47,139,0.9) 0%, rgba(123,63,163,0.8) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
     }
-    
+
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(93,47,139,0.7) 0%, rgba(123,63,163,0.5) 50%, rgba(0,0,0,0.6) 100%);
-      animation: gradientShift 8s ease-in-out infinite alternate;
-      z-index: 1;
-    }
-
-    @keyframes gradientShift {
-      0% { opacity: 0.8; }
-      100% { opacity: 0.95; }
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
       background: 
-        radial-gradient(circle at 20% 50%, rgba(110,203,99,0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(212,175,55,0.15) 0%, transparent 50%);
-      animation: pulseOverlay 6s ease-in-out infinite;
-      z-index: 2;
+        radial-gradient(circle at 30% 50%, rgba(110,203,99,0.2) 0%, transparent 60%),
+        radial-gradient(circle at 70% 50%, rgba(156,104,204,0.2) 0%, transparent 60%);
+      animation: pulseGlow 8s ease-in-out infinite;
     }
 
-    @keyframes pulseOverlay {
+    @keyframes pulseGlow {
       0%, 100% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.05); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
     }
 
     .hero h1 {
       color: #fff;
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       text-shadow: 2px 3px 10px rgba(0,0,0,0.6);
-      position: relative;
-      z-index: 3;
-      opacity: 0;
-      transform: translateY(30px) scale(0.8);
-      animation: titleAppear 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
-      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
     }
 
-    @keyframes titleAppear {
-      0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.8) rotateX(-20deg);
-      }
-      60% {
-        transform: translateY(-10px) scale(1.05) rotateX(0deg);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1) rotateX(0deg);
-      }
+    .hero p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      font-weight: 300;
+      text-shadow: 1px 2px 8px rgba(0,0,0,0.4);
     }
 
     .container {
-      max-width: 1200px;
-      margin: 3rem auto;
-      padding: 2rem 4rem;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeIn 1s ease-out 0.3s forwards;
+      max-width: calc(100% - 2cm);
+      margin: 3rem 1cm;
+      padding: 2rem;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .info-section {
+    .intro-section {
       background: linear-gradient(135deg, rgba(247,242,255,0.7) 0%, rgba(241,234,255,0.8) 100%);
       backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 2px solid rgba(93,47,139,0.15);
       border-radius: 24px;
       box-shadow: 
         0 8px 32px rgba(93,47,139,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.5),
-        inset 0 -1px 0 rgba(93,47,139,0.1);
+        inset 0 1px 0 rgba(255,255,255,0.5);
       padding: 2.5rem 2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
       position: relative;
       overflow: hidden;
       transition: all 0.4s ease;
     }
 
-    .info-section::before {
+    .intro-section::before {
       content: "";
       position: absolute;
       top: -50%;
@@ -281,73 +262,113 @@
       to { transform: rotate(360deg); }
     }
 
-    .info-section:hover {
-      transform: translateY(-8px);
+    .intro-section:hover {
+      transform: translateY(-4px);
       box-shadow: 
         0 16px 48px rgba(93,47,139,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.6),
-        inset 0 -1px 0 rgba(93,47,139,0.15);
-      border-color: rgba(110,203,99,0.3);
+        inset 0 1px 0 rgba(255,255,255,0.6);
     }
 
-    .info-section h2 {
+    .intro-section h2 {
       color: #5d2f8b;
+      font-size: 2rem;
       font-family: 'Poppins', sans-serif;
       margin-bottom: 1rem;
-      font-size: 1.6rem;
       position: relative;
     }
 
-    .info-section p {
-      line-height: 1.85;
+    .intro-section p {
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      color: #2c2043;
       font-size: 1.05rem;
       position: relative;
-      margin-bottom: 0.8rem;
     }
 
-    .info-section ul {
-      list-style: none;
-      padding: 0;
+    .info-boxes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
       position: relative;
     }
 
-    .info-section li {
-      padding: 0.7rem 0;
-      padding-left: 1.8rem;
-      position: relative;
-    }
-
-    .info-section li::before {
-      content: "🎓";
-      position: absolute;
-      left: 0;
-    }
-
-    .encart-perisco {
-      background: linear-gradient(90deg, #f3ecff, #f8f5ff);
-      border-left: 6px solid #7b3fa3;
+    .info-box {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(110,203,99,0.3);
       border-radius: 16px;
-      padding: 2rem 2.5rem;
-      margin-top: 2.5rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      text-align: center;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
-    .encart-perisco:hover {
+    .info-box:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 24px rgba(110,203,99,0.2);
+      border-color: rgba(110,203,99,0.5);
     }
 
-    .encart-perisco h2 {
-      color: #7b3fa3;
+    .info-box h3 {
+      color: #5d2f8b;
       font-family: 'Poppins', sans-serif;
-      margin-bottom: 1rem;
-    }
-
-    .encart-perisco p {
-      line-height: 1.8;
+      font-size: 1.1rem;
       margin-bottom: 0.8rem;
     }
+
+    .info-box p {
+      color: #2c2043;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .calendar-section {
+      background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(247,242,255,0.9) 100%);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(93,47,139,0.15);
+      border-radius: 24px;
+      padding: 2.5rem 1.5rem;
+      box-shadow: 0 8px 32px rgba(93,47,139,0.12);
+      margin-top: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calendar-section::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(123,63,163,0.08) 0%, transparent 70%);
+      animation: rotateGlow 20s linear infinite;
+      pointer-events: none;
+    }
+
+    .calendar-section h2 {
+      text-align: center;
+      color: #5d2f8b;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .calendar-wrapper {
+      position: relative;
+      width: 100%;
+      min-height: 700px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .violet {color: #5d2f8b; font-weight: 600;}
+    .green {color: #6ecb63; font-weight: 600;}
 
     footer {
       background: linear-gradient(90deg, #5d2f8b, #7b3fa3);
@@ -355,7 +376,7 @@
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
-      margin-top: 4rem;
+      margin: 4rem 1cm 0 1cm;
       line-height: 1.6;
       box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
     }
@@ -377,16 +398,44 @@
 
     @media (max-width: 768px) {
       .container {
-        padding: 1.5rem;
+        margin: 2rem 0.5cm;
+        padding: 1rem;
       }
+      
       .hero {
         margin-top: 80px;
+        height: 250px;
       }
+
       .hero h1 {
         font-size: 2rem;
       }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .intro-section {
+        padding: 1.5rem 1rem;
+      }
+
+      .intro-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .info-boxes {
+        grid-template-columns: 1fr;
+      }
+
+      .calendar-section {
+        padding: 1.5rem 1rem;
+      }
+
+      .calendar-wrapper {
+        min-height: 600px;
+      }
       
-      /* Adaptation Mobile du Menu */
+      /* Menu hamburger visible sur mobile */
       .hamburger {
         display: flex;
       }
@@ -450,13 +499,9 @@
       nav li.active > ul {
         display: block;
       }
-      nav li.open > ul {
-        display: block;
-      }
     }
   </style>
 </head>
-
 <body>
   <div class="bandeau-rouge">
     ⚠️ Site fictif - Démonstration <span class="green">Administr-IA</span> - Photos et coordonnées fictives
@@ -477,7 +522,8 @@
           <li><a href="index.html">Accueil</a></li>
           <li><a href="#">Le village au quotidien</a>
             <ul>
-              <li><a href="ecole.html" class="active">École</a></li>
+              <li><a href="ecole.html">École</a></li>
+              <li><a href="amis-du-ried.html">Les Amis du Ried</a></li>
               <li><a href="pompiers.html">Pompiers</a></li>
               <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
             </ul>
@@ -495,7 +541,7 @@
             </ul>
           </li>
           <li><a href="infos.html">Informations</a></li>
-          <li><a href="rendez-vous.html">Prenez rendez-vous</a></li>
+          <li><a href="rendez-vous.html" class="active">Prenez rendez-vous</a></li>
           <li><a href="contact.html">Une question ?</a></li>
         </ul>
       </nav>
@@ -503,40 +549,56 @@
   </header>
 
   <section class="hero">
-    <h1>École élémentaire Les Tilleuls</h1>
+    <div class="hero-content">
+      <h1>📅 Rendez-vous en ligne</h1>
+      <p>Prenez rendez-vous avec la mairie en quelques clics</p>
+    </div>
   </section>
 
   <div class="container">
-    <div class="info-section">
-      <h2>Organisation pédagogique</h2>
-      <p>📚 <strong>4 classes – 92 élèves</strong></p>
-      <ul>
-        <li><b>Classe 1 :</b> Petite et Moyenne Section (PS–MS) – <em>Enseignante : Mme Hélène Roussel</em></li>
-        <li><b>Classe 2 :</b> Grande Section et CP (GS–CP) – <em>Enseignant : M. Thomas Marchal</em></li>
-        <li><b>Classe 3 :</b> CE1 et CE2 – <em>Enseignante : Mme Claire Dubois</em></li>
-        <li><b>Classe 4 :</b> CM1 et CM2 – <em>Enseignant : M. Olivier Lambert</em></li>
-      </ul>
-    </div>
+    <section class="intro-section">
+      <h2>✨ Réservez votre créneau facilement</h2>
+      <p>
+        Pour faciliter votre visite à la mairie et optimiser votre temps, nous vous proposons un <span class="violet">système de prise de rendez-vous en ligne</span>. 
+        Choisissez le créneau qui vous convient parmi les disponibilités affichées dans le calendrier ci-dessous.
+      </p>
+      <p>
+        Ce service vous permet d'<span class="green">éviter l'attente</span> et de garantir la disponibilité d'un agent pour vous recevoir dans les meilleures conditions.
+      </p>
 
-    <div class="info-section">
-      <h2>Coordonnées et horaires</h2>
-      <p><strong>Adresse :</strong> 8 rue de l'École, 68127 Bergweiler</p>
-      <p><strong>Téléphone :</strong> 03 89 12 34 56</p>
-      <p><strong>Email :</strong> ecole.tilleuls@bergweiler.fr</p>
-      <p><strong>Horaires :</strong></p>
-      <ul>
-        <li>Lundi, mardi, jeudi, vendredi : 8h30–11h30 / 13h30–16h30</li>
-      </ul>
-    </div>
+      <div class="info-boxes">
+        <div class="info-box">
+          <h3>🕐 Disponibilité immédiate</h3>
+          <p>Consultez les créneaux disponibles en temps réel et réservez instantanément</p>
+        </div>
+        <div class="info-box">
+          <h3>📧 Confirmation automatique</h3>
+          <p>Recevez une confirmation par email avec tous les détails de votre rendez-vous</p>
+        </div>
+        <div class="info-box">
+          <h3>🔔 Rappels</h3>
+          <p>Des notifications vous rappellent votre rendez-vous avant la date prévue</p>
+        </div>
+      </div>
+    </section>
 
-    <div class="encart-perisco">
-      <h2>🏫 Accueil périscolaire</h2>
-      <p>L'accueil périscolaire est assuré par la commune :</p>
-      <p><strong>Matin :</strong> 7h30 – 8h20</p>
-      <p><strong>Soir :</strong> 16h40 – 18h30</p>
-      <p><strong>Tarifs :</strong> En fonction du quotient familial (de 1,50 € à 3,50 € par demi-journée)</p>
-      <p><strong>Inscriptions :</strong> Mairie de Bergweiler – 03 89 00 00 00</p>
-    </div>
+    <section class="calendar-section">
+      <h2>📆 Sélectionnez votre créneau</h2>
+      
+      <div class="calendar-wrapper">
+        <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-creneau-de-rdv-mairie"></div>
+        <script type="text/javascript">
+          (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+          Cal("init", "creneau-de-rdv-mairie", {origin:"https://app.cal.com"});
+          Cal.ns["creneau-de-rdv-mairie"]("inline", {
+            elementOrSelector:"#my-cal-inline-creneau-de-rdv-mairie",
+            config: {"layout":"month_view"},
+            calLink: "clement-administr-ia-dp2jxs/creneau-de-rdv-mairie",
+          });
+          Cal.ns["creneau-de-rdv-mairie"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+        </script>
+        </div>
+    </section>
   </div>
 
   <footer>
@@ -547,7 +609,7 @@
   </footer>
 
   <script>
-    // Script adapté pour gérer le menu mobile (toggle 'open')
+    // Menu hamburger pour mobile
     const hamburger = document.getElementById('hamburger');
     const mainMenu = document.getElementById('mainMenu');
     
@@ -556,6 +618,7 @@
       mainMenu.classList.toggle('active');
     });
 
+    // Gestion des sous-menus sur mobile
     if (window.innerWidth <= 768) {
       document.querySelectorAll('nav > ul > li > a').forEach(link => {
         link.addEventListener('click', (e) => {
@@ -564,12 +627,13 @@
           
           if (submenu) {
             e.preventDefault();
-            parentLi.classList.toggle('open');
+            parentLi.classList.toggle('active');
           }
         });
       });
     }
 
+    // Fermer le menu si on clique en dehors
     document.addEventListener('click', (e) => {
       if (window.innerWidth <= 768) {
         if (!hamburger.contains(e.target) && !mainMenu.contains(e.target)) {

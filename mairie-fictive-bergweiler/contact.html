@@ -183,7 +183,12 @@
       transition:all 0.3s ease;
       transform:translateX(-50%);
     }
-    nav a:hover::after {width:50%;}
+    
+    /* Onglet actif */
+    nav a:hover::after,
+    nav a.active::after {
+      width:50%;
+    }
 
     nav ul ul {
       display:none;
@@ -288,7 +293,8 @@
 
     iframe {
       width: 100%;
-      height: 750px;
+      /* MODIFICATION : Hauteur augmentée pour éviter le scroll */
+      height: 1050px;
       border: none;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
@@ -326,7 +332,7 @@
         margin-top: 100px;
       }
       iframe {
-        height: 600px;
+        height: 800px; /* Hauteur adaptée pour mobile */
       }
       
       .hamburger {
@@ -435,7 +441,8 @@
             </ul>
           </li>
           <li><a href="infos.html">Informations</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="rendez-vous.html">Prenez rendez-vous</a></li>
+          <li><a href="contact.html" class="active">Une question ?</a></li>
         </ul>
       </nav>
     </div>
@@ -478,7 +485,7 @@
       </ul>
     </div>
 
-    <iframe src="https://tally.so/r/3XZjRj" loading="lazy"></iframe>
+    <iframe src="https://tally.so/r/3XZjRj" loading="lazy" scrolling="no" style="overflow: hidden;"></iframe>
   </div>
 
   <footer>

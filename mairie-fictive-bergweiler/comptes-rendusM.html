@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>École élémentaire Les Tilleuls – Bergweiler</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Comptes-rendus du Conseil municipal – Mairie de Bergweiler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -40,7 +40,7 @@
       color: #6ecb63;
     }
 
-    /* --- DÉBUT DU STYLE DU MENU (Copié de indexM) --- */
+    /* --- DÉBUT STYLE MENU (Copié de indexM) --- */
     .header-modern {
       position: fixed;
       top: 42px;
@@ -160,12 +160,12 @@
     }
     nav li:hover>ul{display:block;}
     nav li.open>ul{display:block;}
-    /* --- FIN DU STYLE DU MENU --- */
+    /* --- FIN STYLE MENU --- */
 
     .hero {
       margin-top: 100px;
-      height: 380px;
-      background: url('école les tilleuls.jpg') center/cover no-repeat;
+      height: 480px;
+      background: url('salle du CM.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -205,7 +205,7 @@
 
     .hero h1 {
       color: #fff;
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       text-shadow: 2px 3px 10px rgba(0,0,0,0.6);
@@ -247,7 +247,7 @@
       }
     }
 
-    .info-section {
+    .intro-section {
       background: linear-gradient(135deg, rgba(247,242,255,0.7) 0%, rgba(241,234,255,0.8) 100%);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -258,13 +258,14 @@
         inset 0 1px 0 rgba(255,255,255,0.5),
         inset 0 -1px 0 rgba(93,47,139,0.1);
       padding: 2.5rem 2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
       position: relative;
       overflow: hidden;
       transition: all 0.4s ease;
     }
 
-    .info-section::before {
+    .intro-section::before {
       content: "";
       position: absolute;
       top: -50%;
@@ -281,7 +282,7 @@
       to { transform: rotate(360deg); }
     }
 
-    .info-section:hover {
+    .intro-section:hover {
       transform: translateY(-8px);
       box-shadow: 
         0 16px 48px rgba(93,47,139,0.2),
@@ -290,63 +291,81 @@
       border-color: rgba(110,203,99,0.3);
     }
 
-    .info-section h2 {
+    .intro-section h2 {
       color: #5d2f8b;
       font-family: 'Poppins', sans-serif;
       margin-bottom: 1rem;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       position: relative;
     }
 
-    .info-section p {
+    .intro-section p {
       line-height: 1.85;
       font-size: 1.05rem;
+      max-width: 850px;
+      margin: 0 auto;
       position: relative;
-      margin-bottom: 0.8rem;
     }
 
-    .info-section ul {
+    .documents-list {
       list-style: none;
       padding: 0;
-      position: relative;
+      margin-top: 2rem;
     }
 
-    .info-section li {
-      padding: 0.7rem 0;
-      padding-left: 1.8rem;
-      position: relative;
-    }
-
-    .info-section li::before {
-      content: "🎓";
-      position: absolute;
-      left: 0;
-    }
-
-    .encart-perisco {
-      background: linear-gradient(90deg, #f3ecff, #f8f5ff);
-      border-left: 6px solid #7b3fa3;
-      border-radius: 16px;
-      padding: 2rem 2.5rem;
-      margin-top: 2.5rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-    }
-
-    .encart-perisco:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .encart-perisco h2 {
-      color: #7b3fa3;
-      font-family: 'Poppins', sans-serif;
+    .documents-list li {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(93,47,139,0.15);
+      border-radius: 12px;
       margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      animation: slideIn 0.6s ease-out backwards;
     }
 
-    .encart-perisco p {
-      line-height: 1.8;
-      margin-bottom: 0.8rem;
+    .documents-list li:nth-child(1) { animation-delay: 0.1s; }
+    .documents-list li:nth-child(2) { animation-delay: 0.2s; }
+    .documents-list li:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .documents-list li:hover {
+      border-color: rgba(110,203,99,0.4);
+      box-shadow: 0 4px 16px rgba(110,203,99,0.15);
+      transform: translateX(10px);
+    }
+
+    .documents-list li a {
+      display: flex;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      color: #5d2f8b;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .documents-list li a::before {
+      content: "📄";
+      margin-right: 1rem;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .documents-list li:hover a::before {
+      transform: scale(1.2) rotate(5deg);
     }
 
     footer {
@@ -456,7 +475,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="bandeau-rouge">
     ⚠️ Site fictif - Démonstration <span class="green">Administr-IA</span> - Photos et coordonnées fictives
@@ -477,7 +495,7 @@
           <li><a href="index.html">Accueil</a></li>
           <li><a href="#">Le village au quotidien</a>
             <ul>
-              <li><a href="ecole.html" class="active">École</a></li>
+              <li><a href="ecole.html">École</a></li>
               <li><a href="pompiers.html">Pompiers</a></li>
               <li><a href="salle-polyvalente.html">Salle polyvalente</a></li>
             </ul>
@@ -503,40 +521,23 @@
   </header>
 
   <section class="hero">
-    <h1>École élémentaire Les Tilleuls</h1>
+    <h1>Comptes-rendus du Conseil Municipal</h1>
   </section>
 
   <div class="container">
-    <div class="info-section">
-      <h2>Organisation pédagogique</h2>
-      <p>📚 <strong>4 classes – 92 élèves</strong></p>
-      <ul>
-        <li><b>Classe 1 :</b> Petite et Moyenne Section (PS–MS) – <em>Enseignante : Mme Hélène Roussel</em></li>
-        <li><b>Classe 2 :</b> Grande Section et CP (GS–CP) – <em>Enseignant : M. Thomas Marchal</em></li>
-        <li><b>Classe 3 :</b> CE1 et CE2 – <em>Enseignante : Mme Claire Dubois</em></li>
-        <li><b>Classe 4 :</b> CM1 et CM2 – <em>Enseignant : M. Olivier Lambert</em></li>
-      </ul>
+    <div class="intro-section">
+      <h2>Transparence et décisions locales</h2>
+      <p>
+        Les comptes rendus de séance reflètent les décisions et échanges du Conseil municipal.  
+        Ils sont publiés pour garantir la transparence et permettre à chacun de suivre la vie démocratique de Bergweiler.
+      </p>
     </div>
 
-    <div class="info-section">
-      <h2>Coordonnées et horaires</h2>
-      <p><strong>Adresse :</strong> 8 rue de l'École, 68127 Bergweiler</p>
-      <p><strong>Téléphone :</strong> 03 89 12 34 56</p>
-      <p><strong>Email :</strong> ecole.tilleuls@bergweiler.fr</p>
-      <p><strong>Horaires :</strong></p>
-      <ul>
-        <li>Lundi, mardi, jeudi, vendredi : 8h30–11h30 / 13h30–16h30</li>
-      </ul>
-    </div>
-
-    <div class="encart-perisco">
-      <h2>🏫 Accueil périscolaire</h2>
-      <p>L'accueil périscolaire est assuré par la commune :</p>
-      <p><strong>Matin :</strong> 7h30 – 8h20</p>
-      <p><strong>Soir :</strong> 16h40 – 18h30</p>
-      <p><strong>Tarifs :</strong> En fonction du quotient familial (de 1,50 € à 3,50 € par demi-journée)</p>
-      <p><strong>Inscriptions :</strong> Mairie de Bergweiler – 03 89 00 00 00</p>
-    </div>
+    <ul class="documents-list">
+      <li><a href="compte rendu du conseil municipal du 12 septembre 2025 - Bergweiler.pdf" target="_blank">Séance du 12 septembre 2025</a></li>
+      <li><a href="compte rendu du conseil municipal du 14 mars 2025 - Bergweiler.pdf" target="_blank">Séance du 14 mars 2025</a></li>
+      <li><a href="compte rendu du conseil municipal du 19 janvier 2025 - Bergweiler.pdf" target="_blank">Séance du 19 janvier 2025</a></li>
+    </ul>
   </div>
 
   <footer>
@@ -547,7 +548,7 @@
   </footer>
 
   <script>
-    // Script adapté pour gérer le menu mobile (toggle 'open')
+    // Script adapté de indexM pour gérer le nouveau menu
     const hamburger = document.getElementById('hamburger');
     const mainMenu = document.getElementById('mainMenu');
     
@@ -564,6 +565,7 @@
           
           if (submenu) {
             e.preventDefault();
+            // Utilisation de 'open' comme dans indexM
             parentLi.classList.toggle('open');
           }
         });
