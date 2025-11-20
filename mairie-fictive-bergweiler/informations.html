@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rendez-vous en ligne - Mairie de Bergweiler</title>
+  <title>Informations & Numérique - Mairie de Bergweiler</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
+    /* ------------------------------------------------------------------- */
+    /* CSS du Style Commun */
+    /* ------------------------------------------------------------------- */
     * {
       margin: 0;
       padding: 0;
@@ -105,8 +108,7 @@
     .header-modern.force-open .menu-content {
       max-height: 600px;
       padding: 5rem 0 1rem 0;
-      /* CORRECTION 1: Ajout de overflow: visible pour que les sous-menus ne soient pas coupés */
-      overflow: visible;
+      overflow: visible; 
     }
 
     /* Menu hamburger pour mobile */
@@ -163,7 +165,6 @@
       background:linear-gradient(90deg,#ffcf00,#ff7a00);border-radius:2px;transition:all 0.3s ease;transform:translateX(-50%);
     }
     
-    /* MODIFICATION : Ajout de la classe active ici */
     nav a:hover::after,
     nav a.active::after {
       width:50%;
@@ -174,14 +175,13 @@
       padding:0.5rem 0;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,0.3);min-width:220px;
     }
     nav li:hover>ul{display:block;}
-    /* AJOUT NÉCESSAIRE : Règle pour le clic (Desktop/Tablette) et mobile */
-    nav li.active>ul{display:block;}
+    nav li.active>ul{display:block;} 
 
     /* Hero Section */
     .hero {
       margin-top: 100px;
       height: 320px;
-      background: linear-gradient(135deg, rgba(93,47,139,0.9) 0%, rgba(123,63,163,0.8) 100%);
+      background: linear-gradient(135deg, rgba(93,47,139,0.9) 0%, rgba(123,63,163,0.8) 100%); 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -196,7 +196,7 @@
       background: 
         radial-gradient(circle at 30% 50%, rgba(110,203,99,0.2) 0%, transparent 60%),
         radial-gradient(circle at 70% 50%, rgba(156,104,204,0.2) 0%, transparent 60%);
-      animation: pulseGlow 8s ease-in-out infinite;
+      animation: pulseGlow 8s ease-in-out infinite alternate;
     }
 
     @keyframes pulseGlow {
@@ -233,142 +233,191 @@
       padding: 2rem;
     }
 
-    .intro-section {
-      background: linear-gradient(135deg, rgba(247,242,255,0.7) 0%, rgba(241,234,255,0.8) 100%);
-      backdrop-filter: blur(20px) saturate(180%);
-      border: 2px solid rgba(93,47,139,0.15);
-      border-radius: 24px;
-      box-shadow: 
-        0 8px 32px rgba(93,47,139,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.5);
-      padding: 2.5rem 2rem;
-      margin-bottom: 3rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .intro-section::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(110,203,99,0.1) 0%, transparent 70%);
-      animation: rotateGlow 15s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes rotateGlow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .intro-section:hover {
-      transform: translateY(-4px);
-      box-shadow: 
-        0 16px 48px rgba(93,47,139,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.6);
-    }
-
-    .intro-section h2 {
-      color: #5d2f8b;
-      font-size: 2rem;
-      font-family: 'Poppins', sans-serif;
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    .intro-section p {
-      line-height: 1.8;
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-      color: #2c2043;
-      font-size: 1.05rem;
-      position: relative;
-    }
-
-    .info-boxes {
+    /* Section Avantages Mairie / Citoyens */
+    .advantages-section {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
       position: relative;
     }
 
-    .info-box {
-      background: rgba(255,255,255,0.6);
-      border: 1px solid rgba(110,203,99,0.3);
-      border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .info-box:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(110,203,99,0.2);
-      border-color: rgba(110,203,99,0.5);
-    }
-
-    .info-box h3 {
-      color: #5d2f8b;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .info-box p {
-      color: #2c2043;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .calendar-section {
-      background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(247,242,255,0.9) 100%);
-      backdrop-filter: blur(20px);
+    .advantages-column {
+      background: linear-gradient(135deg, #fff 0%, rgba(247,242,255,0.8) 100%);
       border: 2px solid rgba(93,47,139,0.15);
       border-radius: 24px;
-      padding: 2.5rem 1.5rem;
-      box-shadow: 0 8px 32px rgba(93,47,139,0.12);
-      margin-top: 3rem;
-      position: relative;
-      overflow: hidden;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(93,47,139,0.1);
+      transition: all 0.3s ease;
     }
 
-    .calendar-section::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(123,63,163,0.08) 0%, transparent 70%);
-      animation: rotateGlow 20s linear infinite;
-      pointer-events: none;
+    .advantages-column:hover {
+      box-shadow: 0 12px 40px rgba(93,47,139,0.2);
+      transform: translateY(-2px);
     }
 
-    .calendar-section h2 {
+    .advantages-column h2 {
       text-align: center;
-      color: #5d2f8b;
       font-family: 'Poppins', sans-serif;
       font-size: 1.8rem;
       margin-bottom: 1.5rem;
-      position: relative;
+      border-bottom: 3px solid;
+      padding-bottom: 0.5rem;
     }
 
-    .calendar-wrapper {
-      position: relative;
-      width: 100%;
-      min-height: 700px;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    .advantages-column.citizen-advantages h2 {
+      color: #6ecb63;
+      border-color: #6ecb63;
+    }
+
+    .advantages-column.mairie-advantages h2 {
+      color: #5d2f8b;
+      border-color: #5d2f8b;
+    }
+
+    .advantages-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .advantages-column li {
+      background: #fdfdff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      border-left: 5px solid;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+    
+    .citizen-advantages li {
+        border-color: #6ecb63;
+    }
+
+    .mairie-advantages li {
+        border-color: #5d2f8b;
+    }
+    
+    /* Section Adhésion / Dématérialisation */
+    .adhesion-section {
+        background: linear-gradient(135deg, #eafff0 0%, #f4f0ff 100%);
+        border: 2px solid #6ecb63;
+        border-radius: 24px;
+        padding: 3rem 2rem;
+        box-shadow: 0 8px 32px rgba(110,203,99,0.15);
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+    
+    .adhesion-section h2 {
+        color: #5d2f8b;
+        font-family: 'Poppins', sans-serif;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .adhesion-methods {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        align-items: flex-start;
+    }
+    
+    .method-box {
+        background: #fff;
+        border: 1px solid rgba(93,47,139,0.1);
+        border-radius: 16px;
+        padding: 1.5rem;
+        flex: 1;
+        max-width: 350px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        height: 100%;
+    }
+    
+    .method-box h3 {
+        color: #6ecb63;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+    
+    .method-box p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        font-size: 1rem;
+    }
+    
+    /* Formulaire intégré */
+    .inline-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 1rem;
+    }
+    
+    .inline-form input {
+        padding: 0.8rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .inline-form button {
+        padding: 0.8rem;
+        background: linear-gradient(90deg, #6ecb63, #4ea345);
+        color: white;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    
+    .inline-form button:hover {
+        transform: scale(1.02);
+    }
+
+    /* Option Papier Maintenue */
+    .paper-option {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background: #fff;
+        border: 1px solid #b30000;
+        border-radius: 16px;
+        text-align: left;
+    }
+    .paper-option strong {
+        color: #b30000;
+    }
+    
+    /* Section RGPD spécifique */
+    .rgpd-section {
+        margin-top: 3rem;
+        padding: 2rem;
+        background: #f7f2ff;
+        border: 1px solid rgba(93,47,139,0.3);
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        text-align: left;
+    }
+    .rgpd-section h2 {
+        color: #5d2f8b;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    .rgpd-section p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+    .rgpd-section a {
+        color: #6ecb63;
+        text-decoration: none;
+        font-weight: 500;
     }
 
     .violet {color: #5d2f8b; font-weight: 600;}
@@ -400,6 +449,19 @@
       50% { background-position: 100% 50%; }
     }
 
+    @media (max-width: 992px) {
+        .advantages-section {
+            grid-template-columns: 1fr;
+        }
+        .adhesion-methods {
+            flex-direction: column;
+            align-items: center;
+        }
+        .method-box {
+            max-width: 100%;
+        }
+    }
+    
     @media (max-width: 768px) {
       .container {
         margin: 2rem 0.5cm;
@@ -419,27 +481,7 @@
         font-size: 1rem;
       }
 
-      .intro-section {
-        padding: 1.5rem 1rem;
-      }
-
-      .intro-section h2 {
-        font-size: 1.5rem;
-      }
-
-      .info-boxes {
-        grid-template-columns: 1fr;
-      }
-
-      .calendar-section {
-        padding: 1.5rem 1rem;
-      }
-
-      .calendar-wrapper {
-        min-height: 600px;
-      }
-      
-      /* Menu hamburger visible sur mobile */
+      /* Menu Hamburger responsive */
       .hamburger {
         display: flex;
       }
@@ -471,21 +513,9 @@
         transform: translateX(0);
       }
       
-      .header-modern:hover {
-        transform: translateX(-100%);
-      }
-      
-      .header-modern.active:hover {
-        transform: translateX(0);
-      }
-      
       nav ul {
         flex-direction: column;
         padding: 1rem 0;
-      }
-      
-      nav li {
-        width: 100%;
       }
       
       nav a {
@@ -544,8 +574,8 @@
               <li><a href="comptes-rendus.html">Comptes-rendus</a></li>
             </ul>
           </li>
-          <li><a href="infos.html">Informations</a></li>
-          <li><a href="rendez-vous.html" class="active">Prenez rendez-vous</a></li>
+          <li><a href="communication-numerique.html" class="active">Informations</a></li>
+          <li><a href="rendez-vous.html">Prenez rendez-vous</a></li>
           <li><a href="contact.html">Une question ?</a></li>
         </ul>
       </nav>
@@ -554,54 +584,77 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>📅 Rendez-vous en ligne</h1>
-      <p>Prenez rendez-vous avec la mairie en quelques clics</p>
+      <h1>🚀 Cap sur la Communication Numérique</h1>
+      <p>Un bulletin moderne, plus rapide, plus économique et plus écologique.</p>
     </div>
   </section>
 
   <div class="container">
-    <section class="intro-section">
-      <h2>✨ Réservez votre créneau facilement</h2>
-      <p>
-        Pour faciliter votre visite à la mairie et optimiser votre temps, nous vous proposons un <span class="violet">système de prise de rendez-vous en ligne</span>. 
-        Choisissez le créneau qui vous convient parmi les disponibilités affichées dans le calendrier ci-dessous.
-      </p>
-      <p>
-        Ce service vous permet d'<span class="green">éviter l'attente</span> et de garantir la disponibilité d'un agent pour vous recevoir dans les meilleures conditions.
-      </p>
-
-      <div class="info-boxes">
-        <div class="info-box">
-          <h3>🕐 Disponibilité immédiate</h3>
-          <p>Consultez les créneaux disponibles en temps réel et réservez instantanément</p>
-        </div>
-        <div class="info-box">
-          <h3>📧 Confirmation automatique</h3>
-          <p>Recevez une confirmation par email avec tous les détails de votre rendez-vous</p>
-        </div>
-        <div class="info-box">
-          <h3>🔔 Rappels</h3>
-          <p>Des notifications vous rappellent votre rendez-vous avant la date prévue</p>
-        </div>
+    
+    <div class="advantages-section">
+      <div class="advantages-column citizen-advantages">
+        <h2>✅ Avantages pour les Citoyens</h2>
+        <ul>
+            <li><strong>Actualités en Temps Réel :</strong> Soyez le premier informé des <strong>travaux</strong> à venir, des <span class="green">alertes météo</span> (canicule, orage), ou des changements d'horaires.</li>
+            <li><strong>Agenda Complet :</strong> Recevez directement le <strong>calendrier complet</strong> des fêtes de village, marchés, spectacles, et réunions publiques.</li>
+            <li><strong>Connexion Locale :</strong> Accédez facilement aux <strong>comptes-rendus</strong> des conseils et suivez l'avancement des grands projets.</li>
+            <li><strong>Écologie & Praticité :</strong> C'est une démarche <span class="green">écologique</span> (zéro papier) et <span class="green">rapide</span>. Accès instantané sur mobile ou ordinateur.</li>
+        </ul>
       </div>
+
+      <div class="advantages-column mairie-advantages">
+        <h2>💰 Avantages pour la Commune</h2>
+        <ul>
+            <li><strong>Maîtrise des Coûts :</strong> <span class="green">Réduction de 80% à 90%</span> des dépenses liées à l'impression, l'encre, et la distribution physique.</li>
+            <li><strong>Rapidité d'Exécution :</strong> Le bulletin est distribué en quelques <strong>secondes</strong> après sa validation finale, sans délai d'imprimerie.</li>
+            <li><strong>Image Écologique :</strong> Valorisation de l'engagement environnemental par la minimisation de l'empreinte carbone.</li>
+            <li><strong>Interaction et Mesure :</strong> Possibilité de <strong>mesurer l'engagement</strong> (taux d'ouverture) et d'utiliser des liens cliquables.</li>
+            <li><strong>Facilité de Mise à Jour :</strong> Les erreurs peuvent être corrigées et les mises à jour publiées <span class="green">immédiatement</span>.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <section class="adhesion-section">
+        <h2>📝 Comment adhérer à la dématérialisation ?</h2>
+        <p style="max-width: 800px; margin: 1.5rem auto 3rem; font-size: 1.1rem;">
+            Il est plus facile que jamais de passer au numérique ! Choisissez la méthode d'inscription qui vous convient le mieux :
+        </p>
+        
+        <div class="adhesion-methods">
+            
+            <div class="method-box">
+                <h3>1. Inscription en ligne</h3>
+                <p>Le moyen le plus simple : remplissez notre formulaire d'abonnement rapide et recevez le bulletin par email dès sa sortie.</p>
+                <form class="inline-form" action="#" method="POST">
+                    <input type="email" placeholder="Votre email..." required>
+                    <button type="submit">Valider mon inscription</button>
+                </form>
+            </div>
+            
+            <div class="method-box">
+                <h3>2. Flashez le Code (QR Code)</h3>
+                <p>À partir du prochain bulletin papier, vous trouverez un code que vous pourrez flasher avec votre smartphone pour vous inscrire directement.</p>
+                </div>
+        </div>
+        
+        <div class="paper-option">
+            <p>
+                <strong>⚠️ Vous souhaitez garder la version papier ?</strong> La Mairie s'engage à maintenir la distribution du bulletin imprimé pour les citoyens qui le souhaitent.
+            </p>
+        </div>
     </section>
 
-    <section class="calendar-section">
-      <h2>📆 Sélectionnez votre créneau</h2>
-      
-      <div class="calendar-wrapper">
-        <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-creneau-de-rdv-mairie"></div>
-        <script type="text/javascript">
-          (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-          Cal("init", "creneau-de-rdv-mairie", {origin:"https://app.cal.com"});
-          Cal.ns["creneau-de-rdv-mairie"]("inline", {
-            elementOrSelector:"#my-cal-inline-creneau-de-rdv-mairie",
-            config: {"layout":"month_view"},
-            calLink: "clement-administr-ia-dp2jxs/creneau-de-rdv-mairie",
-          });
-          Cal.ns["creneau-de-rdv-mairie"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-        </script>
-        </div>
+    <section class="rgpd-section">
+        <h2>🔒 Conformité RGPD et Protection de vos Données</h2>
+        <p>La Mairie de Bergweiler s'engage à respecter le Règlement Général sur la Protection des Données (RGPD).</p>
+        <ul>
+            <li><strong>Finalité des données :</strong> Les données collectées (nom, email pour la newsletter) sont <strong>uniquement</strong> utilisées pour l'envoi du bulletin municipal et des informations communales.</li>
+            <li><strong>Vos droits :</strong> Vous disposez d'un droit d'accès, de rectification et d'effacement de vos données. Un lien de désabonnement est présent dans chaque email.</li>
+            <li><strong>Durée de conservation :</strong> Vos données sont conservées jusqu'à votre demande de désabonnement.</li>
+        </ul>
+        <p style="text-align: center; margin-top: 1rem;">
+            Consultez nos <a href="mentions-legales.html">Mentions Légales et Politique de Confidentialité</a>.
+        </p>
     </section>
   </div>
 
@@ -622,7 +675,7 @@
       mainMenu.classList.toggle('active');
     });
 
-    // CORRECTION 2: Gestion des sous-menus (retrait du wrapper conditionnel)
+    // Gestion des sous-menus (Logique corrigée)
     document.querySelectorAll('nav > ul > li > a').forEach(link => {
       link.addEventListener('click', (e) => {
         const parentLi = link.parentElement;

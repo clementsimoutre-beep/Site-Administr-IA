@@ -110,6 +110,8 @@
     .header-modern.force-open .menu-content {
       max-height: 600px;
       padding: 5rem 0 1rem 0;
+      /* AJOUTÉ pour correspondre à index.html */
+      overflow: visible; 
     }
 
     /* Menu hamburger pour mobile */
@@ -202,8 +204,12 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.3);
       min-width:220px;
     }
-
+    
+    /* Règle pour le survol (Desktop) */
     nav li:hover>ul {display:block;}
+    
+    /* AJOUTÉ : Règle pour le clic (Mobile, basée sur index.html) */
+    nav li.open>ul {display:block;}
 
     .container {
       max-width:1200px;
@@ -395,7 +401,8 @@
         padding-left: 1rem;
       }
       
-      nav li.active > ul {
+      /* MODIFIÉ : Utilise la classe 'open' comme dans index.html */
+      nav li.open > ul {
         display: block;
       }
     }
@@ -447,7 +454,6 @@
       </nav>
     </div>
   </header>
-
   <div class="container">
     <div class="avertissement">
       <h3>💡 Testez notre formulaire de contact intelligent</h3>
@@ -504,20 +510,34 @@
       mainMenu.classList.toggle('active');
     });
 
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll('nav > ul > li > a').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const parentLi = link.parentElement;
-          const submenu = parentLi.querySelector('ul');
+    // Gestion des sous-menus sur mobile et desktop (Corrigé)
+    document.querySelectorAll('nav > ul > li > a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const parentLi = link.parentElement;
+        const submenu = parentLi.querySelector('ul');
+        
+        // Si un sous-menu existe
+        if (submenu) {
+          // On n'empêche le lien principal de naviguer QUE s'il a un sous-menu
+          e.preventDefault(); 
           
-          if (submenu) {
-            e.preventDefault();
-            parentLi.classList.toggle('active');
+          // Logique pour mobile seulement (largeur <= 768px)
+          if (window.innerWidth <= 768) {
+             // Fermer les autres sous-menus
+            document.querySelectorAll('nav > ul > li').forEach(otherLi => {
+              if (otherLi !== parentLi) {
+                // MODIFIÉ : On retire la classe 'open' des autres éléments
+                otherLi.classList.remove('open'); 
+              }
+            });
+            // MODIFIÉ : On bascule la classe 'open' sur l'élément cliqué
+            parentLi.classList.toggle('open');
           }
-        });
+        }
       });
-    }
+    });
 
+    // Fermer le menu si on clique en dehors
     document.addEventListener('click', (e) => {
       if (window.innerWidth <= 768) {
         if (!hamburger.contains(e.target) && !mainMenu.contains(e.target)) {
