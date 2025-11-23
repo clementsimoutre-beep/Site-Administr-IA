@@ -669,9 +669,11 @@
     }
 
     @media (max-width: 768px) {
+      /* Modification demandée : Marges réduites et largeur augmentée */
       .container {
-        margin: 2rem 0.5cm;
-        padding: 1rem;
+        max-width: calc(100% - 4mm); /* 100% - 2mm (gauche) - 2mm (droite) */
+        margin: 2rem 2mm; /* 2mm de marge latérale */
+        padding: 1rem 0.5rem; /* Padding interne légèrement réduit */
       }
       .hero {
         margin-top: 80px;
@@ -680,9 +682,16 @@
         width: 100%;
         margin-left: 0;
         margin-right: 0;
+        padding: 2rem 1rem; /* Padding interne réduit pour plus d'espace */
       }
+      
+      /* Modification demandée : Taille de police réduite pour l'accordéon */
       .accordion-title {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+      }
+      .accordion-content p {
+        font-size: 0.9rem;
+        line-height: 1.6; /* Interligne légèrement réduit */
       }
       
       /* Menu hamburger visible sur mobile */
