@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plomberie Dutuyau - Réalisations</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000; color: #fff;
+            padding-top: 100px;
+        }
+
+        /* Variables de couleur */
+        :root {
+            --primary-color: #00f5ff; /* Cyan */
+            --secondary-color: #0099ff; /* Bleu */
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        /* NAVIGATION COPY */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 60px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo {
+            font-size: 24px; font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            cursor: pointer;
+        }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a {
+            color: #fff; text-decoration: none; font-weight: 500; font-size: 15px;
+            transition: all 0.3s; opacity: 0.7;
+        }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--primary-color); }
+        .nav-links .cta-btn {
+            background: var(--gradient);
+            padding: 10px 24px; border-radius: 50px; opacity: 1; color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 245, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .nav-links .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 245, 255, 0.5);
+        }
+
+        /* GALLERY STYLES */
+        .header-section { text-align: center; margin-bottom: 60px; padding: 0 20px; }
+        h1 {
+            font-size: 48px; font-weight: 800; margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, var(--primary-color) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .subtitle { color: #aaa; font-size: 18px; }
+
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px; max-width: 1400px; margin: 0 auto; padding: 0 60px 120px;
+        }
+
+        .gallery-item {
+            position: relative; border-radius: 20px; overflow: hidden; height: 350px; cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            /* Pour s'assurer que l'image est bien au fond */
+            display: block; 
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        
+        .gallery-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            /* DÉPLACEMENT HORS ÉCRAN PAR DÉFAUT */
+            transform: translateY(100%); 
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        /* AFFICHAGE AU SURVOL */
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .gallery-overlay h3 { color: #fff; margin-bottom: 5px; font-size: 20px; }
+        .gallery-overlay p { color: var(--primary-color); font-size: 14px; }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            /* Rendre l'overlay visible par défaut sur mobile (ou le faire apparaître au premier tap) */
+            .gallery-item .gallery-overlay {
+                transform: translateY(0);
+                opacity: 1;
+                /* Rendre le fond un peu moins agressif pour ne pas cacher l'image */
+                background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+                /* Réduire la hauteur de l'overlay pour mobile */
+                height: 50%; 
+            }
+            .nav-links a:not(.cta-btn) { display: none; }
+            .gallery-grid { padding: 0 20px 80px; grid-template-columns: 1fr; }
+            h1 { font-size: 40px; }
+            body { padding-top: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" onclick="window.location.href='index.html'">💧 Plomberie Dutuyau</div>
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="realisations.html" class="active">Nos Réalisations</a>
+            <a href="devis.html">Devis en ligne</a>
+            <a href="intervention.html" class="cta-btn">Demande d'intervention</a>
+        </div>
+    </nav>
+
+    <div class="header-section">
+        <h1>Nos Réalisations</h1>
+        <p class="subtitle">Découvrez la qualité de nos finitions, notre expertise technique et nos derniers chantiers.</p>
+    </div>
+
+    <div class="gallery-grid">
+        <!-- Réalisation 1 : Rénovation SDB Minimaliste -->
+        <div class="gallery-item">
+            <img src="https://placehold.co/800x600/003366/FFFFFF?text=SDB+Minimaliste" 
+                 alt="Salle de bain minimaliste - Douche italienne"
+                 onerror="this.onerror=null; this.src='./images/sdb_minimaliste.jpg';">
+            <div class="gallery-overlay">
+                <h3>Salle de Bain Minimaliste</h3>
+                <p>Installation complète • Douche italienne • Robinetterie encastrée</p>
+            </div>
+        </div>
+
+        <!-- Réalisation 2 : Double Vasque Design -->
+        <div class="gallery-item">
+            <img src="https://placehold.co/800x600/1e40af/FFFFFF?text=Double+Vasque+Design" 
+                 alt="Double vasque design dans une salle de bain moderne"
+                 onerror="this.onerror=null; this.src='./images/double_vasque.jpg';">
+            <div class="gallery-overlay">
+                <h3>Double Vasque Design</h3>
+                <p>Meuble suspendu • Plomberie optimisée • Confort matinal</p>
+            </div>
+        </div>
+
+        <!-- Réalisation 3 : Baignoire Îlot -->
+        <div class="gallery-item">
+            <img src="https://placehold.co/800x600/007799/FFFFFF?text=Baignoire+Îlot" 
+                 alt="Baignoire îlot dans une suite parentale"
+                 onerror="this.onerror=null; this.src='./images/baignoire_ilot.jpg';">
+            <div class="gallery-overlay">
+                <h3>Baignoire Îlot</h3>
+                <p>Rénovation Suite Parentale • Tuyauterie invisible • Sol chauffant</p>
+            </div>
+        </div>
+
+        <!-- Réalisation 4 : Chauffage / PAC -->
+        <div class="gallery-item">
+            <img src="https://placehold.co/800x600/2ecc71/FFFFFF?text=Pompe+à+Chaleur+Installation" 
+                 alt="Installation de Pompe à Chaleur (PAC)"
+                 onerror="this.onerror=null; this.src='./images/pac_installation.jpg';">
+            <div class="gallery-overlay">
+                <h3>Système Chauffage PAC</h3>
+                <p>Performance énergétique • Installation certifiée • Plancher chauffant</p>
+            </div>
+        </div>
+
+        <!-- Réalisation 5 : Sanitaires Suspendus -->
+        <div class="gallery-item">
+            <img src="https://placehold.co/800x600/34495e/FFFFFF?text=WC+Suspendu+Design" 
+                 alt="WC suspendu design et élégant"
+                 onerror="this.onerror=null; this.src='./images/wc_suspendu.jpg';">
+            <div class="gallery-overlay">
+                <h3>Sanitaires Suspendus </h3>
+                <p>WC Japonais • Gain de place • Chasse d'eau encastrée</p>
+            </div>
+        </div>
+
+        <!-- Réalisation 6 : Plomberie Cuisine -->
+        <div class="gallery-item">
+            <img src="https://placehold.co/800x600/e67e22/FFFFFF?text=Plomberie+Cuisine+Pro" 
+                 alt="Plomberie complète d'une cuisine équipée"
+                 onerror="this.onerror=null; this.src='./images/cuisine_pro.jpg';">
+            <div class="gallery-overlay">
+                <h3>Cuisine Équipée</h3>
+                <p>Plomberie complète • Îlot central • Adoucisseur d'eau</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
