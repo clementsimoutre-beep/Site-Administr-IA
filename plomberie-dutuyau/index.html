@@ -3,535 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plomberie Dutuyau - Experts en Plomberie Écologique</title>
+    <title>Plomberie Dutuyau - Accueil</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            background: #0a1f0f;
+            background: #000;
             color: #fff;
-            padding-top: 50px;
-        }
-
-        .warning-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            color: white;
-            padding: 12px 20px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 14px;
-            z-index: 2000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .warning-banner img {
-            height: 45px;
-            width: auto;
-        }
-
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .water-effect {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .wave {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-            border-radius: 45%;
-            animation: wave 15s infinite linear;
-        }
-
-        .wave:nth-child(1) { animation-delay: 0s; opacity: 0.3; }
-        .wave:nth-child(2) { animation-delay: -5s; opacity: 0.2; }
-        .wave:nth-child(3) { animation-delay: -10s; opacity: 0.4; }
-
-        @keyframes wave {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        nav {
-            position: fixed;
-            top: 50px;
-            width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(10, 31, 15, 0.9);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-            border-bottom: 2px solid rgba(56, 239, 125, 0.3);
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #38ef7d;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #0a1f0f;
-            background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: 700;
-            padding: 15px 35px;
-            border-radius: 50px;
-            box-shadow: 0 5px 20px rgba(56, 239, 125, 0.4);
-            font-size: 18px;
-        }
-
-        .nav-links a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(56, 239, 125, 0.6);
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 10;
-            padding: 20px;
-            max-width: 900px;
-        }
-
-        h1 {
-            font-size: 64px;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .subtitle {
-            font-size: 24px;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            font-size: 48px;
-            opacity: 1;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.2);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid #fff;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-20px); }
-            60% { transform: translateX(-50%) translateY(-15px); }
-        }
-
-        .services {
-            padding: 100px 50px;
-            background: linear-gradient(180deg, #0a1f0f 0%, #1a3520 100%);
-        }
-
-        .services h2 {
-            text-align: center;
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: #38ef7d;
-        }
-
-        .services p {
-            text-align: center;
-            font-size: 18px;
-            margin-bottom: 60px;
-            opacity: 0.8;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: rgba(17, 153, 142, 0.1);
-            padding: 40px;
-            border-radius: 20px;
-            transition: none;
-            border: 2px solid rgba(56, 239, 125, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .service-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #38ef7d;
-        }
-
-        .service-card p {
             line-height: 1.6;
-            opacity: 0.9;
-            text-align: left;
-            margin-bottom: 10px;
         }
 
-        .eco-badge {
-            display: inline-block;
-            background: rgba(56, 239, 125, 0.2);
-            color: #38ef7d;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-top: 10px;
-            border: 1px solid #38ef7d;
+        /* NAVIGATION */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 60px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo {
+            font-size: 24px; font-weight: 800;
+            background: linear-gradient(135deg, #00f5ff 0%, #0099ff 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            cursor: pointer;
+        }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a {
+            color: #fff; text-decoration: none; font-weight: 500; font-size: 15px;
+            transition: all 0.3s; opacity: 0.7;
+        }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; color: #00f5ff; }
+        .nav-links .cta-btn {
+            background: linear-gradient(135deg, #00f5ff 0%, #0099ff 100%);
+            padding: 10px 24px; border-radius: 50px; opacity: 1; color: #fff;
+        }
+        .nav-links .cta-btn:hover { box-shadow: 0 0 20px rgba(0, 245, 255, 0.4); }
+
+        /* HERO SECTION */
+        .hero {
+            padding-top: 120px; min-height: 100vh; position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-container {
+            max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr;
+            align-items: center; gap: 60px; padding: 0 60px; position: relative; z-index: 2;
+        }
+        /* Badge supprimé du CSS car plus utilisé */
+        
+        h1 {
+            font-size: 64px; margin-bottom: 20px; font-weight: 900; line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, #00f5ff 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .subtitle { font-size: 18px; opacity: 0.8; margin-bottom: 40px; max-width: 500px; }
+        
+        /* Image Hero */
+        .hero-image-wrapper {
+            position: relative; border-radius: 30px; overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 80px rgba(0, 245, 255, 0.15); height: 500px;
+        }
+        .hero-image { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to right, #000 0%, transparent 30%);
         }
 
-        .form-section {
-            padding: 100px 50px;
-            background: #0a1f0f;
-        }
-
+        /* SERVICES & INTERVENTIONS */
         .section-title {
-            text-align: center;
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: #38ef7d;
+            text-align: center; font-size: 42px; margin-bottom: 60px;
+            background: linear-gradient(135deg, #fff 0%, #00f5ff 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; max-width: 1400px; margin: 0 auto; padding: 0 60px 100px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.03); padding: 35px; border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px);
+            transition: all 0.4s;
+        }
+        .card:hover {
+            transform: translateY(-8px); border-color: rgba(0, 245, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 245, 255, 0.1);
+        }
+        .card-icon { font-size: 40px; margin-bottom: 20px; }
+        .card h3 { font-size: 22px; margin-bottom: 10px; color: #fff; }
+        .card p { font-size: 14px; opacity: 0.7; line-height: 1.6; }
+        .eco-badge {
+            display: inline-block; background: rgba(0, 245, 255, 0.1); color: #00f5ff;
+            padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-top: 15px;
         }
 
-        .section-subtitle {
-            text-align: center;
-            font-size: 18px;
-            margin-bottom: 40px;
-            opacity: 0.8;
+        /* Boutons Hero */
+        .btn-primary {
+            display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #00f5ff 0%, #0099ff 100%);
+            color: white; border-radius: 50px; text-decoration: none; font-weight: 600; margin-right: 15px;
+            box-shadow: 0 4px 20px rgba(0, 245, 255, 0.3); transition: 0.3s;
         }
-
-        .demo-container {
-            background: rgba(56, 239, 125, 0.15);
-            padding: 30px 40px;
-            border-radius: 20px;
-            border: 2px solid #38ef7d;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(56, 239, 125, 0.3);
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto 40px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        .btn-secondary {
+            display: inline-block; padding: 15px 30px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+            color: white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s;
         }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0, 245, 255, 0.5); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: #00f5ff; color: #00f5ff; }
 
-        .demo-container img {
-            height: 120px;
-            width: auto;
-        }
-
-        .demo-instruction {
-            font-weight: 600;
-            font-size: 20px;
-            color: #fff;
-        }
-
-        .form-container {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 50px;
-            border-radius: 30px;
-            border: 2px solid rgba(56, 239, 125, 0.5);
-            position: relative;
-            min-height: 2250px;
-            transition: min-height 0.6s ease-out;
-            overflow: visible;
-        }
-
-        .form-container::before,
-        .form-container::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 30px;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .form-container::before {
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(circle, rgba(56, 239, 125, 0.15) 0%, transparent 50%);
-            animation: waterFlow 8s linear infinite;
-        }
-
-        .form-container::after {
-            bottom: -50%;
-            right: -50%;
-            background: radial-gradient(circle, rgba(17, 153, 142, 0.15) 0%, transparent 50%);
-            animation: waterFlow 10s linear infinite reverse;
-        }
-
-        @keyframes waterFlow {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .iframe-wrapper {
-            position: relative;
-            width: 100%;
-            min-height: 100%;
-        }
-
-        .iframe-wrapper iframe {
-            width: 100%;
-            height: auto;
-            min-height: 2250px;
-            border: none;
-            overflow: hidden !important;
-            transition: height 0.6s ease-out, min-height 0.6s ease-out;
-        }
-
-        footer {
-            background: #0a1f0f;
-            padding: 40px 50px;
-            text-align: center;
-            border-top: 2px solid rgba(56, 239, 125, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 36px;
-            }
-            .subtitle {
-                font-size: 18px;
-            }
-            nav {
-                padding: 15px 20px;
-            }
-            .services, .form-section {
-                padding: 60px 20px;
-            }
-            .form-container, .demo-container {
-                padding: 30px 20px;
-            }
-            .nav-links {
-                gap: 15px;
-                font-size: 14px;
-            }
+        @media (max-width: 900px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero-image-wrapper { display: none; }
+            nav { padding: 20px; }
+            .nav-links a:not(.cta-btn) { display: none; } /* Simplification mobile */
+            h1 { font-size: 42px; }
         }
     </style>
 </head>
 <body>
-    <div class="warning-banner">
-        <img src="assets/logo.png" alt="Administr-IA Logo">
-        <span>⚠️ Site fictif pour démonstration - Testez les solutions d'Administr-IA</span>
-        <img src="assets/logo.png" alt="Administr-IA Logo">
-    </div>
 
     <nav>
-        <div class="logo">💧 Dutuyau</div>
+        <div class="logo" onclick="window.location.href='index.html'">💧 Plomberie Dutuyau</div>
         <div class="nav-links">
-            <a href="#reservation">Demander un RDV</a>
+            <a href="index.html" class="active">Accueil</a>
+            <a href="realisations.html">Nos Réalisations</a>
+            <a href="devis.html">Devis en ligne</a>
+            <a href="intervention.html" class="cta-btn">Demande d'intervention</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="water-effect">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-        </div>
-        <div class="hero-content">
-            <h1>🌿 Plomberie Dutuyau</h1>
-            <p class="subtitle">Votre partenaire en plomberie écologique et responsable. Solutions durables pour un habitat sain et respectueux de l'environnement.</p>
-        </div>
-        <div class="scroll-indicator" onclick="document.getElementById('reservation').scrollIntoView({behavior: 'smooth'})">
-            ↓
+        <div class="hero-container">
+            <div class="hero-left">
+                <!-- Badge supprimé ici -->
+                <h1>Plomberie<br>Dutuyau</h1>
+                <p class="subtitle">
+                    L'excellence sanitaire à votre service. Intervention rapide, rénovation soignée et solutions durables pour votre habitat.
+                </p>
+                <div>
+                    <a href="intervention.html" class="btn-primary">🚨 Demande d'intervention</a>
+                    <a href="devis.html" class="btn-secondary">📋 Devis en ligne</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-image-wrapper">
+                    <img src="plomberie-dutuyau.jpg" alt="Plomberie Dutuyau" class="hero-image">
+                    <div class="hero-overlay"></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="services">
-        <h2>Nos Services Éco-Responsables</h2>
-        <p>Des solutions durables pour votre confort et la planète</p>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🚰</div>
-                <h3>Installation Sanitaire</h3>
-                <p>Installation d'équipements économes en eau : robinets thermostatiques, WC double chasse, douches à économie d'eau.</p>
-                <span class="eco-badge">🌱 Économie -40%</span>
+    <!-- SECTION TYPES D'INTERVENTIONS (Basé sur le formulaire) -->
+    <section>
+        <h2 class="section-title">Nos Interventions Courantes</h2>
+        <div class="grid-container">
+            <div class="card">
+                <div class="card-icon">💧</div>
+                <h3>Fuite d'eau</h3>
+                <p>Détection et réparation rapide de fuites. Intervention estimée à 45 min pour sécuriser votre habitat.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">♻️</div>
-                <h3>Récupération d'Eau</h3>
-                <p>Systèmes de récupération d'eau de pluie pour arrosage et usage domestique. Solution écologique et économique.</p>
-                <span class="eco-badge">🌱 100% Naturel</span>
+            <div class="card">
+                <div class="card-icon">🚽</div>
+                <h3>Robinetterie / WC</h3>
+                <p>Remplacement de robinets, réparation de chasse d'eau ou installation de Sani-broyeur. Durée moy. 1h.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">🌡️</div>
-                <h3>Chauffage Écologique</h3>
-                <p>Installation de pompes à chaleur, chaudières à condensation et systèmes de chauffage à haute efficacité énergétique.</p>
+            <div class="card">
+                <div class="card-icon">🔥</div>
+                <h3>Chauffe-eau / Ballon</h3>
+                <p>Dépannage, détartrage ou remplacement de votre système d'eau chaude. Durée moy. 1h30.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛑</div>
+                <h3>Canalisation bouchée</h3>
+                <p>Débouchage haute pression pour éviers, douches ou toilettes. Intervention efficace (1h).</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏗️</div>
+                <h3>Installation / Rénovation</h3>
+                <p>Visite conseil (1h) pour étudier votre projet de rénovation de salle de bain ou cuisine.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>Autre demande</h3>
+                <p>Pour tout autre besoin spécifique, nous réservons un créneau d'une heure pour diagnostic.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION SERVICES PREMIUM -->
+    <section>
+        <h2 class="section-title">Nos Solutions Premium</h2>
+        <div class="grid-container">
+            <div class="card">
+                <div class="card-icon">💎</div>
+                <h3>Salles de Bains Design</h3>
+                <p>Conception et réalisation de salles de bains contemporaines avec matériaux nobles.</p>
+                <span class="eco-badge">✨ Sur-Mesure</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌡️</div>
+                <h3>Chauffage Intelligent</h3>
+                <p>Installation de systèmes connectés : pompes à chaleur, radiateurs intelligents.</p>
                 <span class="eco-badge">🌱 Classe A+++</span>
             </div>
-            <div class="service-card">
-                <div class="service-icon">💧</div>
-                <h3>Traitement de l'Eau</h3>
-                <p>Filtration naturelle, adoucisseurs sans sel, systèmes de purification écologiques pour une eau pure et saine.</p>
+            <div class="card">
+                <div class="card-icon">♻️</div>
+                <h3>Traitement d'Eau</h3>
+                <p>Adoucisseurs écologiques et purification. Eau saine pour toute la maison.</p>
                 <span class="eco-badge">🌱 Sans Chimie</span>
             </div>
-            <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3>Réparation & Entretien</h3>
-                <p>Détection de fuites, réparation rapide pour éviter le gaspillage. Entretien préventif de vos installations.</p>
-                <span class="eco-badge">🌱 Anti-Gaspi</span>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🌊</div>
-                <h3>Assainissement Écologique</h3>
-                <p>Phytoépuration, micro-stations d'épuration, solutions naturelles pour le traitement des eaux usées.</p>
-                <span class="eco-badge">🌱 Bio-Traitement</span>
-            </div>
         </div>
     </section>
 
-    <section id="reservation" class="form-section">
-        <h2 class="section-title">Réservation en Ligne</h2>
-        <p class="section-subtitle">Prenez rendez-vous en quelques clics - Réponse immédiate</p>
-        
-        <div class="demo-container">
-            <img src="assets/logo.png" alt="Administr-IA Logo">
-            <p class="demo-instruction">Solution Administr-IA : testez le formulaire - Mettez votre adresse mail pour recevoir une réponse de démonstration.</p>
-        </div>
-
-        <div class="form-container" id="formContainer">
-            <div class="iframe-wrapper">
-                <iframe src="https://tally.so/r/mV2l5a?transparentBackground=1&alignLeft=1" id="tallyFrame" frameborder="0" marginheight="0" marginwidth="0" title="Formulaire de réservation Plomberie Dutuyau" scrolling="no"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Plomberie Dutuyau - Tous droits réservés</p>
-        <p style="margin-top: 10px; opacity: 0.7;">🌿 Votre plombier éco-responsable - Certifié RGE - Solutions durables</p>
-        <p style="margin-top: 15px; font-size: 14px; opacity: 0.6;">Entreprise engagée pour la préservation de l'eau et de l'environnement</p>
-        <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; font-size: 14px;">
-            <a href="mentions-legales.html" style="color: #38ef7d; text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Mentions légales</a>
-            <span style="opacity: 0.5;">•</span>
-            <a href="politique-confidentialite.html" style="color: #38ef7d; text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Politique de confidentialité</a>
-        </div>
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); color: #888;">
+        <p>&copy; 2025 Plomberie Dutuyau.</p>
     </footer>
 
-    <script>
-        // Écoute les messages de l'iframe Tally pour ajuster la hauteur dynamiquement
-        let lastHeight = 2250;
-        
-        window.addEventListener('message', function(e) {
-            if (e.data && e.data.type === 'tally.heightChanged') {
-                const iframe = document.getElementById('tallyFrame');
-                const container = document.getElementById('formContainer');
-                const newHeight = e.data.height;
-                
-                if (newHeight && newHeight > 0 && Math.abs(newHeight - lastHeight) > 50) {
-                    // Ne met à jour que si le changement est significatif (>50px)
-                    // Cela évite les micro-ajustements qui font "sursauter"
-                    lastHeight = newHeight;
-                    iframe.style.height = (newHeight + 200) + 'px';
-                    iframe.style.minHeight = (newHeight + 200) + 'px';
-                    container.style.minHeight = (newHeight + 300) + 'px';
-                }
-            }
-        });
-
-        // Observer pour détecter les changements dans l'iframe
-        const iframe = document.getElementById('tallyFrame');
-        const container = document.getElementById('formContainer');
-        
-        // Force l'absence de scroll
-        iframe.setAttribute('scrolling', 'no');
-        
-        // Ajustement initial après chargement
-        iframe.addEventListener('load', function() {
-            setTimeout(() => {
-                try {
-                    iframe.contentWindow.postMessage({type: 'tally.getHeight'}, '*');
-                } catch(e) {
-                    console.log('Waiting for height...');
-                }
-            }, 1000);
-            
-            // Surveille les changements de hauteur moins fréquemment pour éviter les sursauts
-            setInterval(() => {
-                try {
-                    iframe.contentWindow.postMessage({type: 'tally.getHeight'}, '*');
-                } catch(e) {}
-            }, 1000);
-        });
-    </script>
 </body>
 </html>
