@@ -14,11 +14,23 @@
             background: #000;
             color: #fff;
             line-height: 1.6;
+            /* AJUSTEMENT DU BODY POUR LA BANNIÈRE */
+            padding-top: 40px; 
+        }
+
+        /* NOUVEAU : BANNIÈRE D'AVERTISSEMENT */
+        .alert-banner {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: #d90000; /* Rouge vif */
+            color: white; text-align: center; padding: 8px 0;
+            font-size: 14px; font-weight: 600; z-index: 1100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         /* NAVIGATION */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 20px 60px;
+            /* AJUSTEMENT DE LA NAVIGATION POUR LAISSER LA PLACE À LA BANNIÈRE */
+            position: fixed; top: 38px; width: 100%; padding: 20px 60px;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -43,7 +55,8 @@
 
         /* HERO SECTION */
         .hero {
-            padding-top: 120px; min-height: 100vh; position: relative;
+            /* AJUSTEMENT DU PADDING TOP POUR LA BANNIÈRE ET LA NAVIGATION */
+            padding-top: 80px; min-height: 100vh; position: relative;
             display: flex; align-items: center; justify-content: center;
         }
         .hero-container {
@@ -115,13 +128,30 @@
         @media (max-width: 900px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; }
             .hero-image-wrapper { display: none; }
-            nav { padding: 20px; }
+            nav { padding: 20px; top: 38px; } /* Ajuster nav mobile aussi */
             .nav-links a:not(.cta-btn) { display: none; } /* Simplification mobile */
             h1 { font-size: 42px; }
+            /* AJUSTEMENT DU PADDING TOP GLOBAL MOBILE */
+            body { padding-top: 38px; }
+        }
+
+        /* AJOUT POUR LE FOOTER */
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: #00f5ff;
         }
     </style>
 </head>
 <body>
+
+    <div class="alert-banner">
+        ⚠️ Site témoin / fictif pour tester les solutions Administr-IA. Toutes les informations sont fausses.
+    </div>
 
     <nav>
         <div class="logo" onclick="window.location.href='index.html'">💧 Plomberie Dutuyau</div>
@@ -136,7 +166,6 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-left">
-                <!-- Badge supprimé ici -->
                 <h1>Plomberie<br>Dutuyau</h1>
                 <p class="subtitle">
                     L'excellence sanitaire à votre service. Intervention rapide, rénovation soignée et solutions durables pour votre habitat.
@@ -155,7 +184,6 @@
         </div>
     </section>
 
-    <!-- SECTION TYPES D'INTERVENTIONS (Basé sur le formulaire) -->
     <section>
         <h2 class="section-title">Nos Interventions Courantes</h2>
         <div class="grid-container">
@@ -192,7 +220,6 @@
         </div>
     </section>
 
-    <!-- SECTION SERVICES PREMIUM -->
     <section>
         <h2 class="section-title">Nos Solutions Premium</h2>
         <div class="grid-container">
@@ -218,6 +245,11 @@
     </section>
 
     <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); color: #888;">
+        <div class="footer-links" style="margin-bottom: 10px;">
+            <a href="mentions-legales.html">Mentions Légales</a>
+            <span>|</span>
+            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+        </div>
         <p>&copy; 2025 Plomberie Dutuyau.</p>
     </footer>
 
