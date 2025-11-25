@@ -11,25 +11,12 @@
         body {
             font-family: 'Inter', sans-serif;
             background: #000; color: #fff;
-            /* AJUSTEMENT DU PADDING TOP POUR LA BANNIÈRE */
-            padding-top: 78px; 
-            padding-bottom: 60px;
-        }
-        
-        /* NOUVEAU : BANNIÈRE D'AVERTISSEMENT */
-        .alert-banner {
-            position: fixed; top: 0; left: 0; width: 100%;
-            background: #d90000; /* Rouge vif */
-            color: white; text-align: center; padding: 8px 0;
-            font-size: 14px; font-weight: 600; z-index: 2000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            padding-top: 100px; padding-bottom: 60px;
         }
 
         /* NAVIGATION */
         nav {
-            /* AJUSTEMENT DE LA NAVIGATION POUR LAISSER LA PLACE À LA BANNIÈRE */
-            position: fixed; top: 38px; 
-            width: 100%; padding: 20px 60px;
+            position: fixed; top: 0; width: 100%; padding: 20px 60px;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -50,192 +37,130 @@
             background: linear-gradient(135deg, #00f5ff 0%, #0099ff 100%);
             padding: 10px 24px; border-radius: 50px; opacity: 1; color: #fff;
         }
-        .nav-links .cta-btn:hover { box-shadow: 0 0 20px rgba(0, 245, 255, 0.4); }
 
-        /* HEADER */
-        .header-section {
-            padding-top: 20px; text-align: center; margin-bottom: 40px; 
-            max-width: 1200px; margin-left: auto; margin-right: auto;
-            padding: 20px;
+        /* CALCULATOR */
+        .calculator-container {
+            max-width: 1200px; margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03); padding: 50px;
+            border-radius: 32px; border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
         }
         h1 {
-            font-size: 48px; font-weight: 900; margin-bottom: 20px;
+            text-align: center; font-size: 42px; margin-bottom: 40px;
             background: linear-gradient(135deg, #fff 0%, #00f5ff 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .subtitle { font-size: 18px; opacity: 0.8; max-width: 700px; margin: 0 auto; }
-        .step-info {
-            background: rgba(0, 245, 255, 0.1); color: #00f5ff; padding: 10px 20px;
-            border-radius: 10px; margin-top: 20px; font-weight: 600;
+
+        .step-title { font-size: 26px; color: #00f5ff; margin-bottom: 20px; font-weight: 700; }
+        .step-subtitle { 
+            font-size: 18px; color: #aaa; margin-bottom: 20px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; 
+            font-weight: 600;
         }
 
-        /* FORM STYLES */
-        .devis-container {
-            max-width: 900px; margin: 0 auto; padding: 0 20px;
+        .options-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 30px;
         }
-        .form-section {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px; border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 40px;
+        /* Nouvelle structure pour les options par gamme */
+        .option-group {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            padding: 20px; border-radius: 16px; transition: 0.3s;
+            display: flex; flex-direction: column;
         }
-
-        /* Groupes de modules */
-        .module-group h2 {
-            font-size: 28px; color: #00f5ff; margin-bottom: 20px; border-bottom: 2px solid rgba(0, 245, 255, 0.3); padding-bottom: 10px;
+        .option-group:hover {
+            border-color: rgba(0, 245, 255, 0.3);
         }
-        .module-list {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px; margin-bottom: 30px;
+        .option-group h3 {
+            font-size: 18px; margin-bottom: 15px; font-weight: 600;
         }
-        .module-item {
-            background: rgba(0, 0, 0, 0.3); padding: 15px; border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex; flex-direction: column; cursor: pointer;
-            transition: all 0.3s;
+        .gamme-choice {
+            display: flex; flex-direction: column; gap: 8px; flex-grow: 1;
         }
-        .module-item:hover, .module-item.selected {
-            border-color: #00f5ff;
-            background: rgba(0, 245, 255, 0.15);
-        }
-        .module-item.selected {
-            box-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
-        }
-        .module-item h3 { font-size: 18px; margin-bottom: 5px; }
-        .module-item p { font-size: 12px; opacity: 0.7; }
-        .module-item span {
-            margin-top: 10px; font-weight: 600; color: #fff;
-        }
-        
-        /* Radios / Checkboxes stylisés (pour les modules) */
-        .module-item label {
-            display: flex; align-items: center;
-            cursor: pointer;
-            position: relative;
-            user-select: none;
-            flex-grow: 1; /* Permet au label de prendre la taille du conteneur */
-        }
-
-        .module-item input[type="checkbox"] {
-            /* Cacher la checkbox native */
-            opacity: 0;
-            position: absolute;
-        }
-
-        .module-content {
-            flex-grow: 1;
-        }
-        
-        .custom-checkbox {
-            width: 20px; height: 20px; border-radius: 5px; border: 2px solid #ccc;
-            background-color: transparent; margin-right: 15px;
-            transition: all 0.3s;
-            flex-shrink: 0; /* Empêche de rétrécir */
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .module-item.selected .custom-checkbox {
-            background-color: #00f5ff;
-            border-color: #00f5ff;
-        }
-        
-        .custom-checkbox::after {
-            content: '✓';
-            color: #000;
+        .gamme-item {
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+            padding: 10px 12px; border-radius: 8px; border: 1px solid transparent;
+            background: rgba(0, 245, 255, 0.05); transition: 0.2s;
             font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s;
         }
-
-        .module-item.selected .custom-checkbox::after {
-            opacity: 1;
-        }
-
-        /* SÉLECTION FINITIONS */
-        .finitions-grid {
-            display: flex; gap: 20px; justify-content: space-around;
-        }
-        .finition-item {
-            flex-grow: 1;
-            padding: 20px; border-radius: 10px; text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer; transition: all 0.3s;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        .finition-item:hover, .finition-item.selected {
-            border-color: #00f5ff;
+        .gamme-item:hover {
             background: rgba(0, 245, 255, 0.15);
-            box-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
         }
-        .finition-item h3 { color: #00f5ff; margin-bottom: 5px; }
-        .finition-item p { font-size: 14px; opacity: 0.8; }
-
-        /* RÉCAPITULATIF */
-        .recap-section {
-            background: #111; padding: 40px; border-radius: 20px;
-            border: 1px solid #0099ff;
+        .gamme-item.selected {
+            border-color: #00f5ff;
+            background: rgba(0, 245, 255, 0.2);
         }
-        .recap-section h2 {
-            font-size: 32px; color: #fff; margin-bottom: 25px; text-align: center;
+        /* Style spécifique pour le bouton "Non Souhaité / Existant" */
+        .non-souhaite .gamme-label, .non-souhaite .gamme-price {
+            opacity: 0.8; font-style: italic;
         }
-        .recap-line {
-            display: flex; justify-content: space-between; padding: 8px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-            font-size: 16px;
+        .non-souhaite.selected {
+            border-color: #555;
+            background: rgba(255, 255, 255, 0.1);
         }
-        .recap-line span:first-child { opacity: 0.8; }
-        .recap-line.total {
-            border-top: 2px solid #00f5ff; border-bottom: none;
-            padding-top: 15px; margin-top: 15px;
-            font-size: 24px; font-weight: 700; color: #00f5ff;
+        .gamme-item input[type="radio"] {
+            display: none; /* Cache le bouton radio natif pour utiliser le style .selected */
         }
-
-        /* BOUTON ENVOI */
-        .submit-container { text-align: center; margin-top: 40px; }
-        #submitDevis {
-            padding: 15px 40px; background: linear-gradient(135deg, #00f5ff 0%, #0099ff 100%);
-            color: #000; border: none; border-radius: 50px; font-size: 20px; font-weight: 700;
-            cursor: pointer; transition: 0.3s;
+        .gamme-label {
+            flex-grow: 1; line-height: 1.4;
         }
-        #submitDevis:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 245, 255, 0.5);
+        .gamme-price {
+            font-weight: 700;
+            white-space: nowrap; /* Empêche le prix de se couper */
+            text-align: right;
+        }
+        .gamme-details {
+            font-size: 12px;
+            color: #ccc;
+            display: block;
         }
 
-        /* MEDIA QUERIES */
-        @media (max-width: 900px) {
-            nav { padding: 20px; top: 38px; } /* Ajusté */
+
+        /* Style pour l'étape 1 (unique) - Périmètre */
+        .option-card {
+            background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1);
+            padding: 20px; border-radius: 12px; cursor: pointer; text-align: center; transition: 0.3s;
+        }
+        .option-card.selected { 
+            border-color: #00f5ff; 
+            background: rgba(0, 245, 255, 0.1); 
+        }
+        .perimetre-tag { 
+            color: #fff; 
+            font-weight: 600; 
+            margin-top: 5px; 
+            display: block;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+
+        .total-box {
+            text-align: center; margin-top: 50px; padding: 40px;
+            background: rgba(0, 245, 255, 0.05); border-radius: 20px; border: 1px solid #00f5ff;
+        }
+        .total-price { font-size: 48px; font-weight: 900; color: #00f5ff; }
+
+        .cta-button {
+            background: #fff; color: #000; padding: 15px 40px; border: none;
+            border-radius: 50px; text-decoration: none; font-weight: bold;
+            cursor: pointer; transition: background-color 0.3s, transform 0.2s;
+            margin-top: 30px; font-size: 18px;
+        }
+        .cta-button:hover {
+             background: #eee; transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
             .nav-links a:not(.cta-btn) { display: none; }
-            h1 { font-size: 36px; }
-            .form-section { padding: 20px; }
-            .module-list { grid-template-columns: 1fr; }
-            .finitions-grid { flex-direction: column; }
-            /* AJUSTEMENT DU PADDING TOP GLOBAL MOBILE */
-            body { padding-top: 78px; }
-        }
-        
-        /* NOUVEAU : STYLES DU FOOTER */
-        footer {
-            text-align: center; padding: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1); color: #888;
-        }
-        .footer-links a {
-            color: #888;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover {
-            color: #00f5ff; /* Primary color */
+            .calculator-container { padding: 20px; margin: 20px; }
+            .options-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 32px; }
+            .step-title { font-size: 22px; }
         }
     </style>
 </head>
 <body>
-
-    <div class="alert-banner">
-        ⚠️ Site témoin pour tester les solutions Administr-IA. Toutes les informations et photos sont fictives.
-    </div>
 
     <nav>
         <div class="logo" onclick="window.location.href='index.html'">💧 Plomberie Dutuyau</div>
@@ -247,193 +172,740 @@
         </div>
     </nav>
 
-    <div class="header-section">
-        <h1>Estimez votre projet en ligne</h1>
-        <p class="subtitle">
-            Sélectionnez les modules souhaités et choisissez le niveau de finition. Une estimation détaillée apparaît en bas.
-        </p>
-        <p class="step-info">
-            Étape 1 : Choisissez vos modules &nbsp;|&nbsp; Étape 2 : Choisissez la finition
-        </p>
-    </div>
+    <div class="calculator-container">
+        <h1>Simulateur de Devis (Plomberie & Sanitaire)</h1>
 
-    <div class="devis-container">
+        <div class="step">
+            <div class="step-title">1. Périmètre de l'Intervention</div>
+            <p class="step-subtitle">Sélectionnez la zone principale pour définir le contexte de nos travaux (prix initial de base ramené à 0€)</p>
+            <div class="options-grid" id="typeGrid">
+                <div class="option-card selected" data-name="Rénovation Salle de Bain Complète" data-price="0" onclick="selectType(this, 0)">
+                    <div>💎 Rénovation Salle de Bain Complète</div>
+                    <span class="perimetre-tag">Définit le contexte SDB</span>
+                </div>
+                <div class="option-card" data-name="Rénovation Cuisine Complète" data-price="0" onclick="selectType(this, 0)">
+                    <div>🍳 Rénovation Cuisine Complète</div>
+                    <span class="perimetre-tag">Définit le contexte Cuisine</span>
+                </div>
+                <div class="option-card" data-name="Installation Plomberie Neuve (Maison)" data-price="0" onclick="selectType(this, 0)">
+                    <div>🏠 Installation Plomberie Neuve</div>
+                    <span class="perimetre-tag">Définit le contexte Neuf / Gros Œuvre</span>
+                </div>
+                <div class="option-card" data-name="Remplacement Chauffe-Eau Seul" data-price="0" onclick="selectType(this, 0)">
+                    <div>🔥 Remplacement Chauffe-Eau Seul</div>
+                    <span class="perimetre-tag">Définit le contexte ECS uniquement</span>
+                </div>
+                <div class="option-card" data-name="Réaménagement Espace WC/Lavabo" data-price="0" onclick="selectType(this, 0)">
+                    <div>🚽 Réaménagement WC/Lavabo</div>
+                    <span class="perimetre-tag">Définit le contexte Pièce d'eau secondaire</span>
+                </div>
+                <div class="option-card" data-name="Création Point d'Eau (Lave-Linge/Évier)" data-price="0" onclick="selectType(this, 0)">
+                    <div>🧺 Création Arrivée/Évacuation</div>
+                    <span class="perimetre-tag">Définit le contexte Point d'eau isolé</span>
+                </div>
+            </div>
+        </div>
         
-        <form id="devisForm">
-            <div class="form-section module-group">
-                <h2>Modules Essentiels</h2>
-                <div class="module-list" id="modulesStandard">
-                    </div>
-            </div>
+        <div class="step" style="margin-top: 50px;">
+            <div class="step-title">2. Choix des Modules et Forfaits de Pose</div>
+            <p class="step-subtitle">Chaque prix inclut : le coût du Matériel (Fourniture) + le Forfait Main-d'œuvre (Pose & Raccordement)</p>
 
-            <div class="form-section module-group">
-                <h2>Modules Avancés</h2>
-                <div class="module-list" id="modulesPremium">
+            <div class="step-subtitle">WC, Vasques, Évacuations et Gaz</div>
+            <div class="options-grid">
+                <div class="option-group">
+                    <h3>WC (Fourniture & Pose)</h3>
+                    <div class="gamme-choice" data-category="WC">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="WC" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Conservation de l'existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="250" data-mo="250">
+                            <input type="radio" name="WC" value="Sur pied Standard" onchange="selectModule(this, 250, 250)">
+                            <span class="gamme-label">WC Sur pied Standard (M: 250€ + MO: 250€)
+                                <span class="gamme-details">Total : 500€</span>
+                            </span>
+                            <span class="gamme-price">500€</span>
+                        </label>
+                        <label class="gamme-item" data-m="550" data-mo="450">
+                            <input type="radio" name="WC" value="Suspendu Standard" onchange="selectModule(this, 550, 450)">
+                            <span class="gamme-label">WC Suspendu (M: 550€ + MO: 450€)
+                                <span class="gamme-details">Total : 1 000€</span>
+                            </span>
+                            <span class="gamme-price">1 000€</span>
+                        </label>
+                        <label class="gamme-item" data-m="1000" data-mo="500">
+                            <input type="radio" name="WC" value="Japonais" onchange="selectModule(this, 1000, 500)">
+                            <span class="gamme-label">WC Japonais / Lavant (M: 1 000€ + MO: 500€)
+                                <span class="gamme-details">Total : 1 500€</span>
+                            </span>
+                            <span class="gamme-price">1 500€</span>
+                        </label>
                     </div>
-            </div>
-
-            <div class="form-section">
-                <h2>Niveau de Finition</h2>
-                <div class="finitions-grid" id="finitions">
-                    <div class="finition-item" data-finition="Standard" data-multiplier="1.05">
-                        <h3>Standard</h3>
-                        <p>Matériaux fonctionnels, installation classique. **+5% M.O.**</p>
+                </div>
+                 <div class="option-group">
+                    <h3>Meuble Vasque (Fourniture & Pose)</h3>
+                    <div class="gamme-choice" data-category="VASQUE">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="VASQUE" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Conservation de l'existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="350" data-mo="250">
+                            <input type="radio" name="VASQUE" value="Meuble Simple" onchange="selectModule(this, 350, 250)">
+                            <span class="gamme-label">Meuble simple (M: 350€ + MO: 250€)
+                                <span class="gamme-details">Total : 600€</span>
+                            </span>
+                            <span class="gamme-price">600€</span>
+                        </label>
+                        <label class="gamme-item" data-m="600" data-mo="300">
+                            <input type="radio" name="VASQUE" value="Vasque à Poser" onchange="selectModule(this, 600, 300)">
+                            <span class="gamme-label">Vasque à poser (M: 600€ + MO: 300€)
+                                <span class="gamme-details">Total : 900€</span>
+                            </span>
+                            <span class="gamme-price">900€</span>
+                        </label>
+                        <label class="gamme-item" data-m="900" data-mo="400">
+                            <input type="radio" name="VASQUE" value="Double Vasque" onchange="selectModule(this, 900, 400)">
+                            <span class="gamme-label">Meuble Double Vasque (M: 900€ + MO: 400€)
+                                <span class="gamme-details">Total : 1 300€</span>
+                            </span>
+                            <span class="gamme-price">1 300€</span>
+                        </label>
                     </div>
-                    <div class="finition-item" data-finition="Design" data-multiplier="1.15">
-                        <h3>Design</h3>
-                        <p>Matériaux de qualité, robinetterie encastrée, raccordements invisibles. **+15% M.O.**</p>
+                </div>
+                 <div class="option-group">
+                    <h3>Raccordement Cuisine (Évier/Appareils)</h3>
+                    <div class="gamme-choice" data-category="CUISINE">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="CUISINE" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité (Pas de cuisine)</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="50" data-mo="300">
+                            <input type="radio" name="CUISINE" value="Simple" onchange="selectModule(this, 50, 300)">
+                            <span class="gamme-label">Évier simple + 1 appareil (M: 50€ + MO: 300€)
+                                <span class="gamme-details">Total : 350€</span>
+                            </span>
+                            <span class="gamme-price">350€</span>
+                        </label>
+                        <label class="gamme-item" data-m="100" data-mo="600">
+                            <input type="radio" name="CUISINE" value="Complet" onchange="selectModule(this, 100, 600)">
+                            <span class="gamme-label">Évier double + 2 appareils (M: 100€ + MO: 600€)
+                                <span class="gamme-details">Total : 700€</span>
+                            </span>
+                            <span class="gamme-price">700€</span>
+                        </label>
+                        <label class="gamme-item" data-m="200" data-mo="1100">
+                            <input type="radio" name="CUISINE" value="Cuisine Complète" onchange="selectModule(this, 200, 1100)">
+                            <span class="gamme-label">Plomberie complète de cuisine neuve (M: 200€ + MO: 1 100€)
+                                <span class="gamme-details">Total : 1 300€</span>
+                            </span>
+                            <span class="gamme-price">1 300€</span>
+                        </label>
                     </div>
-                    <div class="finition-item" data-finition="Premium" data-multiplier="1.30">
-                        <h3>Premium</h3>
-                        <p>Matériaux haut de gamme, domotique, plomberie entièrement optimisée. **+30% M.O.**</p>
+                </div>
+                 <div class="option-group">
+                    <h3>Raccordement Gaz</h3>
+                    <div class="gamme-choice" data-category="GAZ">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="GAZ" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité (Intervention uniquement sur l'eau)</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="50" data-mo="350">
+                            <input type="radio" name="GAZ" value="Standard" onchange="selectModule(this, 50, 350)">
+                            <span class="gamme-label">Raccordement gaz existant (M: 50€ + MO: 350€)
+                                <span class="gamme-details">Total : 400€</span>
+                            </span>
+                            <span class="gamme-price">400€</span>
+                        </label>
+                        <label class="gamme-item" data-m="150" data-mo="950">
+                            <input type="radio" name="GAZ" value="Création" onchange="selectModule(this, 150, 950)">
+                            <span class="gamme-label">Création nouvelle ligne gaz certifiée (M: 150€ + MO: 950€)
+                                <span class="gamme-details">Total : 1 100€</span>
+                            </span>
+                            <span class="gamme-price">1 100€</span>
+                        </label>
                     </div>
                 </div>
             </div>
-        </form>
 
-        <div class="recap-section">
-            <h2>Récapitulatif & Estimation TTC</h2>
-            <div id="recapDetail">
-                <div class="recap-line"><span>Modules de Matériel (Total)</span><span id="recapMaterial">0 €</span></div>
-                <div class="recap-line"><span>Main d'Œuvre (Base)</span><span id="recapLaborBase">0 €</span></div>
-                <div class="recap-line"><span>Multiplicateur Finition</span><span id="recapMultiplier">x 1.00</span></div>
-                <div class="recap-line"><span>Main d'Œuvre (Ajustée)</span><span id="recapLaborFinal">0 €</span></div>
+            <div class="step-subtitle" style="margin-top: 30px;">Douche, Baignoire et Colonne</div>
+            <div class="options-grid">
+                <div class="option-group">
+                    <h3>Receveur de Douche / Baignoire</h3>
+                    <div class="gamme-choice" data-category="DOUCHE_BAIGNOIRE">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="DOUCHE_BAIGNOIRE" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Conservation de l'existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="500" data-mo="1000">
+                            <input type="radio" name="DOUCHE_BAIGNOIRE" value="Douche Classique" onchange="selectModule(this, 500, 1000)">
+                            <span class="gamme-label">Douche Classique (M: 500€ + MO: 1 000€)
+                                <span class="gamme-details">Receveur acrylique, paroi simple</span>
+                            </span>
+                            <span class="gamme-price">1 500€</span>
+                        </label>
+                        <label class="gamme-item" data-m="1200" data-mo="1600">
+                            <input type="radio" name="DOUCHE_BAIGNOIRE" value="Douche Italienne" onchange="selectModule(this, 1200, 1600)">
+                            <span class="gamme-label">Douche Italienne (M: 1 200€ + MO: 1 600€)
+                                <span class="gamme-details">Receveur extra-plat à carreler / Bac résine</span>
+                            </span>
+                            <span class="gamme-price">2 800€</span>
+                        </label>
+                        <label class="gamme-item" data-m="600" data-mo="1300">
+                            <input type="radio" name="DOUCHE_BAIGNOIRE" value="Baignoire Simple" onchange="selectModule(this, 600, 1300)">
+                            <span class="gamme-label">Baignoire Acrylique (M: 600€ + MO: 1 300€)
+                                <span class="gamme-details">Standard, avec tablier simple</span>
+                            </span>
+                            <span class="gamme-price">1 900€</span>
+                        </label>
+                        <label class="gamme-item" data-m="2500" data-mo="1000">
+                            <input type="radio" name="DOUCHE_BAIGNOIRE" value="Baignoire Balnéo" onchange="selectModule(this, 2500, 1000)">
+                            <span class="gamme-label">Baignoire Balnéo (M: 2 500€ + MO: 1 000€)
+                                <span class="gamme-details">Système hydromassant (raccordement électrique inclus)</span>
+                            </span>
+                            <span class="gamme-price">3 500€</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3>Robinetterie Douche / Baignoire</h3>
+                    <div class="gamme-choice" data-category="COLONNE_DOUCHE">
+                         <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="COLONNE_DOUCHE" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Conservation de l'existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="100" data-mo="150">
+                            <input type="radio" name="COLONNE_DOUCHE" value="Mitigeur Simple + Douchette" onchange="selectModule(this, 100, 150)">
+                            <span class="gamme-label">Mitigeur simple (M: 100€ + MO: 150€)
+                                <span class="gamme-details">Apparent, douchette et support</span>
+                            </span>
+                            <span class="gamme-price">250€</span>
+                        </label>
+                        <label class="gamme-item" data-m="300" data-mo="250">
+                            <input type="radio" name="COLONNE_DOUCHE" value="Colonne Thermostatique Apparente" onchange="selectModule(this, 300, 250)">
+                            <span class="gamme-label">Colonne Thermostatique (M: 300€ + MO: 250€)
+                                <span class="gamme-details">Thermostat de sécurité, ciel de pluie</span>
+                            </span>
+                            <span class="gamme-price">550€</span>
+                        </label>
+                        <label class="gamme-item" data-m="500" data-mo="450">
+                            <input type="radio" name="COLONNE_DOUCHE" value="Mitigeur Encastré" onchange="selectModule(this, 500, 450)">
+                            <span class="gamme-label">Mitigeur/Thermostatique Encastré (M: 500€ + MO: 450€)
+                                <span class="gamme-details">Nécessite travaux de saignée/cloison</span>
+                            </span>
+                            <span class="gamme-price">950€</span>
+                        </label>
+                        <label class="gamme-item" data-m="800" data-mo="600">
+                            <input type="radio" name="COLONNE_DOUCHE" value="Encastré Multi-Jets" onchange="selectModule(this, 800, 600)">
+                            <span class="gamme-label">Système Encastré Multi-Jets (M: 800€ + MO: 600€)
+                                <span class="gamme-details">4 sorties (Jets, Douchette, Ciel de pluie)</span>
+                            </span>
+                            <span class="gamme-price">1 400€</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="option-group">
+                    <h3>Robinet Lavabo / Vasque</h3>
+                    <div class="gamme-choice" data-category="ROBINET_LAVABO">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="ROBINET_LAVABO" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Conservation de l'existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="70" data-mo="80">
+                            <input type="radio" name="ROBINET_LAVABO" value="Mitigeur Simple" onchange="selectModule(this, 70, 80)">
+                            <span class="gamme-label">Mitigeur Simple (M: 70€ + MO: 80€)
+                                <span class="gamme-details">Standard, chromé</span>
+                            </span>
+                            <span class="gamme-price">150€</span>
+                        </label>
+                        <label class="gamme-item" data-m="200" data-mo="100">
+                            <input type="radio" name="ROBINET_LAVABO" value="Hauteur Design" onchange="selectModule(this, 200, 100)">
+                            <span class="gamme-label">Mitigeur Hauteur Design (M: 200€ + MO: 100€)
+                                <span class="gamme-details">Pour vasque à poser ou installation murale</span>
+                            </span>
+                            <span class="gamme-price">300€</span>
+                        </label>
+                        <label class="gamme-item" data-m="350" data-mo="150">
+                            <input type="radio" name="ROBINET_LAVABO" value="Thermostatique" onchange="selectModule(this, 350, 150)">
+                            <span class="gamme-label">Mitigeur Thermostatique (M: 350€ + MO: 150€)
+                                <span class="gamme-details">Contrôle précis de la température</span>
+                            </span>
+                            <span class="gamme-price">500€</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3>Robinet Cuisine</h3>
+                    <div class="gamme-choice" data-category="ROBINET_CUISINE">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="ROBINET_CUISINE" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Conservation de l'existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="90" data-mo="80">
+                            <input type="radio" name="ROBINET_CUISINE" value="Mitigeur Simple" onchange="selectModule(this, 90, 80)">
+                            <span class="gamme-label">Mitigeur Simple (M: 90€ + MO: 80€)
+                                <span class="gamme-details">Bec simple standard</span>
+                            </span>
+                            <span class="gamme-price">170€</span>
+                        </label>
+                        <label class="gamme-item" data-m="250" data-mo="100">
+                            <input type="radio" name="ROBINET_CUISINE" value="Douchette Extractible" onchange="selectModule(this, 250, 100)">
+                            <span class="gamme-label">Mitigeur avec douchette (M: 250€ + MO: 100€)
+                                <span class="gamme-details">Flexibilité pour lavage évier</span>
+                            </span>
+                            <span class="gamme-price">350€</span>
+                        </label>
+                        <label class="gamme-item" data-m="500" data-mo="100">
+                            <input type="radio" name="ROBINET_CUISINE" value="Filtre Intégré" onchange="selectModule(this, 500, 100)">
+                            <span class="gamme-label">Mitigeur filtration intégrée (M: 500€ + MO: 100€)
+                                <span class="gamme-details">Pour eau potable purifiée</span>
+                            </span>
+                            <span class="gamme-price">600€</span>
+                        </label>
+                    </div>
+                </div>
             </div>
-            <div class="recap-line total">
-                <span>ESTIMATION TOTALE</span>
-                <span id="recapTotal">0 €</span>
+
+            <div class="step-subtitle" style="margin-top: 30px;">Production d'Eau Chaude (ECS), Vannes et Canalisations</div>
+            <div class="options-grid">
+                <div class="option-group">
+                    <h3>Production d'Eau Chaude (ECS)</h3>
+                    <div class="gamme-choice" data-category="ECS">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="ECS" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Conservation du chauffe-eau existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="600" data-mo="400">
+                            <input type="radio" name="ECS" value="Chauffe-Eau 150L Standard" onchange="selectModule(this, 600, 400)">
+                            <span class="gamme-label">Chauffe-Eau 150L Standard (M: 600€ + MO: 400€)
+                                <span class="gamme-details">Remplacement ballon électrique pour 2-3 personnes</span>
+                            </span>
+                            <span class="gamme-price">1 000€</span>
+                        </label>
+                        <label class="gamme-item" data-m="900" data-mo="500">
+                            <input type="radio" name="ECS" value="Chauffe-Eau 200L Thermodynamique" onchange="selectModule(this, 900, 500)">
+                            <span class="gamme-label">Chauffe-Eau 200L Thermodynamique (M: 900€ + MO: 500€)
+                                <span class="gamme-details">Économies d'énergie, éligible aux aides d'État</span>
+                            </span>
+                            <span class="gamme-price">1 400€</span>
+                        </label>
+                        <label class="gamme-item" data-m="1500" data-mo="600">
+                            <input type="radio" name="ECS" value="Chauffe-Eau Gaz" onchange="selectModule(this, 1500, 600)">
+                            <span class="gamme-label">Chauffe-Eau Gaz à Condensation (M: 1 500€ + MO: 600€)
+                                <span class="gamme-details">Pour chauffage et ECS, rendement maximal</span>
+                            </span>
+                            <span class="gamme-price">2 100€</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3>Réseau (Matériau de Tuyauterie)</h3>
+                    <div class="gamme-choice" data-category="TUYAUTERIE">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="TUYAUTERIE" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Conservation du réseau existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="300" data-mo="700">
+                            <input type="radio" name="TUYAUTERIE" value="PER Simple" onchange="selectModule(this, 300, 700)">
+                            <span class="gamme-label">PER (M: 300€ + MO: 700€)
+                                <span class="gamme-details">Polyéthylène Réticulé, simple et rapide</span>
+                            </span>
+                            <span class="gamme-price">1 000€</span>
+                        </label>
+                        <label class="gamme-item" data-m="500" data-mo="1000">
+                            <input type="radio" name="TUYAUTERIE" value="Multicouche" onchange="selectModule(this, 500, 1000)">
+                            <span class="gamme-label">Multicouche (M: 500€ + MO: 1 000€)
+                                <span class="gamme-details">Isolation, durabilité, moins de dilatation</span>
+                            </span>
+                            <span class="gamme-price">1 500€</span>
+                        </label>
+                        <label class="gamme-item" data-m="800" data-mo="1700">
+                            <input type="radio" name="TUYAUTERIE" value="Cuivre" onchange="selectModule(this, 800, 1700)">
+                            <span class="gamme-label">Cuivre (M: 800€ + MO: 1 700€)
+                                <span class="gamme-details">Soudure, résistance maximale, travaux de soudures</span>
+                            </span>
+                            <span class="gamme-price">2 500€</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3>Vannes et Raccordements</h3>
+                    <div class="gamme-choice" data-category="VANNES">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="VANNES" value="Existant" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Conservation de l'existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="50" data-mo="150">
+                            <input type="radio" name="VANNES" value="Standard" onchange="selectModule(this, 50, 150)">
+                            <span class="gamme-label">Ajout de vannes d'arrêt pour 1-2 appareils (M: 50€ + MO: 150€)
+                                <span class="gamme-details">Pour isolation WC/Vasque</span>
+                            </span>
+                            <span class="gamme-price">200€</span>
+                        </label>
+                        <label class="gamme-item" data-m="150" data-mo="450">
+                            <input type="radio" name="VANNES" value="Général" onchange="selectModule(this, 150, 450)">
+                            <span class="gamme-label">Installation bloc vannes général (M: 150€ + MO: 450€)
+                                <span class="gamme-details">Collecteur d'eau chaude/froide avec robinets d'arrêt</span>
+                            </span>
+                            <span class="gamme-price">600€</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3>Traitement de l'Eau</h3>
+                    <div class="gamme-choice" data-category="EAU">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="EAU" value="Existant" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Système existant</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="1500" data-mo="400">
+                            <input type="radio" name="EAU" value="Adoucisseur Standard" onchange="selectModule(this, 1500, 400)">
+                            <span class="gamme-label">Adoucisseur d'eau (M: 1 500€ + MO: 400€)
+                                <span class="gamme-details">Installation à l'arrivée générale pour protection des appareils</span>
+                            </span>
+                            <span class="gamme-price">1 900€</span>
+                        </label>
+                        <label class="gamme-item" data-m="2500" data-mo="500">
+                            <input type="radio" name="EAU" value="Adoucisseur Premium" onchange="selectModule(this, 2500, 500)">
+                            <span class="gamme-label">Adoucisseur d'eau connecté (M: 2 500€ + MO: 500€)
+                                <span class="gamme-details">Modèle intelligent, maintenance prédictive</span>
+                            </span>
+                            <span class="gamme-price">3 000€</span>
+                        </label>
+                    </div>
+                </div>
             </div>
-            <div class="submit-container">
-                <button id="submitDevis" disabled>Valider et demander contact (gratuit)</button>
+
+            <div class="step-subtitle" style="margin-top: 30px;">Travaux Spécifiques (Démontage et Évacuations)</div>
+            <div class="options-grid">
+                <div class="option-group">
+                    <h3>Dépose des Équipements</h3>
+                    <div class="gamme-choice" data-category="DEPOSE">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="DEPOSE" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Intervention 100% neuve</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="0" data-mo="300">
+                            <input type="radio" name="DEPOSE" value="Minimal" onchange="selectModule(this, 0, 300)">
+                            <span class="gamme-label">Minimal (MO: 300€)
+                                <span class="gamme-details">Démontage facile d'un ou deux éléments (WC, Vasque)</span>
+                            </span>
+                            <span class="gamme-price">300€</span>
+                        </label>
+                        <label class="gamme-item" data-m="0" data-mo="750">
+                            <input type="radio" name="DEPOSE" value="Standard" onchange="selectModule(this, 0, 750)">
+                            <span class="gamme-label">Standard (MO: 750€)
+                                <span class="gamme-details">Démontage complet SDB ou Cuisine, évacuation gravats</span>
+                            </span>
+                            <span class="gamme-price">750€</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3>Modifications d'Évacuations</h3>
+                    <div class="gamme-choice" data-category="EVACUATIONS">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="EVACUATIONS" value="Minimal" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Minimal (Raccordements existants, pas de modification)</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="100" data-mo="700">
+                            <input type="radio" name="EVACUATIONS" value="Simple" onchange="selectModule(this, 100, 700)">
+                            <span class="gamme-label">Simple (M: 100€ + MO: 700€)
+                                <span class="gamme-details">Déplacement léger dans la même pièce (moins de 1m)</span>
+                            </span>
+                            <span class="gamme-price">800€</span>
+                        </label>
+                        <label class="gamme-item" data-m="250" data-mo="1800">
+                            <input type="radio" name="EVACUATIONS" value="Complexe" onchange="selectModule(this, 250, 1800)">
+                            <span class="gamme-label">Complexe (M: 250€ + MO: 1 800€)
+                                <span class="gamme-details">Création de nouvelles colonnes/chutes, traversée de mur</span>
+                            </span>
+                            <span class="gamme-price">2 050€</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3>Sani-Broyeur (WC)</h3>
+                    <div class="gamme-choice" data-category="SANIBROYEUR">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="SANIBROYEUR" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / WC à évacuation gravitaire classique</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="500" data-mo="300">
+                            <input type="radio" name="SANIBROYEUR" value="WC" onchange="selectModule(this, 500, 300)">
+                            <span class="gamme-label">Sani-Broyeur WC seul (M: 500€ + MO: 300€)
+                                <span class="gamme-details">Pour pièce sans évacuation principale</span>
+                            </span>
+                            <span class="gamme-price">800€</span>
+                        </label>
+                        <label class="gamme-item" data-m="700" data-mo="400">
+                            <input type="radio" name="SANIBROYEUR" value="Multi-Appareils" onchange="selectModule(this, 700, 400)">
+                            <span class="gamme-label">Sani-Broyeur Multi-Appareils (M: 700€ + MO: 400€)
+                                <span class="gamme-details">Pour WC, Lavabo et Douche (cave, garage...)</span>
+                            </span>
+                            <span class="gamme-price">1 100€</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3>Accessibilité (PMR/Sénior)</h3>
+                    <div class="gamme-choice" data-category="ACCESSIBILITE">
+                        <label class="gamme-item non-souhaite selected" data-m="0" data-mo="0">
+                            <input type="radio" name="ACCESSIBILITE" value="Non Souhaité" checked onchange="selectModule(this, 0, 0)">
+                            <span class="gamme-label">Non souhaité / Configuration standard</span>
+                            <span class="gamme-price">0€</span>
+                        </label>
+                        <label class="gamme-item" data-m="200" data-mo="300">
+                            <input type="radio" name="ACCESSIBILITE" value="Barres Appui" onchange="selectModule(this, 200, 300)">
+                            <span class="gamme-label">Barres d'appui (M: 200€ + MO: 300€)
+                                <span class="gamme-details">Fourniture et installation de 2 barres sécurisées</span>
+                            </span>
+                            <span class="gamme-price">500€</span>
+                        </label>
+                        <label class="gamme-item" data-m="800" data-mo="500">
+                            <input type="radio" name="ACCESSIBILITE" value="Siege Douche" onchange="selectModule(this, 800, 500)">
+                            <span class="gamme-label">Siège de douche rabattable (M: 800€ + MO: 500€)
+                                <span class="gamme-details">Modèle de haute qualité, fixation renforcée</span>
+                            </span>
+                            <span class="gamme-price">1 300€</span>
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
 
-    </div> <footer>
-        <div class="footer-links" style="margin-bottom: 10px;">
-            <a href="mentions-legales.html">Mentions Légales</a>
-            <span>|</span>
-            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+        <div class="step" style="margin-top: 50px;">
+            <div class="step-title">3. Niveau de Complexité Globale (Main-d'œuvre supplémentaire)</div>
+            <p class="step-subtitle">Ce coefficient s'applique à la totalité de la main-d'œuvre pour couvrir des défis non prévus (accès, bâti ancien, murs durs, etc.)</p>
+            <div class="options-grid" id="gammeGrid">
+                <div class="option-card selected" data-name="Complexité Standard" data-mult="1" onclick="selectGamme(this, 1)">
+                    <div>Standard (Parfaitement adapté aux choix ci-dessus)</div>
+                    <span class="perimetre-tag">Multiplicateur : x1.0 (0% de supplément)</span>
+                </div>
+                <div class="option-card" data-name="Accessibilité Difficile" data-mult="1.15" onclick="selectGamme(this, 1.15)">
+                    <div>Accessibilité Difficile</div>
+                    <span class="perimetre-tag">Multiplicateur : x1.15 (+15% sur la MO)</span>
+                </div>
+                <div class="option-card" data-name="Imprévus/Défis Techniques" data-mult="1.3" onclick="selectGamme(this, 1.3)">
+                    <div>Défis Techniques (Bâti ancien, matériaux non standard)</div>
+                    <span class="perimetre-tag">Multiplicateur : x1.3 (+30% sur la MO)</span>
+                </div>
+            </div>
         </div>
-        <p>&copy; 2025 Plomberie Dutuyau.</p>
-    </footer>
+
+        <div class="total-box">
+            <h3>Estimation indicative TTC (Matériel + Main-d'œuvre)</h3>
+            <div class="total-price" id="displayTotal">0€</div>
+            <p style="opacity: 0.7; font-size: 14px; margin-top: 10px;">
+                Ce montant est une estimation TTC. Il inclut le coût du matériel (Fourniture) et le forfait de pose (Main-d'œuvre).
+                <br>Soumis à visite technique obligatoire pour validation finale.
+            </p>
+            <br>
+            <button class="cta-button" onclick="processDevis()">Prendre RDV pour valider</button>
+        </div>
+    </div>
 
     <script>
-        // Data Structure pour les modules
-        const modulesData = [
-            { id: 'sdb', group: 'standard', name: "Installation SDB Complète", mat: 3500, mo: 1800, desc: "Rénovation complète : Douche, baignoire, vasque, WC. (Hors carrelage)" },
-            { id: 'cuisine', group: 'standard', name: "Plomberie Cuisine", mat: 1200, mo: 800, desc: "Raccordements évier, lave-vaisselle, îlot central. (Hors meubles)" },
-            { id: 'wc', group: 'standard', name: "Installation WC Suspendu", mat: 550, mo: 350, desc: "Fourniture cuvette, bâti-support et pose. (Hors placo/peinture)" },
-            { id: 'chauffeeau', group: 'standard', name: "Chauffe-eau 150L Standard", mat: 600, mo: 300, desc: "Fourniture et remplacement d'un ballon électrique 150L." },
-            
-            { id: 'adoucisseur', group: 'premium', name: "Adoucisseur d'eau Pro", mat: 2500, mo: 500, desc: "Fourniture et raccordement de l'adoucisseur à l'arrivée principale." },
-            { id: 'pac', group: 'premium', name: "Pompe à Chaleur Air/Eau", mat: 9000, mo: 3500, desc: "Étude, fourniture et pose d'une PAC (hors gaines/radiateurs spécifiques)." },
-            { id: 'baignoireilo', group: 'premium', name: "Baignoire Îlot", mat: 1500, mo: 700, desc: "Installation d'une baignoire îlot et raccordements au sol." },
-            { id: 'doucheitalienne', group: 'premium', name: "Douche à l'italienne", mat: 800, mo: 600, desc: "Création bac de douche encastré et étanchéité (hors verre/carrelage)." }
-        ];
+        // Store all selected module details (price, name, M=Matériel, MO=Main-d'œuvre)
+        let selectedModules = {
+            // Étape 1: Le projet principal (ne coûte rien, mais est envoyé)
+            PROJECT: { name: "Périmètre de l'Intervention: Rénovation Salle de Bain Complète", price_m: 0, price_mo: 0, total: 0 },
+            // Étape 2: Les modules
+            WC: { name: "WC (Fourniture & Pose): Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            VASQUE: { name: "Meuble Vasque (Fourniture & Pose): Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            CUISINE: { name: "Raccordement Cuisine (Évier/Appareils): Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            GAZ: { name: "Raccordement Gaz: Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            DOUCHE_BAIGNOIRE: { name: "Receveur de Douche / Baignoire: Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            COLONNE_DOUCHE: { name: "Robinetterie Douche / Baignoire: Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            ROBINET_LAVABO: { name: "Robinet Lavabo / Vasque: Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            ROBINET_CUISINE: { name: "Robinet Cuisine: Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            ECS: { name: "Production d'Eau Chaude (ECS): Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            TUYAUTERIE: { name: "Réseau (Matériau de Tuyauterie): Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            VANNES: { name: "Vannes et Raccordements: Existant", price_m: 0, price_mo: 0, total: 0 },
+            EAU: { name: "Traitement de l'Eau: Existant", price_m: 0, price_mo: 0, total: 0 },
+            DEPOSE: { name: "Dépose des Équipements: Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            EVACUATIONS: { name: "Modifications d'Évacuations: Minimal", price_m: 0, price_mo: 0, total: 0 },
+            SANIBROYEUR: { name: "Sani-Broyeur (WC): Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+            ACCESSIBILITE: { name: "Accessibilité (PMR/Sénior): Non Souhaité", price_m: 0, price_mo: 0, total: 0 },
+        };
+        let multiplier = 1; // Multiplicateur de la Gamme (Complexité Standard par défaut)
+        let selectedFinition = "Complexité Standard";
 
-        // État du Devis
-        let selectedModules = new Set();
-        let selectedFinition = 'Standard'; 
-        let multiplier = 1.05; // Standard par défaut
+        // Initialisation de l'affichage du total au chargement
+        window.onload = function() {
+            // Set the correct radio button checked attribute and selected class based on the 0€ default
+            document.querySelectorAll('.gamme-choice').forEach(group => {
+                // Find the default option (usually the first one with 0 total price)
+                const defaultRadio = group.querySelector('input[type="radio"][checked]');
 
-        // Récupération des conteneurs
-        const modulesStandardEl = document.getElementById('modulesStandard');
-        const modulesPremiumEl = document.getElementById('modulesPremium');
-        const finitionsEl = document.getElementById('finitions');
-        const submitButton = document.getElementById('submitDevis');
+                // Ensure no other radio is checked and select the 0€ option
+                group.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.checked = false;
+                    radio.closest('.gamme-item').classList.remove('selected');
+                });
 
-        // Fonctions de rendu
-        function renderModules() {
-            // Vider les conteneurs existants
-            modulesStandardEl.innerHTML = '';
-            modulesPremiumEl.innerHTML = '';
-
-            modulesData.forEach(module => {
-                const isSelected = selectedModules.has(module.id);
-                const container = module.group === 'standard' ? modulesStandardEl : modulesPremiumEl;
-
-                const moduleEl = document.createElement('div');
-                moduleEl.className = 'module-item' + (isSelected ? ' selected' : '');
-                moduleEl.setAttribute('data-id', module.id);
-                moduleEl.innerHTML = `
-                    <label>
-                        <input type="checkbox" name="module" value="${module.id}" ${isSelected ? 'checked' : ''}>
-                        <div class="custom-checkbox"></div>
-                        <div class="module-content">
-                            <h3>${module.name}</h3>
-                            <p>${module.desc}</p>
-                            <span>Matériel : ${module.mat} € | M.O. : ${module.mo} €</span>
-                        </div>
-                    </label>
-                `;
-                
-                moduleEl.onclick = function(event) {
-                    // Évite de déclencher l'événement si on clique sur la checkbox elle-même (gestion par le label)
-                    if (event.target.tagName !== 'INPUT') {
-                        // Inversion de l'état
-                        const checkbox = moduleEl.querySelector('input[type="checkbox"]');
-                        checkbox.checked = !checkbox.checked;
-                        toggleModule(module.id, checkbox.checked);
-                    }
-                };
-
-                // Gestion du clic direct sur la checkbox pour synchronisation
-                moduleEl.querySelector('input[type="checkbox"]').onchange = function(event) {
-                    toggleModule(module.id, event.target.checked);
-                };
-
-                container.appendChild(moduleEl);
-            });
-        }
-
-        function renderFinitions() {
-            Array.from(finitionsEl.children).forEach(item => {
-                const finition = item.getAttribute('data-finition');
-                item.className = 'finition-item' + (finition === selectedFinition ? ' selected' : '');
-            });
-        }
-
-        function toggleModule(id, isChecked) {
-            if (isChecked) {
-                selectedModules.add(id);
-            } else {
-                selectedModules.delete(id);
-            }
-            updateRecap();
-            renderModules(); // Re-rendu pour mettre à jour les classes .selected
-        }
-
-        function selectFinition(finition, mult) {
-            selectedFinition = finition;
-            multiplier = parseFloat(mult);
-            updateRecap();
-            renderFinitions(); // Re-rendu pour mettre à jour les classes .selected
-        }
-
-        function updateRecap() {
-            let totalMaterialCost = 0;
-            let totalLaborCost = 0;
-            let modulesDetails = [];
-
-            // Calcul des coûts et détails
-            modulesData.forEach(module => {
-                if (selectedModules.has(module.id)) {
-                    totalMaterialCost += module.mat;
-                    totalLaborCost += module.mo;
-                    modulesDetails.push(module.name);
+                if (defaultRadio) {
+                    defaultRadio.checked = true;
+                    defaultRadio.closest('.gamme-item').classList.add('selected');
+                    // Ensure the state in selectedModules is correct based on the initial check
+                    const category = group.getAttribute('data-category');
+                    // Reset to 0 just in case the initial state setup was missed
+                    selectedModules[category] = { 
+                        name: selectedModules[category].name, 
+                        price_m: 0, 
+                        price_mo: 0, 
+                        total: 0 
+                    };
                 }
             });
 
-            // Application du multiplicateur de main d'œuvre
-            const finalLaborCost = totalLaborCost * multiplier;
-            const finalTotal = totalMaterialCost + finalLaborCost;
+            // Ensure the main project type is selected
+            document.querySelector('#typeGrid .option-card').classList.add('selected');
+            calculate();
+        };
 
-            // Mise à jour de l'affichage
-            document.getElementById('recapMaterial').textContent = totalMaterialCost.toFixed(0) + ' €';
-            document.getElementById('recapLaborBase').textContent = totalLaborCost.toFixed(0) + ' €';
-            document.getElementById('recapMultiplier').textContent = 'x ' + multiplier.toFixed(2);
-            document.getElementById('recapLaborFinal').textContent = finalLaborCost.toFixed(0) + ' €';
-            document.getElementById('recapTotal').textContent = finalTotal.toFixed(0) + ' €';
+        // Function to select the main project (Single Select)
+        function selectType(el, price) {
+            document.querySelectorAll('#typeGrid .option-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            const name = el.getAttribute('data-name');
+            selectedModules.PROJECT = { name: `Périmètre de l'Intervention: ${name}`, price_m: 0, price_mo: 0, total: price };
+            calculate();
+        }
 
-            // Activation/Désactivation du bouton
-            if (selectedModules.size > 0 && multiplier
+        // Function to select a module (Radio Button)
+        function selectModule(radio, price_m, price_mo) {
+            const container = radio.closest('.gamme-choice');
+            const category = container.getAttribute('data-category');
+            const item = radio.closest('.gamme-item');
+            
+            // Unselect all items in this group and select the new one
+            container.querySelectorAll('.gamme-item').forEach(c => c.classList.remove('selected'));
+            item.classList.add('selected');
+
+            // Format the name
+            const label = item.querySelector('.gamme-label').textContent.trim();
+            const moduleName = label.split(' (M:')[0].trim() || label.split('Total :')[0].trim();
+            const title = item.closest('.option-group').querySelector('h3').textContent.trim();
+            const cleanTitle = title.replace(/\s*\(.*\)\s*/g, '').trim(); // Remove parenthetical details from title
+
+            const total = price_m + price_mo;
+
+            selectedModules[category] = {
+                name: `${cleanTitle}: ${moduleName}`,
+                price_m: price_m,
+                price_mo: price_mo,
+                total: total
+            };
+            calculate();
+        }
+
+        // Function to select the global finish multiplier (Single Select)
+        function selectGamme(el, mult) {
+            document.querySelectorAll('#gammeGrid .option-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            multiplier = mult;
+            selectedFinition = el.getAttribute('data-name');
+            calculate();
+        }
+
+        // Dynamic Total Calculation Function
+        function calculate() {
+            let totalMaterialCost = 0; // Coût total des fournitures (Matériel)
+            let totalLaborCost = 0; // Coût total de la main-d'œuvre (Pose)
+
+            // 1. Calculate the sum of all module costs (excluding the PROJECT, which is 0)
+            for (const key in selectedModules) {
+                if (key !== 'PROJECT' && selectedModules.hasOwnProperty(key)) {
+                    totalMaterialCost += selectedModules[key].price_m;
+                    totalLaborCost += selectedModules[key].price_mo;
+                }
+            }
+
+            // 2. Apply the global finish multiplier ONLY to the labor cost
+            let finalLaborCost = totalLaborCost * multiplier;
+
+            // 3. Final Total
+            let finalTotal = totalMaterialCost + finalLaborCost;
+
+            // Affichage
+            document.getElementById('displayTotal').innerText = finalTotal.toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + "€";
+        }
+
+        // Function to process the devis and send data to webhook
+        function processDevis() {
+            
+            let modulesDetails = [];
+            let totalMaterialCost = 0;
+            let totalLaborCost = 0;
+            let finalLaborCost = 0;
+            let finalTotal = 0;
+
+            // Collecter les détails finaux
+            for (const key in selectedModules) {
+                if (selectedModules.hasOwnProperty(key) && selectedModules[key].total > 0 || key === 'PROJECT') {
+                    modulesDetails.push(selectedModules[key].name);
+                    totalMaterialCost += selectedModules[key].price_m;
+                    totalLaborCost += selectedModules[key].price_mo;
+                }
+            }
+            finalLaborCost = totalLaborCost * multiplier;
+            finalTotal = totalMaterialCost + finalLaborCost;
+
+            // Préparation des données pour le webhook
+            const devisData = {
+                
+                complexite_globale: selectedFinition,
+                multiplicateur_complexite: multiplier,
+                
+                options_selectionnees_detail: modulesDetails, // Liste des noms des options
+                
+                cout_materiel_base: totalMaterialCost,
+                cout_main_oeuvre_base: totalLaborCost,
+                cout_main_oeuvre_final: finalLaborCost,
+                estimation_ttc_finale: finalTotal,
+                timestamp: new Date().toISOString()
+            };
+
+            // NOUVELLE URL du webhook Make.com
+            const webhookUrl = 'https://hook.eu2.make.com/ih6avqq4qxpn2099vpmah59b78i8pop8';
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(devisData),
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Webhook Make.com envoyé avec succès.');
+                } else {
+                    console.error('Erreur lors de l\'envoi du Webhook Make.com. Statut:', response.status);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur réseau/fetch:', error);
+            })
+            .finally(() => {
+                // Redirection VERS LA PAGE INTERVENTION.HTML
+                window.location.href = 'intervention.html';
+            });
+        }
+    </script>
+</body>
+</html>
