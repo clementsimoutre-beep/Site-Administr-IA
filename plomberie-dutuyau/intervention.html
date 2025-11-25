@@ -1,3 +1,16 @@
+J'ai effectué les modifications demandées sur le fichier **`intervention.html`**.
+
+J'ai ajouté :
+
+1.  **La bannière rouge fixe** avec le texte d'avertissement spécifié.
+2.  **Les liens Mentions Légales et Politique de Confidentialité** dans un nouveau pied de page (`<footer>`).
+3.  **Le CSS nécessaire** pour ces éléments, et j'ai ajusté le `padding-top` du `body` et la position de la `nav` pour éviter que la bannière ne masque la navigation.
+
+-----
+
+## 🛠️ Fichier `intervention.html` Modifié
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,23 +27,23 @@
             background: #000;
             color: #fff;
             line-height: 1.6;
-            padding-top: 50px;
+            /* AJUSTEMENT DU BODY POUR LA BANNIÈRE */
+            padding-top: 38px; 
         }
 
-        /* BANDEAU D'ALERTE */
-        .warning-banner {
+        /* NOUVEAU : BANNIÈRE D'AVERTISSEMENT */
+        .alert-banner {
             position: fixed; top: 0; left: 0; width: 100%;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            color: white; padding: 12px 20px;
-            text-align: center; font-weight: 600; font-size: 14px;
-            z-index: 2000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            display: flex; align-items: center; justify-content: center; gap: 15px;
+            background: #d90000; /* Rouge vif */
+            color: white; text-align: center; padding: 8px 0;
+            font-size: 14px; font-weight: 600; z-index: 2000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         /* NAVIGATION */
         nav {
-            position: fixed; top: 45px;
+            /* AJUSTEMENT DE LA NAVIGATION POUR LAISSER LA PLACE À LA BANNIÈRE */
+            position: fixed; top: 38px;
             width: 100%; padding: 20px 60px;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; background: rgba(0, 0, 0, 0.85);
@@ -56,7 +69,9 @@
 
         /* HEADER */
         .header-section {
-            padding-top: 150px; text-align: center; margin-bottom: 40px; padding-left: 20px; padding-right: 20px;
+            /* AJUSTEMENT DU PADDING TOP */
+            padding-top: 120px; 
+            text-align: center; margin-bottom: 40px; padding-left: 20px; padding-right: 20px;
         }
         h1 {
             font-size: 48px; font-weight: 900; margin-bottom: 20px;
@@ -106,24 +121,36 @@
             /* transition: height 0.2s linear; */ 
         }
 
+        /* NOUVEAU : STYLES DU FOOTER */
         footer {
             text-align: center; padding: 40px;
             border-top: 1px solid rgba(255,255,255,0.1); color: #888;
         }
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: #00f5ff; /* Primary color */
+        }
 
         @media (max-width: 900px) {
-            nav { padding: 20px; top: 45px; }
+            nav { padding: 20px; top: 38px; } /* Ajusté */
             .nav-links a:not(.cta-btn) { display: none; }
             h1 { font-size: 36px; }
             .form-container { padding: 15px; }
             .demo-container { flex-direction: column; padding: 20px; }
+            /* AJUSTEMENT DU PADDING TOP GLOBAL MOBILE */
+            body { padding-top: 38px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="warning-banner">
-        <span>⚠️ Site fictif pour démonstration - Testez les solutions d'Administr-IA</span>
+    <div class="alert-banner">
+        ⚠️ Site témoin pour tester les solutions Administr-IA. Toutes les informations et photos sont fictives.
     </div>
 
     <nav>
@@ -151,19 +178,27 @@
         <div class="form-container" id="formContainer">
             <div class="iframe-wrapper">
                 <iframe 
-                    /* Retrait du dynamicHeight=1 car la hauteur est fixe */
                     src="https://tally.so/r/mV2l5a?transparentBackground=1&alignLeft=1" 
                     id="tallyFrame" 
                     frameborder="0" 
                     marginheight="0" 
                     marginwidth="0" 
                     title="Formulaire de réservation Plomberie Dutuyau" 
-                    /* Le scrolling est géré par l'iframe elle-même si le contenu est trop long */
                     scrolling="auto"> 
                 </iframe>
             </div>
         </div>
     </section>
 
-    </body>
+    <footer>
+        <div class="footer-links" style="margin-bottom: 10px;">
+            <a href="mentions-legales.html">Mentions Légales</a>
+            <span>|</span>
+            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+        </div>
+        <p>&copy; 2025 Plomberie Dutuyau.</p>
+    </footer>
+
+</body>
 </html>
+```
