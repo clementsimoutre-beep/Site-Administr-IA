@@ -480,7 +480,8 @@
             ),
             React.createElement('div', { className: "glass ring-1 ring-white/10 rounded-2xl p-6" },
               React.createElement('h3', { className: "font-bold text-lg mb-2 text-cyan-400" }, "🛠️ Et si j'ai un problème ?"),
-              React.createElement('p', { className: "text-white/70" }, "Vous m'appelez ou m'écrivez, je réponds. Pas de ticket de support, pas d'attente de 48h. Support inclus dans tous les abonnements.")
+              // Ligne modifiée pour ajouter le numéro de téléphone
+              React.createElement('p', { className: "text-white/70" }, "Vous m'appelez au 07 46 38 58 31 ou m'écrivez, je réponds. Pas de ticket de support, pas d'attente de 48h. Support inclus dans tous les abonnements.")
             ),
             React.createElement('div', { className: "glass ring-1 ring-white/10 rounded-2xl p-6" },
               React.createElement('h3', { className: "font-bold text-lg mb-2 text-cyan-400" }, "🤔 Je ne suis pas tech, je vais y arriver ?"),
@@ -509,8 +510,11 @@
                 React.createElement('p', { className: "text-white/80 leading-relaxed mb-3" }, 
                   "Mon objectif : vous aider à vous libérer des tâches répétitives pour vous concentrer sur ce qui compte vraiment. Si l'administratif vous fait perdre du temps, je veux vous aider à le récupérer."
                 ),
+                // Ligne modifiée pour ajouter le numéro de téléphone
                 React.createElement('p', { className: "text-cyan-400 font-semibold" }, 
-                  "📧 clement@administr-ia.fr"
+                  "📧 clement@administr-ia.fr", 
+                  React.createElement('span', { className: "text-white/60 mx-3" }, "•"),
+                  "📞 07 46 38 58 31"
                 )
               )
             ),
@@ -537,6 +541,10 @@
               React.createElement('div', { className: "flex flex-col sm:flex-row gap-4 justify-center items-center" },
                 React.createElement('a', { href: "mailto:clement@administr-ia.fr", className: "gradient-ring rounded-2xl px-8 py-4 text-lg font-bold inline-block hover:shadow-neon transition-all transform hover:scale-110 w-full sm:w-auto" },
                   React.createElement('span', { className: "relative z-10" }, "📧 clement@administr-ia.fr")
+                ),
+                // Bloc ajouté pour le numéro de téléphone
+                React.createElement('a', { href: "tel:0746385831", className: "gradient-ring rounded-2xl px-8 py-4 text-lg font-bold inline-block hover:shadow-neon transition-all transform hover:scale-110 w-full sm:w-auto" },
+                  React.createElement('span', { className: "relative z-10" }, "📞 07 46 38 58 31")
                 )
               ),
               React.createElement('p', { className: "text-white/60 text-sm mt-6" }, "Diagnostic gratuit • Sans engagement • Réponse sous 48h")
@@ -557,7 +565,10 @@
               )
             ),
             React.createElement('div', { className: "flex gap-3 items-center" },
-              React.createElement('a', { href: "mailto:clement@administr-ia.fr", className: "hover:text-white" }, "clement@administr-ia.fr")
+              React.createElement('a', { href: "mailto:clement@administr-ia.fr", className: "hover:text-white" }, "clement@administr-ia.fr"),
+              // Ligne modifiée pour ajouter le numéro de téléphone
+              React.createElement('span', null, "•"),
+              React.createElement('a', { href: "tel:0746385831", className: "hover:text-white" }, "07 46 38 58 31")
             )
           )
         )
