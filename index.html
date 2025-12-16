@@ -12,7 +12,7 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Administr-IA – Automatisation IA pour communes et artisans en Alsace</title>
-    <meta name="description" content="Administr-IA : automatisations intelligentes et IA pour mairies, artisans et TPE en Alsace. Gagnez 10h/semaine, réduisez l'administratif de 70%." />
+    <meta name="description" content="Administr-IA : automatisations intelligentes et IA pour mairies, artisans et TPE/PME en Alsace. Gagnez 10h/semaine, réduisez l'administratif de 70%." />
     <link rel="icon" href="assets/logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -214,16 +214,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             ),
             React.createElement('nav', { className: "hidden lg:flex gap-4 items-center" },
               React.createElement('a', { href: "#vision", className: "gradient-ring rounded-2xl px-5 py-2.5 text-sm font-bold text-white hover:shadow-neon transition-all hover:scale-105" },
-                React.createElement('span', { className: "relative z-10" }, "✨ Pourquoi Administr-IA")
+                React.createElement('span', { className: "relative z-10" }, "")
               ),
               React.createElement('a', { href: "#comment", className: "gradient-ring rounded-2xl px-5 py-2.5 text-sm font-bold text-white hover:shadow-neon transition-all hover:scale-105" },
                 React.createElement('span', { className: "relative z-10" }, "⚡ Comment ça marche")
+              ),
+              React.createElement('a', { href: "#liberaux", className: "gradient-ring rounded-2xl px-5 py-2.5 text-sm font-bold text-white hover:shadow-neon transition-all hover:scale-105" },
+                React.createElement('span', { className: "relative z-10" }, "💼 Solutions professions libérales")
               ),
               React.createElement('a', { href: "#communes", className: "gradient-ring rounded-2xl px-5 py-2.5 text-sm font-bold text-white hover:shadow-neon transition-all hover:scale-105" },
                 React.createElement('span', { className: "relative z-10" }, "🏛️ Solutions communes")
               ),
               React.createElement('a', { href: "#pme", className: "gradient-ring rounded-2xl px-5 py-2.5 text-sm font-bold text-white hover:shadow-neon transition-all hover:scale-105" },
-                React.createElement('span', { className: "relative z-10" }, "🔧 Solutions artisans & TPE")
+                React.createElement('span', { className: "relative z-10" }, "🔧 Solutions artisans & PME/TPE")
               )
             ),
             React.createElement('button', { 
@@ -239,16 +242,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           menuOpen && React.createElement('div', { className: "lg:hidden border-t border-white/10 bg-black/50 backdrop-blur" },
             React.createElement('nav', { className: "flex flex-col p-4 gap-2" },
               React.createElement('a', { href: "#vision", onClick: () => setMenuOpen(false), className: "gradient-ring rounded-xl px-4 py-3 text-sm font-bold text-white text-center" },
-                React.createElement('span', { className: "relative z-10" }, "✨ Pourquoi Administr-IA")
+                React.createElement('span', { className: "relative z-10" }, "")
               ),
               React.createElement('a', { href: "#comment", onClick: () => setMenuOpen(false), className: "gradient-ring rounded-xl px-4 py-3 text-sm font-bold text-white text-center" },
                 React.createElement('span', { className: "relative z-10" }, "⚡ Comment ça marche")
+              ),
+              React.createElement('a', { href: "#liberaux", onClick: () => setMenuOpen(false), className: "gradient-ring rounded-xl px-4 py-3 text-sm font-bold text-white text-center" },
+                React.createElement('span', { className: "relative z-10" }, "💼 Professions libérales")
               ),
               React.createElement('a', { href: "#communes", onClick: () => setMenuOpen(false), className: "gradient-ring rounded-xl px-4 py-3 text-sm font-bold text-white text-center" },
                 React.createElement('span', { className: "relative z-10" }, "🏛️ Solutions communes")
               ),
               React.createElement('a', { href: "#pme", onClick: () => setMenuOpen(false), className: "gradient-ring rounded-xl px-4 py-3 text-sm font-bold text-white text-center" },
-                React.createElement('span', { className: "relative z-10" }, "🔧 Solutions artisans & TPE")
+                React.createElement('span', { className: "relative z-10" }, "🔧 Solutions artisans & PME/TPE")
               )
             )
           )
@@ -291,25 +297,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 React.createElement('span', { className: "text-white/80" }, " pour libérer votre temps et booster votre impact.")
               ),
 
-              React.createElement('div', { className: "mt-10 flex flex-col items-center justify-center gap-4" },
-                React.createElement('a', { href: "#contact", className: "gradient-ring rounded-2xl px-8 py-4 text-lg font-semibold w-full sm:w-auto text-center" },
-                  React.createElement('span', { className: "relative z-10" }, "📧 Contactez-moi")
-                ),
-                React.createElement('div', { className: "flex flex-col sm:flex-row gap-3 w-full sm:w-auto" },
-                  React.createElement('a', { 
-                    href: "https://www.administr-ia.fr/mairie-fictive-bergweiler/", 
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    className: "glass ring-1 ring-white/20 rounded-2xl px-6 py-3 text-base font-semibold hover:shadow-neon transition-all w-full sm:w-auto text-center" 
-                  }, "🏛️ Testez des exemples (communes)"),
-                  React.createElement('a', { 
-                    href: "https://www.administr-ia.fr/plomberie-dutuyau/", 
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    className: "glass ring-1 ring-white/20 rounded-2xl px-6 py-3 text-base font-semibold hover:shadow-neon transition-all w-full sm:w-auto text-center" 
-                  }, "🔧 Testez des exemples (artisans)")
-                )
-              ),
+
 
               React.createElement('div', { className: "mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto" },
                 React.createElement('div', { className: "stat-box rounded-2xl p-4" },
@@ -347,17 +335,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         )
       );
 
-      const Vision = () => (
-        React.createElement(Section, { id: "vision", title: "Pourquoi Administr-IA ?", subtitle: "Parce que votre temps vaut mieux que des tâches répétitives." },
-          React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-3 gap-6" },
-            React.createElement(Card, { icon: "🎯", title: "Accompagnement local et humain", desc: "Un vrai humain basé en Alsace qui vous écoute, vous conseille et s'adapte à VOTRE réalité. Pas un robot de support." }),
-            React.createElement(Card, { icon: "🛠️", title: "Solutions personnalisées", desc: "Solutions sur-mesure et non standardisées. Je code vos automatisations, connecte vos outils, et crée ce qui n'existe pas encore." }),
-            React.createElement(Card, { icon: "💰", title: "Accessible à tous", desc: "Solutions pensées pour rendre l'IA et l'automatisation accessibles aux artisans, TPE/PME et communes. Sans engagement de durée.", highlight: "Premières solutions à partir de 49€/mois" })
-          )
-        )
-      );
-
-      const Comment = () => (
+            const Comment = () => (
         React.createElement(Section, { id: "comment", title: "Comment ça marche ?", subtitle: "3 étapes simples pour transformer votre quotidien." },
           React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-3 gap-8" },
             React.createElement('div', { className: "text-center" },
@@ -377,6 +355,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               React.createElement('h3', { className: "text-xl font-bold mb-3" }, "🚀 Vous gagnez du temps"),
               React.createElement('p', { className: "text-white/70" }, "Vos automatisations tournent 24/7. Je reste disponible pour ajuster, améliorer ou ajouter de nouvelles fonctionnalités. Vous pouvez arrêter à tout moment, vous restez libre."),
               React.createElement('p', { className: "text-cyan-400 text-sm mt-2 font-semibold" }, "Support illimité • Évolutions possibles")
+            )
+          )
+        )
+      );
+
+
+      const Liberaux = () => (
+        React.createElement(Section, { id: "liberaux", title: "Solutions pour Professions libérales", subtitle: "Concentrez-vous sur vos patients / clients, pas sur l'administratif." },
+          React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" },
+            React.createElement(Card, {
+              icon: "🗂️",
+              title: "Gestion administrative simplifiée",
+              desc: "Automatisation des documents et démarches répétitives. Moins de paperasse, moins d'oublis, plus de sérénité."
+            }),
+            React.createElement(Card, {
+              icon: "🌐",
+              title: "Présence en ligne professionnelle",
+              desc: "Un site simple et rassurant pour informer, orienter et faciliter la prise de contact.",
+              highlight: "→ Site professionnel clé en main à partir de 59€/mois"
+            }),
+            React.createElement(Card, {
+              icon: "📅",
+              title: "Agenda & rendez-vous intelligents",
+              desc: "Prise de rendez-vous en ligne, confirmations et rappels automatiques. Moins d'absences, moins d'appels."
+            }),
+            React.createElement(Card, {
+              icon: "📬",
+              title: "Boîte mail organisée",
+              desc: "Tri automatique, réponses aux demandes fréquentes et archivage. Votre messagerie respire à nouveau.",
+              highlight: "→ Administr-IA allège votre boîte mail."
+            })
+          ),
+          React.createElement('div', { className: "text-center mt-10" },
+            React.createElement('a', {
+              href: "#contact",
+              className: "gradient-ring rounded-2xl px-8 py-4 text-lg font-bold inline-block hover:shadow-neon transition-all transform hover:scale-105"
+            },
+              React.createElement('span', { className: "relative z-10" }, "☕ Demander un diagnostic gratuit")
             )
           )
         )
@@ -434,7 +450,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       );
 
       const PME = () => (
-        React.createElement(Section, { id: "pme", title: "Solutions pour Artisans, TPE & Indépendants", subtitle: "Concentrez-vous sur votre métier, pas sur l'admin." },
+        React.createElement(Section, { id: "pme", title: "Solutions pour Artisans, TPE/PME", subtitle: "Concentrez-vous sur votre métier, pas sur l'admin." },
           React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" },
             React.createElement(Card, { 
               icon: "📄", 
@@ -587,8 +603,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         React.createElement(React.Fragment, null,
           React.createElement(Header, null),
           React.createElement(Hero, null),
-          React.createElement(Vision, null),
           React.createElement(Comment, null),
+          React.createElement(Liberaux, null),
           React.createElement(Communes, null),
           React.createElement(PME, null),
           React.createElement(FAQ, null),
