@@ -609,5 +609,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       const root = ReactDOM.createRoot(document.getElementById('root'));
       root.render(React.createElement(App, null));
     </script>
+<!-- Bandeau info éthique (sans cookies) -->
+<div id="privacy-banner"
+     style="position:fixed;bottom:0;left:0;right:0;z-index:9999;
+            background:#111827;color:#fff;padding:12px 16px;
+            display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+            gap:10px;font-size:14px;">
+  <span>🔐 <strong>Ce site respecte votre vie privée</strong> : il utilise uniquement des statistiques anonymisées, sans cookies publicitaires ni suivi commercial.</span>
+
+  <button id="privacy-ok"
+          style="background:#10b981;border:none;color:#111827;
+                 padding:6px 14px;border-radius:6px;font-weight:600;cursor:pointer;">
+    J’ai compris
+  </button>
+</div>
+<script>
+  const banner = document.getElementById('privacy-banner');
+  const button = document.getElementById('privacy-ok');
+
+  // Ne pas réafficher après clic (localStorage ≠ cookie)
+  if (localStorage.getItem('privacyAccepted')) {
+    banner.remove();
+  }
+
+  button.addEventListener('click', () => {
+    localStorage.setItem('privacyAccepted', 'true');
+    banner.remove();
+  });
+</script>
   </body>
 </html>
