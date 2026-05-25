@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jean — Médium • Chamane • Voyant</title>
+  <meta name="description" content="Jean, médium chamane voyant. Magnétisme, voyance, affaires, purification des lieux et protections occultes." />
+
+  <style>
+    :root {
+      --gold: #d8a84b;
+      --gold-soft: #f1d48a;
+      --dark: #0d0d09;
+      --brown: #1a140d;
+      --brown-soft: rgba(34, 25, 14, 0.86);
+      --text: #f4e2b7;
+      --muted: rgba(255, 238, 196, 0.78);
+      --line: rgba(216, 168, 75, 0.55);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--dark);
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top, rgba(216, 168, 75, 0.13), transparent 35%),
+        linear-gradient(180deg, #0b0b07 0%, #151009 45%, #090907 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ==========================
+       1. HAUT DU SITE PIXEL VISUEL
+       Image exacte : Visuel haut de site C Urrea.png
+       ========================== */
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 720px;
+      background-image: url("Visuel haut de site C Urrea.png");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    /* Zones cliquables invisibles sur les 5 boutons du visuel */
+    .hotspot {
+      position: absolute;
+      z-index: 5;
+      display: block;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0);
+      transition: background 0.2s ease, outline 0.2s ease;
+    }
+
+    .hotspot:hover {
+      background: rgba(216, 168, 75, 0.06);
+      outline: 1px solid rgba(216, 168, 75, 0.25);
+    }
+
+    .hotspot-mag { left: 9%; top: 63%; width: 15%; height: 22%; }
+    .hotspot-voy { left: 25%; top: 63%; width: 16%; height: 22%; }
+    .hotspot-bus { left: 42%; top: 63%; width: 16%; height: 22%; }
+    .hotspot-pur { left: 59%; top: 63%; width: 16%; height: 22%; }
+    .hotspot-pro { left: 76%; top: 63%; width: 15%; height: 22%; }
+
+    .scroll-cue {
+      position: absolute;
+      left: 50%;
+      bottom: 5.5%;
+      transform: translateX(-50%);
+      width: 46px;
+      height: 46px;
+      z-index: 6;
+      border-radius: 999px;
+    }
+
+    /* ==========================
+       2. SUITE DU SITE
+       ========================== */
+
+    .main-content {
+      position: relative;
+      padding: 72px 22px 90px;
+      background:
+        linear-gradient(180deg, rgba(8, 8, 6, 0.95), rgba(18, 13, 8, 0.98)),
+        radial-gradient(circle at 50% 0%, rgba(216, 168, 75, 0.18), transparent 40%);
+    }
+
+    .main-content::before,
+    .main-content::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(216,168,75,.35), transparent);
+      opacity: .7;
+    }
+
+    .main-content::before { left: 4.5%; }
+    .main-content::after { right: 4.5%; }
+
+    .intro-title {
+      max-width: 980px;
+      margin: 0 auto 48px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .intro-title .symbol {
+      color: var(--gold);
+      letter-spacing: .55em;
+      font-size: 18px;
+      margin-bottom: 18px;
+    }
+
+    .intro-title h1 {
+      font-size: clamp(34px, 5vw, 64px);
+      font-weight: 400;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 18px;
+    }
+
+    .intro-title p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .services {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(320px, 42%) 1fr;
+      min-height: 300px;
+      border: 1px solid rgba(216, 168, 75, 0.45);
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(9, 10, 7, .94), rgba(21, 16, 9, .92)),
+        radial-gradient(circle at 85% 20%, rgba(216,168,75,.17), transparent 35%);
+      box-shadow: 0 26px 80px rgba(0,0,0,.34);
+      cursor: pointer;
+      transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(241, 212, 138, 0.82);
+      box-shadow: 0 32px 90px rgba(0,0,0,.46);
+    }
+
+    .service-image-wrap {
+      position: relative;
+      min-height: 300px;
+      overflow: hidden;
+      border-right: 1px solid rgba(216,168,75,.32);
+      background: #120e08;
+    }
+
+    .service-image-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.08), rgba(0,0,0,.38));
+      pointer-events: none;
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.01);
+      transition: transform .45s ease, filter .45s ease;
+      filter: saturate(.92) contrast(1.05);
+    }
+
+    /* Au clic : l'image se décale légèrement vers la gauche et laisse le texte s'imposer */
+    .service-card.open img {
+      transform: translateX(-8%) scale(1.08);
+      filter: saturate(1.04) contrast(1.08) brightness(.95);
+    }
+
+    .service-number {
+      position: absolute;
+      left: 28px;
+      bottom: 28px;
+      z-index: 2;
+      width: 70px;
+      height: 70px;
+      border: 2px solid rgba(216,168,75,.78);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 36px;
+      color: var(--gold-soft);
+      background: rgba(10, 8, 5, .38);
+      backdrop-filter: blur(2px);
+    }
+
+    .service-text {
+      padding: 48px 58px 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .service-text h2 {
+      color: var(--gold-soft);
+      font-size: clamp(27px, 3vw, 42px);
+      line-height: 1.12;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+    }
+
+    .service-text .short {
+      font-size: 19px;
+      line-height: 1.5;
+      color: #fff1cb;
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      width: 230px;
+      max-width: 55%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 0 20px;
+      position: relative;
+    }
+
+    .divider::after {
+      content: "✧";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--gold);
+      background: #151009;
+      padding: 0 8px;
+      font-size: 18px;
+    }
+
+    .detail {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height .42s ease, opacity .28s ease;
+      font-family: Arial, sans-serif;
+      color: rgba(255, 238, 196, .78);
+      font-size: 17px;
+      line-height: 1.72;
+    }
+
+    .service-card.open .detail {
+      max-height: 340px;
+      opacity: 1;
+    }
+
+    .service-card:not(.open) .detail-preview {
+      display: block;
+    }
+
+    .detail-preview {
+      font-family: Arial, sans-serif;
+      color: rgba(255, 238, 196, .74);
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 650px;
+    }
+
+    .service-card.open .detail-preview {
+      display: none;
+    }
+
+    .open-indicator {
+      position: absolute;
+      right: 36px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 34px;
+      transition: transform .3s ease;
+    }
+
+    .service-card.open .open-indicator {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .medical-note {
+      width: min(1080px, calc(100% - 44px));
+      margin: 46px auto 0;
+      padding: 26px 32px;
+      border: 1px solid rgba(216,168,75,.28);
+      border-radius: 16px;
+      background: rgba(255,255,255,.035);
+      color: rgba(255, 238, 196, .72);
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .footer {
+      padding: 42px 20px 54px;
+      text-align: center;
+      color: rgba(255,238,196,.62);
+      font-family: Arial, sans-serif;
+      background: #080806;
+      border-top: 1px solid rgba(216,168,75,.22);
+    }
+
+    .footer .lotus {
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 1050px) {
+      .hero-visual {
+        min-height: 640px;
+        background-size: cover;
+      }
+
+      .hotspot-mag { left: 5%; top: 63%; width: 18%; }
+      .hotspot-voy { left: 23%; top: 63%; width: 19%; }
+      .hotspot-bus { left: 42%; top: 63%; width: 18%; }
+      .hotspot-pur { left: 60%; top: 63%; width: 18%; }
+      .hotspot-pro { left: 78%; top: 63%; width: 17%; }
+    }
+
+    @media (max-width: 820px) {
+      .hero-visual {
+        height: 78vh;
+        min-height: 540px;
+        background-image: url("Visuel haut de site C Urrea.png");
+        background-position: center top;
+      }
+
+      .hotspot {
+        display: none;
+      }
+
+      .main-content {
+        padding: 54px 14px 70px;
+      }
+
+      .service-card {
+        grid-template-columns: 1fr;
+      }
+
+      .service-image-wrap {
+        border-right: none;
+        border-bottom: 1px solid rgba(216,168,75,.32);
+        min-height: 240px;
+      }
+
+      .service-card img {
+        min-height: 240px;
+      }
+
+      .service-card.open img {
+        transform: translateY(-4%) scale(1.08);
+      }
+
+      .service-text {
+        padding: 34px 28px 46px;
+      }
+
+      .open-indicator {
+        right: 26px;
+        top: auto;
+        bottom: 22px;
+        transform: none;
+      }
+
+      .service-card.open .open-indicator {
+        transform: rotate(180deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero-visual" aria-label="Jean Médium Chamane Voyant">
+    <a class="hotspot hotspot-mag" href="#magnetisme" aria-label="Aller à la rubrique Magnétisme"></a>
+    <a class="hotspot hotspot-voy" href="#voyant-medium" aria-label="Aller à la rubrique Voyant Médium"></a>
+    <a class="hotspot hotspot-bus" href="#affaires-business" aria-label="Aller à la rubrique Affaires Business"></a>
+    <a class="hotspot hotspot-pur" href="#purification" aria-label="Aller à la rubrique Purification des lieux"></a>
+    <a class="hotspot hotspot-pro" href="#protections" aria-label="Aller à la rubrique Protections occultes"></a>
+    <a class="scroll-cue" href="#prestations" aria-label="Découvrir les prestations"></a>
+  </header>
+
+  <main id="prestations" class="main-content">
+    <section class="intro-title">
+      <div class="symbol">• • •</div>
+      <h1>Prestations</h1>
+      <p>Cliquez sur une rubrique pour découvrir le détail de l’accompagnement proposé.</p>
+    </section>
+
+    <section class="services" aria-label="Prestations de Jean">
+      <article id="magnetisme" class="service-card open" tabindex="0">
+        <div class="service-image-wrap">
+          <img src="Image 1 CU.png" alt="Magnétisme" />
+          <div class="service-number">1</div>
+        </div>
+        <div class="service-text">
+          <h2>Magnétisme</h2>
+          <p class="short">Soins énergétiques à distance ou en présence</p>
+          <div class="divider"></div>
+          <p class="detail-preview">Cliquez pour afficher le détail.</p>
+          <div class="detail">
+            <p>Accompagnement énergétique pour les maux divers, les tensions physiques, les blocages émotionnels et les déséquilibres ressentis. Les soins peuvent se faire en présence ou à distance, notamment sur photo.</p>
+            <p>Ces soins ne remplacent pas un traitement médical. Vous ne devez jamais interrompre un traitement sans l’accord de votre médecin.</p>
+          </div>
+          <div class="open-indicator">⌄</div>
+        </div>
+      </article>
+
+      <article id="voyant-medium" class="service-card" tabindex="0">
+        <div class="service-image-wrap">
+          <img src="image 5 C Urrea.png" alt="Voyant Médium" />
+          <div class="service-number">2</div>
+        </div>
+        <div class="service-text">
+          <h2>Voyant • Médium</h2>
+          <p class="short">Écoute, guidance et prédictions sur tous les sujets</p>
+          <div class="divider"></div>
+          <p class="detail-preview">Cliquez pour afficher le détail.</p>
+          <div class="detail">
+            <p>Chaque consultation est unique. Que vous soyez confronté à un blocage sentimental, un choix professionnel ou une question sur votre avenir, Jean vous accompagne avec des prédictions claires, sans jugement.</p>
+            <p>Différents supports peuvent être utilisés selon votre besoin : clairvoyance pure, pendule ou guidance intuitive.</p>
+          </div>
+          <div class="open-indicator">⌄</div>
+        </div>
+      </article>
+
+      <article id="affaires-business" class="service-card" tabindex="0">
+        <div class="service-image-wrap">
+          <img src="image2 C Urrea.png" alt="Affaires Business" />
+          <div class="service-number">3</div>
+        </div>
+        <div class="service-text">
+          <h2>Affaires / Business</h2>
+          <p class="short">Réussite, développement et expansion</p>
+          <div class="divider"></div>
+          <p class="detail-preview">Cliquez pour afficher le détail.</p>
+          <div class="detail">
+            <p>Accompagnement pour les entreprises, les activités commerciales, les projets de création ou de reprise. Travail autour des blocages qui freinent l’évolution, l’attraction de la clientèle et le développement.</p>
+            <p>Cette approche vise à remettre de la clarté, de l’élan et une dynamique favorable dans vos projets professionnels.</p>
+          </div>
+          <div class="open-indicator">⌄</div>
+        </div>
+      </article>
+
+      <article id="purification" class="service-card" tabindex="0">
+        <div class="service-image-wrap">
+          <img src="image3 C Urrea(2).png" alt="Purification des lieux" />
+          <div class="service-number">4</div>
+        </div>
+        <div class="service-text">
+          <h2>Purification des lieux</h2>
+          <p class="short">Nettoyage énergétique et harmonisation</p>
+          <div class="divider"></div>
+          <p class="detail-preview">Cliquez pour afficher le détail.</p>
+          <div class="detail">
+            <p>Neutralisation des ondes nocives et des influences pesantes, quelles que soient leurs origines. Travail possible sur habitation, propriété familiale, lieu professionnel ou espace commercial.</p>
+            <p>L’objectif est de rétablir une atmosphère plus saine, plus calme et plus harmonieuse dans vos lieux de vie ou de travail.</p>
+          </div>
+          <div class="open-indicator">⌄</div>
+        </div>
+      </article>
+
+      <article id="protections" class="service-card" tabindex="0">
+        <div class="service-image-wrap">
+          <img src="image4 CU(1).png" alt="Protections occultes" />
+          <div class="service-number">5</div>
+        </div>
+        <div class="service-text">
+          <h2>Protections occultes</h2>
+          <p class="short">Protection contre les énergies négatives</p>
+          <div class="divider"></div>
+          <p class="detail-preview">Cliquez pour afficher le détail.</p>
+          <div class="detail">
+            <p>Protection contre le mauvais sort, la magie en général, les maléfices et les influences néfastes. Mise en place d’un travail de protection adapté à votre situation.</p>
+            <p>Cette démarche vise à sécuriser votre énergie, votre lieu ou votre activité, avec sérieux, discrétion et respect.</p>
+          </div>
+          <div class="open-indicator">⌄</div>
+        </div>
+      </article>
+    </section>
+
+    <div class="medical-note">
+      Important : les accompagnements énergétiques et spirituels ne remplacent pas un avis médical, un diagnostic ou un traitement. En cas de problème de santé, consultez un professionnel de santé qualifié.
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="lotus">✧</div>
+    <p>© 2026 Jean — Médium • Chamane • Voyant</p>
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.service-card');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('open');
+      });
+
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          card.classList.toggle('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
